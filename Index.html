@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Carasia Consulting provides practical, client-focused consulting solutions for businesses and organizations."
+  />
+  <title>Carasia Consulting</title>
+
+  <style>
+    :root {
+      --blue: #002d62;
+      --blue-light: #0a5fb4;
+      --red: #ce1126;
+      --white: #ffffff;
+      --off-white: #f6f8fb;
+      --text: #1d2733;
+      --muted: #667281;
+      --border: #dfe5ec;
+      --shadow: 0 18px 45px rgba(0, 45, 98, 0.12);
+      --radius: 18px;
+      --max-width: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 88px 0;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin-bottom: 40px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--red);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.15;
+    }
+
+    h1 {
+      font-size: clamp(2.55rem, 6vw, 5.2rem);
+      letter-spacing: -0.045em;
+    }
+
+    h2 {
+      color: var(--blue);
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      letter-spacing: -0.03em;
+    }
+
+    h3 {
+      color: var(--blue);
+      font-size: 1.25rem;
+    }
+
+    p {
+      color: var(--muted);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 24px;
+      border: 2px solid transparent;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: transform 0.2s ease, box-shadow 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      color: var(--white);
+      background: var(--red);
+      box-shadow: 0 12px 28px rgba(206, 17, 38, 0.25);
+    }
+
+    .button-secondary {
+      color: var(--blue);
+      background: var(--white);
+      border-color: rgba(0, 45, 98, 0.16);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.94);
+      border-bottom: 1px solid rgba(223, 229, 236, 0.9);
+      backdrop-filter: blur(14px);
+    }
+
+    .navbar {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--blue);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background:
+        linear-gradient(135deg, var(--blue) 0 48%, var(--white) 48% 54%, var(--red) 54% 100%);
+      box-shadow: 0 8px 20px rgba(0, 45, 98, 0.18);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--blue);
+    }
+
+    .nav-links a:hover {
+      color: var(--red);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 720px;
+      display: grid;
+      align-items: center;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 82% 18%, rgba(206, 17, 38, 0.34), transparent 24%),
+        radial-gradient(circle at 12% 86%, rgba(10, 95, 180, 0.55), transparent 30%),
+        linear-gradient(135deg, #001f46 0%, var(--blue) 52%, #063e7d 100%);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .hero::before {
+      width: 460px;
+      height: 460px;
+      right: -160px;
+      top: -180px;
+    }
+
+    .hero::after {
+      width: 280px;
+      height: 280px;
+      right: 12%;
+      bottom: -160px;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 64px;
+      padding: 92px 0;
+    }
+
+    .hero .eyebrow {
+      color: #ffdbe0;
+    }
+
+    .hero h1 {
+      max-width: 760px;
+    }
+
+    .hero h1 span {
+      color: #ff8b99;
+    }
+
+    .hero-copy > p {
+      max-width: 650px;
+      margin: 24px 0 34px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 1.12rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .hero-card {
+      padding: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero-card h3 {
+      margin-bottom: 18px;
+      color: var(--white);
+      font-size: 1.55rem;
+    }
+
+    .hero-list {
+      list-style: none;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .check {
+      flex: 0 0 auto;
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--white);
+      background: var(--red);
+      font-size: 0.8rem;
+      font-weight: 900;
+    }
+
+    .services {
+      background: var(--off-white);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: 0 14px 35px rgba(0, 45, 98, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      margin-bottom: 22px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--blue), var(--blue-light));
+      font-size: 1.35rem;
+      font-weight: 900;
+    }
+
+    .card:nth-child(2) .icon {
+      background: linear-gradient(135deg, var(--red), #f04455);
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+    }
+
+    .about-grid,
+    .why-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      align-items: center;
+      gap: 64px;
+    }
+
+    .about-panel {
+      min-height: 430px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(0, 45, 98, 0.92), rgba(10, 95, 180, 0.85)),
+        linear-gradient(45deg, var(--blue), var(--red));
+      box-shadow: var(--shadow);
+    }
+
+    .about-panel::before {
+      content: "";
+      position: absolute;
+      inset: 28px;
+      border: 2px solid rgba(255, 255, 255, 0.18);
+      border-radius: 22px;
+    }
+
+    .about-panel-content {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 54px;
+      text-align: center;
+      color: var(--white);
+    }
+
+    .about-panel-content strong {
+      display: block;
+      font-size: clamp(2.3rem, 6vw, 5rem);
+      line-height: 1;
+    }
+
+    .about-panel-content span {
+      display: block;
+      margin-top: 14px;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 1.08rem;
+    }
+
+    .about-copy p + p {
+      margin-top: 16px;
+    }
+
+    .feature-list {
+      margin-top: 28px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .feature {
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+    }
+
+    .feature-badge {
+      flex: 0 0 auto;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: var(--white);
+      background: var(--red);
+      font-weight: 900;
+    }
+
+    .feature p {
+      margin-top: 4px;
+    }
+
+    .why {
+      color: var(--white);
+      background: linear-gradient(135deg, #001f46, var(--blue));
+    }
+
+    .why h2,
+    .why h3 {
+      color: var(--white);
+    }
+
+    .why p {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .why-boxes {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .why-box {
+      min-height: 190px;
+      padding: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .why-number {
+      margin-bottom: 16px;
+      color: #ff9ba6;
+      font-size: 2rem;
+      font-weight: 900;
+    }
+
+    .contact {
+      background: var(--off-white);
+    }
+
+    .contact-card {
+      padding: 34px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-details {
+      margin-top: 24px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .contact-item {
+      padding: 16px 18px;
+      border-left: 4px solid var(--red);
+      border-radius: 10px;
+      background: var(--off-white);
+    }
+
+    .contact-item strong {
+      display: block;
+      color: var(--blue);
+      margin-bottom: 2px;
+    }
+
+    form {
+      display: grid;
+      gap: 16px;
+    }
+
+    label {
+      color: var(--blue);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      margin-top: 7px;
+      padding: 14px 15px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+      color: var(--text);
+      font: inherit;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--blue-light);
+      box-shadow: 0 0 0 4px rgba(10, 95, 180, 0.1);
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    footer {
+      padding: 28px 0;
+      color: rgba(255, 255, 255, 0.72);
+      background: #001a39;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+
+    .footer-content p {
+      color: inherit;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-grid,
+      .about-grid,
+      .why-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid {
+        gap: 38px;
+        padding: 76px 0;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .about-panel {
+        min-height: 340px;
+      }
+
+      .section {
+        padding: 70px 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .navbar .button {
+        display: none;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-actions .button {
+        width: 100%;
+      }
+
+      .hero-card,
+      .card,
+      .contact-card {
+        padding: 24px;
+      }
+
+      .why-boxes {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container navbar">
+      <a class="brand" href="#home" aria-label="Carasia Consulting home">
+        <span class="brand-mark">C</span>
+        <span>Carasia Consulting</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#why-us">Why Us</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a class="button button-primary" href="#contact">Schedule a Consultation</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Strategy • Growth • Results</span>
+          <h1>
+            Practical consulting for
+            <span>stronger organizations.</span>
+          </h1>
+          <p>
+            Carasia Consulting helps businesses, entrepreneurs, and community
+            organizations turn ideas into clear strategies, efficient systems,
+            and measurable progress.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#contact">Start a Conversation</a>
+            <a class="button button-secondary" href="#services">Explore Services</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Consulting benefits">
+          <h3>Built around your goals</h3>
+          <ul class="hero-list">
+            <li>
+              <span class="check">✓</span>
+              <span>Clear recommendations based on your priorities.</span>
+            </li>
+            <li>
+              <span class="check">✓</span>
+              <span>Hands-on support from planning through execution.</span>
+            </li>
+            <li>
+              <span class="check">✓</span>
+              <span>Professional service with cultural awareness and care.</span>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section services" id="services">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">What We Do</span>
+          <h2>Consulting designed to move your work forward.</h2>
+          <p>
+            Choose the support that fits your current stage. Each engagement
+            can be customized to your organization, market, and objectives.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="icon">01</div>
+            <h3>Business Strategy</h3>
+            <p>
+              Clarify your direction, strengthen your business model, and create
+              an actionable roadmap for sustainable growth.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">02</div>
+            <h3>Operations & Process</h3>
+            <p>
+              Improve workflows, define responsibilities, reduce inefficiencies,
+              and build systems your team can consistently follow.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">03</div>
+            <h3>Community & Program Support</h3>
+            <p>
+              Develop programs, partnerships, outreach strategies, and practical
+              implementation plans that support meaningful impact.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-panel">
+          <div class="about-panel-content">
+            <div>
+              <strong>Focused.</strong>
+              <span>Professional guidance with a personal approach.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-copy">
+          <span class="eyebrow">About Carasia</span>
+          <h2>Solutions that are clear, realistic, and built to last.</h2>
+          <p>
+            We believe effective consulting should make complex decisions
+            easier. Our role is to listen carefully, identify what matters most,
+            and help you move from uncertainty to action.
+          </p>
+          <p>
+            Whether you are launching a new initiative, strengthening an
+            existing organization, or solving an operational challenge, Carasia
+            Consulting provides structured guidance without unnecessary jargon.
+          </p>
+
+          <div class="feature-list">
+            <div class="feature">
+              <div class="feature-badge">A</div>
+              <div>
+                <h3>Action-Oriented</h3>
+                <p>Recommendations are translated into practical next steps.</p>
+              </div>
+            </div>
+
+            <div class="feature">
+              <div class="feature-badge">C</div>
+              <div>
+                <h3>Client-Centered</h3>
+                <p>Your goals, values, and constraints guide the engagement.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section why" id="why-us">
+      <div class="container why-grid">
+        <div>
+          <span class="eyebrow">Why Choose Us</span>
+          <h2>A thoughtful partner for important decisions.</h2>
+          <p>
+            Carasia Consulting combines strategic thinking with practical
+            implementation support. The result is advice you can understand,
+            use, and measure.
+          </p>
+        </div>
+
+        <div class="why-boxes">
+          <article class="why-box">
+            <div class="why-number">01</div>
+            <h3>Personalized Guidance</h3>
+            <p>No generic playbooks. Every recommendation is adapted to you.</p>
+          </article>
+
+          <article class="why-box">
+            <div class="why-number">02</div>
+            <h3>Clear Communication</h3>
+            <p>Direct explanations, defined expectations, and visible progress.</p>
+          </article>
+
+          <article class="why-box">
+            <div class="why-number">03</div>
+            <h3>Practical Execution</h3>
+            <p>We focus on realistic solutions your team can implement.</p>
+          </article>
+
+          <article class="why-box">
+            <div class="why-number">04</div>
+            <h3>Results Focus</h3>
+            <p>Every engagement is tied to meaningful business outcomes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <span class="eyebrow">Contact</span>
+          <h2>Let’s discuss what you are building.</h2>
+          <p>
+            Share a few details about your goals or current challenge. We will
+            follow up to discuss the best next step.
+          </p>
+
+          <div class="contact-details">
+            <div class="contact-item">
+              <strong>Email</strong>
+              <span>your-email@example.com</span>
+            </div>
+            <div class="contact-item">
+              <strong>Phone</strong>
+              <span>(000) 000-0000</span>
+            </div>
+            <div class="contact-item">
+              <strong>Service Area</strong>
+              <span>Remote and in-person consulting</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <form action="https://formsubmit.co/your-email@example.com" method="POST">
+            <input type="hidden" name="_subject" value="New Carasia Consulting inquiry" />
+            <input type="hidden" name="_captcha" value="false" />
+
+            <label>
+              Name
+              <input type="text" name="name" placeholder="Your name" required />
+            </label>
+
+            <label>
+              Email
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </label>
+
+            <label>
+              Area of interest
+              <select name="service">
+                <option>Business Strategy</option>
+                <option>Operations & Process</option>
+                <option>Community & Program Support</option>
+                <option>Other</option>
+              </select>
+            </label>
+
+            <label>
+              Message
+              <textarea
+                name="message"
+                placeholder="Tell us briefly about your goals or project."
+                required
+              ></textarea>
+            </label>
+
+            <button class="button button-primary" type="submit">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <p>© <span id="year"></span> Carasia Consulting. All rights reserved.</p>
+      <p>Strategy with clarity. Progress with purpose.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
