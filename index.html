@@ -1,15 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="Carasia Consulting provides practical, client-focused consulting solutions for businesses and organizations."
-  />
-  <title>Carasia Consulting</title>
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Carasia Consulting provides practical, client-focused consulting solutions for businesses and organizations." name="description"/>
+<title>Carasia Consulting</title>
+<style>
     :root {
       --blue: #05275B;
       --blue-light: #2A8B99;
@@ -834,6 +831,39 @@
       font-size: .9rem;
     }
 
+
+    .language-switcher {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.94);
+      box-shadow: 0 7px 20px rgba(5,39,91,.08);
+    }
+    .lang-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 6px;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-size: .77rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .lang-button.active {
+      color: var(--blue);
+      box-shadow: inset 0 -2px 0 var(--gold);
+    }
+    .lang-divider { color: var(--border); }
+    @media (max-width: 900px) {
+      .language-switcher { margin-left: auto; }
+      .nav-cta { display: none; }
+    }
+
     @media (max-width: 900px) {
       .hero-premium {
         min-height: auto;
@@ -979,312 +1009,264 @@
     }
   </style>
 </head>
-
 <body>
-  <header>
-    <div class="container navbar">
-      <a class="brand brand-logo" href="#home" aria-label="Carasia Consulting home">
-        <img src="carasia-logo.png" alt="Carasia Consulting logo" />
-      </a>
-
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="#services">Services</a>
-        <a href="#about">About</a>
-        <a href="#why-us">Why Us</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-      <a class="button button-primary" href="#contact">Schedule a Consultation</a>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero hero-premium" id="home">
-      <div class="hero-map" aria-hidden="true">
-        <svg viewBox="0 0 1400 760" role="presentation">
-          <g class="map-grid">
-            <path d="M140 130H1260M140 240H1260M140 350H1260M140 460H1260M140 570H1260"/>
-            <path d="M260 80V650M500 80V650M740 80V650M980 80V650M1220 80V650"/>
-          </g>
-
-          <g class="world-outline">
-            <path d="M185 242c40-54 108-83 173-73 48 7 80 33 114 67 18 18 48 27 73 24 26-3 46-18 71-24 46-11 101 5 131 40 15 17 26 39 46 49 22 11 49 6 71-3 58-24 94-72 156-88 56-14 117 1 158 39 19 18 34 42 34 68 0 27-17 52-36 70-36 35-83 52-126 77-27 16-53 37-64 66-10 28-1 60 17 83-55 16-119 11-169-16-32-17-57-44-91-58-50-20-108-15-152 13-38 24-64 64-107 78-44 14-95 0-125-35-20-24-28-55-46-80-28-40-77-66-122-67-43-1-88 18-116 51-27 31-39 75-72 99-26 20-63 29-94 17-39-15-63-58-61-100 2-49 36-93 76-121 25-18 54-31 72-56 23-31 29-73 16-110-17-47-60-82-111-90-43-7-89 5-124 31z"/>
-          </g>
-
-          <g class="route-lines">
-            <path d="M325 315C500 210 700 215 930 320"/>
-            <path d="M360 470C555 355 760 350 1090 420"/>
-            <path d="M470 205C640 270 780 420 920 550"/>
-          </g>
-
-          <g class="route-points">
-            <circle cx="325" cy="315" r="7"/>
-            <circle cx="930" cy="320" r="7"/>
-            <circle cx="360" cy="470" r="7"/>
-            <circle cx="1090" cy="420" r="7"/>
-            <circle cx="470" cy="205" r="7"/>
-            <circle cx="920" cy="550" r="7"/>
-          </g>
-        </svg>
-      </div>
-
-      <div class="container hero-premium-grid">
-        <div class="hero-copy premium-copy">
-          <span class="eyebrow">Market Intelligence • Sourcing • Growth</span>
-          <h1>
-            Connecting businesses to
-            <span>markets, partners, and opportunity.</span>
-          </h1>
-          <p>
-            Carasia Consulting supports companies entering new markets,
-            identifying qualified partners, building research-driven outreach,
-            and turning complex commercial decisions into practical action.
-          </p>
-
-          <div class="hero-actions">
-            <a class="button button-primary" href="#contact">Start a Conversation</a>
-            <a class="button button-secondary premium-secondary" href="#services">Explore Capabilities</a>
-          </div>
-
-          <div class="hero-metrics" aria-label="Core capabilities">
-            <div>
-              <strong>Research</strong>
-              <span>Market and partner intelligence</span>
-            </div>
-            <div>
-              <strong>Access</strong>
-              <span>Cross-border relationships</span>
-            </div>
-            <div>
-              <strong>Execution</strong>
-              <span>Practical next steps</span>
-            </div>
-          </div>
-        </div>
-
-        <aside class="hero-insight-card" aria-label="Carasia market intelligence approach">
-          <span class="insight-label">Strategic Intelligence</span>
-          <h3>From scattered information to informed decisions.</h3>
-          <p>
-            We organize market data, identify decision-makers, evaluate opportunity,
-            and help clients approach the right organizations with a clear commercial purpose.
-          </p>
-
-          <div class="insight-list">
-            <div><span>01</span><strong>Market mapping</strong></div>
-            <div><span>02</span><strong>Prospect intelligence</strong></div>
-            <div><span>03</span><strong>Partner sourcing</strong></div>
-            <div><span>04</span><strong>Outreach strategy</strong></div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section services" id="services">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">What We Do</span>
-          <h2>Consulting designed to move your work forward.</h2>
-          <p>
-            Choose the support that fits your current stage. Each engagement
-            can be customized to your organization, market, and objectives.
-          </p>
-        </div>
-
-        <div class="cards">
-          <article class="card">
-            <div class="icon">01</div>
-            <h3>Business Strategy</h3>
-            <p>
-              Clarify your direction, strengthen your business model, and create
-              an actionable roadmap for sustainable growth.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="icon">02</div>
-            <h3>Operations & Process</h3>
-            <p>
-              Improve workflows, define responsibilities, reduce inefficiencies,
-              and build systems your team can consistently follow.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="icon">03</div>
-            <h3>Community & Program Support</h3>
-            <p>
-              Develop programs, partnerships, outreach strategies, and practical
-              implementation plans that support meaningful impact.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <div class="container about-grid">
-        <div class="about-panel">
-          <div class="about-panel-content">
-            <div>
-              <strong>Focused.</strong>
-              <span>Professional guidance with a personal approach.</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="about-copy">
-          <span class="eyebrow">About Carasia</span>
-          <h2>Solutions that are clear, realistic, and built to last.</h2>
-          <p>
-            We believe effective consulting should make complex decisions
-            smooth transitions. Our role is to listen carefully, identify what matters most,
-            and help you move from uncertainty to action.
-          </p>
-          <p>
-            Whether you are launching a new initiative, strengthening an
-            existing organization, or solving an operational challenge, Carasia
-            Consulting provides structured guidance without unnecessary jargon.
-          </p>
-
-          <div class="feature-list">
-            <div class="feature">
-              <div class="feature-badge">A</div>
-              <div>
-                <h3>Action-Oriented</h3>
-                <p>Recommendations are translated into practical next steps.</p>
-              </div>
-            </div>
-
-            <div class="feature">
-              <div class="feature-badge">C</div>
-              <div>
-                <h3>Client-Centered</h3>
-                <p>Your goals, values, and constraints guide the engagement.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section why" id="why-us">
-      <div class="container why-grid">
-        <div>
-          <span class="eyebrow">Why Choose Us</span>
-          <h2>A thoughtful partner for important decisions.</h2>
-          <p>
-            Carasia Consulting combines strategic thinking with practical
-            implementation support. The result is advice you can understand,
-            use, and measure.
-          </p>
-        </div>
-
-        <div class="why-boxes">
-          <article class="why-box">
-            <div class="why-number">01</div>
-            <h3>Personalized Guidance</h3>
-            <p>No generic playbooks. Every recommendation is adapted to you.</p>
-          </article>
-
-          <article class="why-box">
-            <div class="why-number">02</div>
-            <h3>Clear Communication</h3>
-            <p>Direct explanations, defined expectations, and visible progress.</p>
-          </article>
-
-          <article class="why-box">
-            <div class="why-number">03</div>
-            <h3>Practical Execution</h3>
-            <p>We focus on realistic solutions your team can implement.</p>
-          </article>
-
-          <article class="why-box">
-            <div class="why-number">04</div>
-            <h3>Results Focus</h3>
-            <p>Every engagement is tied to meaningful business outcomes.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section contact" id="contact">
-      <div class="container contact-grid">
-        <div>
-          <span class="eyebrow">Contact</span>
-          <h2>Let’s discuss what you are building.</h2>
-          <p>
-            Share a few details about your goals or current challenge. We will
-            follow up to discuss the best next step.
-          </p>
-
-          <div class="contact-details">
-            <div class="contact-item">
-              <strong>Email</strong>
-              <span>carasiaconsulting@gmail.com</span>
-            </div>
-            <div class="contact-item">
-              <strong>Phone</strong>
-              <span>(000) 000-0000</span>
-            </div>
-            <div class="contact-item">
-              <strong>Service Area</strong>
-              <span>Remote and in-person consulting</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="contact-card">
-          <form action="https://formsubmit.co/your-email@example.com" method="POST">
-            <input type="hidden" name="_subject" value="New Carasia Consulting inquiry" />
-            <input type="hidden" name="_captcha" value="false" />
-
-            <label>
-              Name
-              <input type="text" name="name" placeholder="Your name" required />
-            </label>
-
-            <label>
-              Email
-              <input type="email" name="email" placeholder="you@example.com" required />
-            </label>
-
-            <label>
+<header>
+<div class="container navbar">
+<a aria-label="Carasia Consulting home" class="brand brand-logo" href="#home">
+<img alt="Carasia Consulting logo" src="carasia-logo.png"/>
+</a>
+<nav aria-label="Main navigation" class="nav-links">
+<a data-en="Services" data-es="Servicios" href="#services">Servicios</a>
+<a data-en="About" data-es="Nosotros" href="#about">Nosotros</a>
+<a data-en="Why Choose Us" data-es="Por qué elegirnos" href="#why-us">Por qué elegirnos</a>
+<a data-en="Contact" data-es="Contacto" href="#contact">Contacto</a>
+</nav>
+<div aria-label="Language selector" class="language-switcher">
+<button class="lang-button active" data-lang="es" type="button">🇩🇴 <span>ES</span></button>
+<span class="lang-divider">|</span>
+<button class="lang-button" data-lang="en" type="button">🇺🇸 <span>EN</span></button>
+</div>
+<a class="button button-primary nav-cta" data-en="Schedule a Consultation" data-es="Programar una consulta" href="#contact">Programar una consulta</a>
+</div>
+</header>
+<main>
+<section class="hero hero-premium" id="home">
+<div aria-hidden="true" class="hero-map">
+<svg role="presentation" viewbox="0 0 1400 760">
+<g class="map-grid">
+<path d="M140 130H1260M140 240H1260M140 350H1260M140 460H1260M140 570H1260"></path>
+<path d="M260 80V650M500 80V650M740 80V650M980 80V650M1220 80V650"></path>
+</g>
+<g class="world-outline">
+<path d="M185 242c40-54 108-83 173-73 48 7 80 33 114 67 18 18 48 27 73 24 26-3 46-18 71-24 46-11 101 5 131 40 15 17 26 39 46 49 22 11 49 6 71-3 58-24 94-72 156-88 56-14 117 1 158 39 19 18 34 42 34 68 0 27-17 52-36 70-36 35-83 52-126 77-27 16-53 37-64 66-10 28-1 60 17 83-55 16-119 11-169-16-32-17-57-44-91-58-50-20-108-15-152 13-38 24-64 64-107 78-44 14-95 0-125-35-20-24-28-55-46-80-28-40-77-66-122-67-43-1-88 18-116 51-27 31-39 75-72 99-26 20-63 29-94 17-39-15-63-58-61-100 2-49 36-93 76-121 25-18 54-31 72-56 23-31 29-73 16-110-17-47-60-82-111-90-43-7-89 5-124 31z"></path>
+</g>
+<g class="route-lines">
+<path d="M325 315C500 210 700 215 930 320"></path>
+<path d="M360 470C555 355 760 350 1090 420"></path>
+<path d="M470 205C640 270 780 420 920 550"></path>
+</g>
+<g class="route-points">
+<circle cx="325" cy="315" r="7"></circle>
+<circle cx="930" cy="320" r="7"></circle>
+<circle cx="360" cy="470" r="7"></circle>
+<circle cx="1090" cy="420" r="7"></circle>
+<circle cx="470" cy="205" r="7"></circle>
+<circle cx="920" cy="550" r="7"></circle>
+</g>
+</svg>
+</div>
+<div class="container hero-premium-grid">
+<div class="hero-copy premium-copy">
+<span class="eyebrow" data-en="Market Intelligence • Sourcing • Growth" data-es="Inteligencia de mercado • Abastecimiento • Crecimiento">Inteligencia de mercado • Abastecimiento • Crecimiento</span>
+<h1><span data-en="Connecting businesses to" data-es="Conectamos empresas con">Conectamos empresas con</span>
+            <span data-en="markets, partners, and opportunity." data-es="mercados, aliados y oportunidades.">mercados, aliados y oportunidades.</span></h1>
+<p data-en="Carasia Consulting supports companies entering new markets, identifying qualified partners, building research-driven outreach, and turning complex commercial decisions into practical action." data-es="Carasia Consulting apoya a empresas que buscan ingresar a nuevos mercados, identificar aliados calificados, desarrollar estrategias de acercamiento basadas en investigación y convertir decisiones comerciales complejas en acciones concretas.">Carasia Consulting apoya a empresas que buscan ingresar a nuevos mercados, identificar aliados calificados, desarrollar estrategias de acercamiento basadas en investigación y convertir decisiones comerciales complejas en acciones concretas.</p>
+<div class="hero-actions">
+<a class="button button-primary" data-en="Start a Conversation" data-es="Iniciar una conversación" href="#contact">Iniciar una conversación</a>
+<a class="button button-secondary premium-secondary" data-en="Explore Capabilities" data-es="Explorar capacidades" href="#services">Explorar capacidades</a>
+</div>
+<div aria-label="Core capabilities" class="hero-metrics">
+<div>
+<strong data-en="Research" data-es="Investigación" data-i18n="hero.metric1.title">Investigación</strong>
+<span data-en="Market and partner intelligence" data-es="Inteligencia de mercado y aliados" data-i18n="hero.metric1.copy">Inteligencia de mercado y aliados</span>
+</div>
+<div>
+<strong data-en="Access" data-es="Acceso" data-i18n="hero.metric2.title">Acceso</strong>
+<span data-en="Cross-border relationships" data-es="Relaciones transfronterizas" data-i18n="hero.metric2.copy">Relaciones transfronterizas</span>
+</div>
+<div>
+<strong data-en="Execution" data-es="Ejecución" data-i18n="hero.metric3.title">Ejecución</strong>
+<span data-en="Practical next steps" data-es="Próximos pasos concretos" data-i18n="hero.metric3.copy">Próximos pasos concretos</span>
+</div>
+</div>
+</div>
+<aside aria-label="Carasia market intelligence approach" class="hero-insight-card">
+<span class="insight-label" data-en="Strategic Intelligence" data-es="Inteligencia estratégica" data-i18n="hero.card.label">Inteligencia estratégica</span>
+<h3 data-en="From scattered information to informed decisions." data-es="De información dispersa a decisiones informadas." data-i18n="hero.card.title">De información dispersa a decisiones informadas.</h3>
+<p data-en="We organize market data, identify decision-makers, evaluate opportunity, and help clients approach the right organizations with a clear commercial purpose." data-es="Organizamos datos de mercado, identificamos a quienes toman decisiones, evaluamos oportunidades y ayudamos a nuestros clientes a acercarse a las organizaciones correctas con un propósito comercial claro.">Organizamos datos de mercado, identificamos a quienes toman decisiones, evaluamos oportunidades y ayudamos a nuestros clientes a acercarse a las organizaciones correctas con un propósito comercial claro.</p>
+<div class="insight-list">
+<div><span>01</span><strong data-en="Market mapping" data-es="Mapeo de mercado" data-i18n="hero.card.item1">Mapeo de mercado</strong></div>
+<div><span>02</span><strong data-en="Prospect intelligence" data-es="Inteligencia de prospectos" data-i18n="hero.card.item2">Inteligencia de prospectos</strong></div>
+<div><span>03</span><strong data-en="Partner sourcing" data-es="Identificación de aliados" data-i18n="hero.card.item3">Identificación de aliados</strong></div>
+<div><span>04</span><strong data-en="Outreach strategy" data-es="Estrategia de acercamiento" data-i18n="hero.card.item4">Estrategia de acercamiento</strong></div>
+</div>
+</aside>
+</div>
+</section>
+<section class="section services" id="services">
+<div class="container">
+<div class="section-heading">
+<span class="eyebrow" data-en="What We Do" data-es="Lo que hacemos" data-i18n="services.eyebrow">Lo que hacemos</span>
+<h2 data-en="Consulting designed to move your work forward." data-es="Consultoría diseñada para impulsar su organización." data-i18n="services.title">Consultoría diseñada para impulsar su organización.</h2>
+<p data-en="Choose the support that fits your current stage. Each engagement can be customized to your organization, market, and objectives." data-es="Elija el acompañamiento que mejor se adapte a su etapa actual. Cada proyecto puede personalizarse según su organización, mercado y objetivos.">Elija el acompañamiento que mejor se adapte a su etapa actual. Cada proyecto puede personalizarse según su organización, mercado y objetivos.</p>
+</div>
+<div class="cards">
+<article class="card">
+<div class="icon">01</div>
+<h3 data-en="Business Strategy" data-es="Estrategia empresarial" data-i18n="services.card1.title">Estrategia empresarial</h3>
+<p data-en="Clarify your direction, strengthen your business model, and create an actionable roadmap for sustainable growth." data-es="Aclare su dirección, fortalezca su modelo de negocio y desarrolle una hoja de ruta práctica para un crecimiento sostenible.">Aclare su dirección, fortalezca su modelo de negocio y desarrolle una hoja de ruta práctica para un crecimiento sostenible.</p>
+</article>
+<article class="card">
+<div class="icon">02</div>
+<h3 data-en="Operations &amp; Process" data-es="Operaciones y procesos" data-i18n="services.card2.title">Operaciones y procesos</h3>
+<p data-en="Improve workflows, define responsibilities, reduce inefficiencies, and build systems your team can consistently follow." data-es="Mejore los flujos de trabajo, defina responsabilidades, reduzca ineficiencias y construya sistemas que su equipo pueda seguir de manera consistente.">Mejore los flujos de trabajo, defina responsabilidades, reduzca ineficiencias y construya sistemas que su equipo pueda seguir de manera consistente.</p>
+</article>
+<article class="card">
+<div class="icon">03</div>
+<h3 data-en="Community &amp; Program Support" data-es="Apoyo comunitario y de programas" data-i18n="services.card3.title">Apoyo comunitario y de programas</h3>
+<p data-en="Develop programs, partnerships, outreach strategies, and practical implementation plans that support meaningful impact." data-es="Desarrolle programas, alianzas, estrategias de alcance y planes prácticos de implementación que generen un impacto significativo.">Desarrolle programas, alianzas, estrategias de alcance y planes prácticos de implementación que generen un impacto significativo.</p>
+</article>
+</div>
+</div>
+</section>
+<section class="section" id="about">
+<div class="container about-grid">
+<div class="about-panel">
+<div class="about-panel-content">
+<div>
+<strong data-en="Focused." data-es="Enfocados.">Enfocados.</strong>
+<span data-en="Professional guidance with a personal approach." data-es="Orientación profesional con un enfoque personalizado.">Orientación profesional con un enfoque personalizado.</span>
+</div>
+</div>
+</div>
+<div class="about-copy">
+<span class="eyebrow" data-en="About Carasia" data-es="Sobre Carasia" data-i18n="about.eyebrow">Sobre Carasia</span>
+<h2 data-en="Solutions that are clear, realistic, and built to last." data-es="Soluciones claras, realistas y diseñadas para perdurar." data-i18n="about.title">Soluciones claras, realistas y diseñadas para perdurar.</h2>
+<p data-en="We believe effective consulting should make complex decisions easier. Our role is to listen carefully, identify what matters most, and help you move from uncertainty to action." data-es="Creemos que una consultoría efectiva debe facilitar las decisiones complejas. Nuestro papel es escuchar con atención, identificar lo más importante y ayudarle a pasar de la incertidumbre a la acción.">Creemos que una consultoría efectiva debe facilitar las decisiones complejas. Nuestro papel es escuchar con atención, identificar lo más importante y ayudarle a pasar de la incertidumbre a la acción.</p>
+<p data-en="Whether you are launching a new initiative, strengthening an existing organization, or solving an operational challenge, Carasia Consulting provides structured guidance without unnecessary jargon." data-es="Ya sea que esté lanzando una nueva iniciativa, fortaleciendo una organización existente o resolviendo un desafío operativo, Carasia Consulting ofrece orientación estructurada sin tecnicismos innecesarios.">Ya sea que esté lanzando una nueva iniciativa, fortaleciendo una organización existente o resolviendo un desafío operativo, Carasia Consulting ofrece orientación estructurada sin tecnicismos innecesarios.</p>
+<div class="feature-list">
+<div class="feature">
+<div class="feature-badge">A</div>
+<div>
+<h3 data-en="Action-Oriented" data-es="Orientados a la acción" data-i18n="about.action.title">Orientados a la acción</h3>
+<p data-en="Recommendations are translated into practical next steps." data-es="Las recomendaciones se convierten en próximos pasos concretos.">Las recomendaciones se convierten en próximos pasos concretos.</p>
+</div>
+</div>
+<div class="feature">
+<div class="feature-badge">C</div>
+<div>
+<h3 data-en="Client-Centered" data-es="Centrados en el cliente" data-i18n="about.client.title">Centrados en el cliente</h3>
+<p data-en="Your goals, values, and constraints guide the engagement." data-es="Sus metas, valores y limitaciones orientan el proyecto.">Sus metas, valores y limitaciones orientan el proyecto.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section why" id="why-us">
+<div class="container why-grid">
+<div>
+<span class="eyebrow" data-i18n="why.eyebrow">Por qué elegirnos</span>
+<h2 data-en="A thoughtful partner for important decisions." data-es="Un aliado estratégico para decisiones importantes." data-i18n="why.title">Un aliado estratégico para decisiones importantes.</h2>
+<p data-en="Carasia Consulting combines strategic thinking with practical implementation support. The result is advice you can understand, use, and measure." data-es="Carasia Consulting combina pensamiento estratégico con apoyo práctico para la implementación. El resultado es una orientación que usted puede comprender, aplicar y medir.">Carasia Consulting combina pensamiento estratégico con apoyo práctico para la implementación. El resultado es una orientación que usted puede comprender, aplicar y medir.</p>
+</div>
+<div class="why-boxes">
+<article class="why-box">
+<div class="why-number">01</div>
+<h3 data-en="Personalized Guidance" data-es="Orientación personalizada" data-i18n="why.card1.title">Orientación personalizada</h3>
+<p data-en="No generic playbooks. Every recommendation is adapted to you." data-es="Sin fórmulas genéricas. Cada recomendación se adapta a su realidad.">Sin fórmulas genéricas. Cada recomendación se adapta a su realidad.</p>
+</article>
+<article class="why-box">
+<div class="why-number">02</div>
+<h3 data-en="Clear Communication" data-es="Comunicación clara" data-i18n="why.card2.title">Comunicación clara</h3>
+<p data-en="Direct explanations, defined expectations, and visible progress." data-es="Explicaciones directas, expectativas definidas y progreso visible.">Explicaciones directas, expectativas definidas y progreso visible.</p>
+</article>
+<article class="why-box">
+<div class="why-number">03</div>
+<h3 data-en="Practical Execution" data-es="Ejecución práctica" data-i18n="why.card3.title">Ejecución práctica</h3>
+<p data-en="We focus on realistic solutions your team can implement." data-es="Nos enfocamos en soluciones realistas que su equipo pueda implementar.">Nos enfocamos en soluciones realistas que su equipo pueda implementar.</p>
+</article>
+<article class="why-box">
+<div class="why-number">04</div>
+<h3 data-en="Results Focus" data-es="Enfoque en resultados" data-i18n="why.card4.title">Enfoque en resultados</h3>
+<p data-en="Every engagement is tied to meaningful business outcomes." data-es="Cada proyecto está vinculado a resultados empresariales significativos.">Cada proyecto está vinculado a resultados empresariales significativos.</p>
+</article>
+</div>
+</div>
+</section>
+<section class="section contact" id="contact">
+<div class="container contact-grid">
+<div>
+<span class="eyebrow" data-i18n="contact.eyebrow">Contacto</span>
+<h2 data-en="Let’s discuss what you are building." data-es="Hablemos de lo que está construyendo." data-i18n="contact.title">Hablemos de lo que está construyendo.</h2>
+<p data-en="Share a few details about your goals or current challenge. We will follow up to discuss the best next step." data-es="Comparta algunos detalles sobre sus objetivos o su desafío actual. Nos comunicaremos para conversar sobre el mejor próximo paso.">Comparta algunos detalles sobre sus objetivos o su desafío actual. Nos comunicaremos para conversar sobre el mejor próximo paso.</p>
+<div class="contact-details">
+<div class="contact-item">
+<strong data-en="Email" data-es="Correo electrónico" data-i18n="contact.email">Correo electrónico</strong>
+<span>your-email@example.com</span>
+</div>
+<div class="contact-item">
+<strong data-en="Phone" data-es="Teléfono" data-i18n="contact.phone">Teléfono</strong>
+<span>(000) 000-0000</span>
+</div>
+<div class="contact-item">
+<strong data-en="Service Area" data-es="Área de servicio" data-i18n="contact.area">Área de servicio</strong>
+<span data-en="Remote and in-person consulting" data-es="Consultoría remota y presencial" data-i18n="contact.areaValue">Consultoría remota y presencial</span>
+</div>
+</div>
+</div>
+<div class="contact-card">
+<form action="https://formsubmit.co/your-email@example.com" method="POST">
+<input name="_subject" type="hidden" value="New Carasia Consulting inquiry"/>
+<input name="_captcha" type="hidden" value="false"/>
+<label data-en="Name" data-es="Nombre">
+              Nombre
+              <input data-placeholder-en="Your name" data-placeholder-es="Su nombre" name="name" placeholder="Su nombre" required="" type="text"/>
+</label>
+<label data-en="Email" data-es="Correo electrónico">
+              Correo electrónico
+              <input data-placeholder-en="you@example.com" data-placeholder-es="usted@ejemplo.com" name="email" placeholder="usted@ejemplo.com" required="" type="email"/>
+</label>
+<label>
               Area of interest
               <select name="service">
-                <option>Business Strategy</option>
-                <option>Operations & Process</option>
-                <option>Community & Program Support</option>
-                <option>Other</option>
-              </select>
-            </label>
+<option data-en="Business Strategy" data-es="Estrategia empresarial">Estrategia empresarial</option>
+<option data-en="Operations &amp; Process" data-es="Operaciones y procesos">Operaciones y procesos</option>
+<option data-en="Community &amp; Program Support" data-es="Apoyo comunitario y de programas">Apoyo comunitario y de programas</option>
+<option data-en="Other" data-es="Otro">Otro</option>
+</select>
+</label>
+<label data-en="Message" data-es="Mensaje">
+              Mensaje
+              <textarea data-placeholder-en="Tell us briefly about your goals or project." data-placeholder-es="Cuéntenos brevemente sobre sus objetivos o proyecto." name="message" placeholder="Cuéntenos brevemente sobre sus objetivos o proyecto." required=""></textarea>
+</label>
+<button class="button button-primary" data-en="Send Message" data-es="Enviar mensaje" type="submit">Enviar mensaje</button>
+</form>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div class="container footer-content">
+<p data-en="© Carasia Consulting. All rights reserved." data-es="© Carasia Consulting. Todos los derechos reservados.">© Carasia Consulting. Todos los derechos reservados.</p>
+<p data-en="Strategy with clarity. Progress with purpose." data-es="Estrategia con claridad. Progreso con propósito.">Estrategia con claridad. Progreso con propósito.</p>
+</div>
+</footer>
+<script>
 
-            <label>
-              Message
-              <textarea
-                name="message"
-                placeholder="Tell us briefly about your goals or project."
-                required
-              ></textarea>
-            </label>
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      localStorage.setItem("carasiaLanguage", lang);
 
-            <button class="button button-primary" type="submit">
-              Send Message
-            </button>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
+      document.querySelectorAll("[data-es][data-en]").forEach(element => {
+        element.textContent = element.dataset[lang];
+      });
 
-  <footer>
-    <div class="container footer-content">
-      <p>© <span id="year"></span> Carasia Consulting. All rights reserved.</p>
-      <p>Strategy with clarity. Progress with purpose.</p>
-    </div>
-  </footer>
+      document.querySelectorAll("[data-placeholder-es][data-placeholder-en]").forEach(element => {
+        element.placeholder = element.dataset["placeholder" + lang.charAt(0).toUpperCase() + lang.slice(1)];
+      });
 
-  <script>
+      document.querySelectorAll(".lang-button").forEach(button => {
+        button.classList.toggle("active", button.dataset.lang === lang);
+      });
+    }
+
+    document.querySelectorAll(".lang-button").forEach(button => {
+      button.addEventListener("click", () => setLanguage(button.dataset.lang));
+    });
+
+    setLanguage(localStorage.getItem("carasiaLanguage") === "en" ? "en" : "es");
+
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
