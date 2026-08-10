@@ -859,6 +859,15 @@
       box-shadow: inset 0 -2px 0 var(--gold);
     }
     .lang-divider { color: var(--border); }
+    
+/* Hero video */
+.hero-premium{position:relative;overflow:hidden;}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(110deg,rgba(2,20,47,.88),rgba(5,39,91,.72),rgba(5,39,91,.45),rgba(5,39,91,.62));z-index:1;}
+.hero-map{z-index:2;}
+.hero-premium-grid{position:relative;z-index:3;}
+
+
     @media (max-width: 900px) {
       .language-switcher { margin-left: auto; }
       .nav-cta { display: none; }
@@ -1031,6 +1040,10 @@
 </header>
 <main>
 <section class="hero hero-premium" id="home">
+<video class="hero-video" autoplay muted loop playsinline>
+<source src="videos/Drone_Port_01.mp4" type="video/mp4">
+</video>
+<div class="hero-overlay"></div>
 <div aria-hidden="true" class="hero-map">
 <svg role="presentation" viewbox="0 0 1400 760">
 <g class="map-grid">
