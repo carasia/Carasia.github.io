@@ -652,66 +652,45 @@
       background:
         linear-gradient(105deg, #02142f 0%, #05275B 52%, #0a5968 100%);
     }
-    /* Horizontal blue color-grade layer over the hero video */
-    .hero-premium::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      width: auto;
-      height: auto;
-      border: 0;
-      border-radius: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(
-          90deg,
-          rgba(42, 139, 153, .92) 0%,
-          rgba(42, 139, 153, .82) 24%,
-          rgba(42, 139, 153, .62) 46%,
-          rgba(42, 139, 153, .34) 68%,
-          rgba(42, 139, 153, .08) 88%,
-          rgba(42, 139, 153, 0) 100%
-        );
-      mix-blend-mode: color;
-    }
 
+ .hero-premium::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
 
-    /* Horizontal navy readability layer */
-    .hero-premium::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      width: auto;
-      height: auto;
-      border: 0;
-      border-radius: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(
-          90deg,
-          rgba(2, 20, 47, .84) 0%,
-          rgba(2, 20, 47, .68) 34%,
-          rgba(5, 39, 91, .46) 58%,
-          rgba(5, 39, 91, .24) 78%,
-          rgba(2, 20, 47, .08) 100%
-        );
-    }
-    .hero-video-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      z-index: 0;
-      filter:
-        brightness(.50)
-        saturate(.90)
-        contrast(.80);
-      transform: scale(1.03);
-    }
+  background:
+    linear-gradient(
+      90deg,
+      rgba(7, 61, 110, 0.88) 0%,
+      rgba(7, 61, 110, 0.78) 35%,
+      rgba(7, 61, 110, 0.65) 65%,
+      rgba(7, 61, 110, 0.60) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(18, 96, 160, 0.18) 0%,
+      rgba(7, 61, 110, 0.35) 100%
+    );
+}
+
+   .hero-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+
+  filter:
+    brightness(.42)
+    saturate(.55)
+    contrast(.85);
+
+  transform: scale(1.03);
+}
 
     .premium-copy,
     .hero-insight-card {
@@ -757,7 +736,7 @@
 
     .hero-premium-grid {
       position: relative;
-      z-index: 3;
+      z-index: 2;
       display: grid;
       grid-template-columns: 1.14fr .86fr;
       align-items: center;
@@ -1034,7 +1013,43 @@
       }
     }
 
-    @media (max-width: 600px) {
+    
+/* Contact form field fix */
+.contact-form input,
+.contact-form textarea,
+.contact-form select,
+.contact-form .form-control{
+  width:100%;
+  display:block;
+  background:#ffffff;
+  color:#1b2633;
+  border:1px solid rgba(0,0,0,.18);
+  border-radius:10px;
+  padding:14px 16px;
+  font-size:1rem;
+  font-family:inherit;
+  appearance:none;
+}
+
+.contact-form textarea{
+  min-height:160px;
+  resize:vertical;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder{
+  color:#7d8a96;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form select:focus{
+  outline:none;
+  border-color:#2A8B99;
+  box-shadow:0 0 0 3px rgba(42,139,153,.18);
+}
+
+@media (max-width: 600px) {
       .navbar .button {
         display: none;
       }
