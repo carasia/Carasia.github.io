@@ -652,38 +652,62 @@
       background:
         linear-gradient(105deg, #02142f 0%, #05275B 52%, #0a5968 100%);
     }
+    /* Blue color-grade layer over the hero video */
+    .hero-premium::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      width: auto;
+      height: auto;
+      border: 0;
+      border-radius: 0;
+      background: #2A8B99;
+      mix-blend-mode: color;
+      opacity: .78;
+      pointer-events: none;
+    }
 
-  .hero-premium::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(5,39,91,.78) 0%,
-      rgba(5,39,91,.72) 40%,
-      rgba(5,39,91,.62) 100%
-    ),
-    rgba(42,139,153,.18);
-}
 
-       .hero-video-bg {
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center;
-  z-index:0;
-  filter:
-    brightness(.55)
-    saturate(1.15)
-    contrast(.82)
-    hue-rotate(18deg);
-  transform:scale(1.03);
-}
+    /* Separate dark navy layer for text readability */
+    .hero-premium::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      width: auto;
+      height: auto;
+      border: 0;
+      border-radius: 0;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(2, 20, 47, .78) 0%,
+          rgba(5, 39, 91, .66) 42%,
+          rgba(5, 39, 91, .48) 72%,
+          rgba(2, 20, 47, .56) 100%
+        ),
+        linear-gradient(
+          180deg,
+          rgba(2, 20, 47, .18) 0%,
+          rgba(2, 20, 47, .42) 100%
+        );
+      pointer-events: none;
+    }
+    .hero-video-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+      filter:
+        brightness(.48)
+        saturate(.85)
+        contrast(.78);
+      transform: scale(1.03);
+    }
 
     .premium-copy,
     .hero-insight-card {
