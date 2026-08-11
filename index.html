@@ -653,7 +653,7 @@
         linear-gradient(105deg, #02142f 0%, #05275B 52%, #0a5968 100%);
     }
 
-  .hero-premium::before {
+ .hero-premium::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -661,34 +661,36 @@
   pointer-events: none;
 
   background:
-      linear-gradient(
-          90deg,
-          rgba(2,20,47,.92) 0%,
-          rgba(5,39,91,.88) 35%,
-          rgba(5,39,91,.78) 60%,
-          rgba(5,39,91,.72) 100%
-      ),
-      linear-gradient(
-          180deg,
-          rgba(3,33,84,.42) 0%,
-          rgba(5,39,91,.55) 50%,
-          rgba(2,20,47,.72) 100%
-      ),
-      rgba(5,39,91,.28);
+    linear-gradient(
+      90deg,
+      rgba(7, 61, 110, 0.88) 0%,
+      rgba(7, 61, 110, 0.78) 35%,
+      rgba(7, 61, 110, 0.65) 65%,
+      rgba(7, 61, 110, 0.60) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(18, 96, 160, 0.18) 0%,
+      rgba(7, 61, 110, 0.35) 100%
+    );
+}
 
-    }
+   .hero-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
 
-    .hero-video-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      z-index: 0;
-      filter: brightness(.56) saturate(.70) contrast(.92);
-      transform: scale(1.01);
-    }
+  filter:
+    brightness(.42)
+    saturate(.55)
+    contrast(.85);
+
+  transform: scale(1.03);
+}
 
     .premium-copy,
     .hero-insight-card {
