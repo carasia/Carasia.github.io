@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carasia Video Optimizer</title>
+  <meta name="description" content="Optimize videos for web use directly in your browser.">
+  <style>
+    :root {
+      --navy: #05275B;
+      --navy-dark: #02142F;
+      --teal: #2A8B99;
+      --gold: #C89A3D;
+      --paper: #F5F7F8;
+      --white: #FFFFFF;
+      --text: #24313F;
+      --muted: #6B7280;
+      --border: #D9E1E6;
+      --success: #257A5A;
+      --danger: #A33B3B;
+      --shadow: 0 18px 45px rgba(5,39,91,.14);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 5%, rgba(42,139,153,.10), transparent 25%),
+        linear-gradient(180deg, #fff 0%, #f6fafb 100%);
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(105deg, var(--navy-dark), var(--navy) 58%, #0A5968);
+      color: white;
+      padding: 34px 0;
+      border-bottom: 4px solid var(--gold);
+    }
+
+    .wrap { width: min(1100px, 92%); margin: auto; }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 900;
+      letter-spacing: -.02em;
+    }
+
+    .dot {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 0 7px rgba(42,139,153,.18);
+    }
+
+    .hero-copy { margin-top: 28px; max-width: 760px; }
+    .eyebrow {
+      color: #F0D9A8;
+      font-size: .78rem;
+      letter-spacing: .14em;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 10px 0 12px;
+      font-size: clamp(2.3rem, 6vw, 4.8rem);
+      line-height: .98;
+      letter-spacing: -.045em;
+    }
+
+    header p {
+      color: rgba(255,255,255,.78);
+      max-width: 700px;
+      font-size: 1.02rem;
+      line-height: 1.7;
+    }
+
+    main { padding: 48px 0 70px; }
+
+    .panel {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-body { padding: 30px; }
+
+    .dropzone {
+      border: 2px dashed rgba(42,139,153,.5);
+      border-radius: 18px;
+      padding: 42px 22px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(42,139,153,.055), rgba(5,39,91,.025));
+      transition: .2s ease;
+      cursor: pointer;
+    }
+
+    .dropzone.dragover {
+      border-color: var(--gold);
+      background: rgba(200,154,61,.08);
+      transform: translateY(-2px);
+    }
+
+    .dropzone strong {
+      display: block;
+      color: var(--navy);
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+    }
+
+    .dropzone span { color: var(--muted); font-size: .92rem; }
+
+    input[type="file"] { display: none; }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    label {
+      display: block;
+      color: var(--navy);
+      font-weight: 800;
+      font-size: .88rem;
+    }
+
+    select {
+      width: 100%;
+      margin-top: 8px;
+      padding: 13px 14px;
+      border-radius: 11px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text);
+      font: inherit;
+    }
+
+    .preset-help {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.45;
+    }
+
+    .file-card {
+      display: none;
+      grid-template-columns: 180px 1fr;
+      gap: 22px;
+      margin-top: 24px;
+      padding: 18px;
+      background: var(--paper);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .file-card.show { display: grid; }
+
+    video {
+      width: 100%;
+      max-height: 230px;
+      border-radius: 12px;
+      background: #07111c;
+    }
+
+    .meta h3 { color: var(--navy); margin: 4px 0 8px; word-break: break-word; }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 9px;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    button, .download {
+      border: 0;
+      border-radius: 999px;
+      min-height: 48px;
+      padding: 0 22px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: .92rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .primary {
+      background: linear-gradient(135deg, var(--teal), #1F7180);
+      color: white;
+      box-shadow: 0 10px 26px rgba(42,139,153,.24);
+    }
+
+    .secondary {
+      background: white;
+      color: var(--navy);
+      border: 1px solid var(--border);
+    }
+
+    button:disabled { opacity: .48; cursor: not-allowed; }
+
+    .status-box {
+      margin-top: 24px;
+      display: none;
+      padding: 18px;
+      border-radius: 14px;
+      background: #F7FBFC;
+      border: 1px solid var(--border);
+    }
+    .status-box.show { display: block; }
+
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 10px;
+      font-size: .88rem;
+      color: var(--muted);
+    }
+
+    .bar {
+      height: 10px;
+      border-radius: 999px;
+      background: #E6EDF1;
+      overflow: hidden;
+    }
+
+    .bar > div {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--navy), var(--teal));
+      transition: width .18s linear;
+    }
+
+    .log {
+      margin-top: 12px;
+      font-family: Consolas, monospace;
+      font-size: .72rem;
+      color: #5C6875;
+      max-height: 90px;
+      overflow: auto;
+      white-space: pre-wrap;
+    }
+
+    .result {
+      display: none;
+      margin-top: 24px;
+      padding: 22px;
+      border-radius: 16px;
+      border: 1px solid rgba(37,122,90,.25);
+      background: rgba(37,122,90,.06);
+    }
+
+    .result.show { display: block; }
+    .result h3 { margin: 0 0 8px; color: var(--success); }
+    .result-stats { color: var(--muted); font-size: .9rem; margin-bottom: 16px; }
+    .download { background: var(--navy); color: white; }
+
+    .privacy-note {
+      margin-top: 22px;
+      padding: 15px 18px;
+      border-left: 4px solid var(--gold);
+      background: #FFFDF8;
+      color: #645A48;
+      font-size: .86rem;
+      line-height: 1.55;
+    }
+
+    footer {
+      padding: 30px 0 50px;
+      color: var(--muted);
+      text-align: center;
+      font-size: .82rem;
+    }
+
+    @media (max-width: 720px) {
+      .controls { grid-template-columns: 1fr; }
+      .file-card { grid-template-columns: 1fr; }
+      .meta-grid { grid-template-columns: 1fr; }
+      .actions { flex-direction: column; }
+      button, .download { width: 100%; }
+      .panel-body { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="brand"><span class="dot"></span> CARASIA VIDEO OPTIMIZER</div>
+      <div class="hero-copy">
+        <span class="eyebrow">Browser-based media utility</span>
+        <h1>Make videos web-ready.</h1>
+        <p>Compress and resize background videos directly in your browser. Your video stays on your device; the page uses FFmpeg compiled to WebAssembly to process it locally.</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="panel">
+        <div class="panel-body">
+          <label class="dropzone" id="dropzone" for="fileInput">
+            <strong>Drop a video here</strong>
+            <span>or click to choose a file</span>
+          </label>
+          <input id="fileInput" type="file" accept="video/*">
+
+          <div class="file-card" id="fileCard">
+            <video id="preview" controls muted></video>
+            <div class="meta">
+              <h3 id="fileName">Video</h3>
+              <div class="meta-grid">
+                <div><strong>Original size:</strong> <span id="fileSize">—</span></div>
+                <div><strong>Duration:</strong> <span id="duration">—</span></div>
+                <div><strong>Resolution:</strong> <span id="resolution">—</span></div>
+                <div><strong>Type:</strong> <span id="fileType">—</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="controls">
+            <label>
+              Optimization preset
+              <select id="preset">
+                <option value="background">Website Background — Recommended</option>
+                <option value="balanced">Balanced Quality</option>
+                <option value="small">Extra Small File</option>
+              </select>
+              <div class="preset-help" id="presetHelp">
+                1080p max · 30 fps · H.264 · no audio · CRF 24
+              </div>
+            </label>
+
+            <label>
+              Audio
+              <select id="audio">
+                <option value="remove">Remove audio — Recommended</option>
+                <option value="keep">Keep audio</option>
+              </select>
+              <div class="preset-help">Background videos should normally have audio removed.</div>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button class="primary" id="optimizeBtn" disabled>Optimize Video</button>
+            <button class="secondary" id="resetBtn" disabled>Choose Another Video</button>
+          </div>
+
+          <div class="status-box" id="statusBox">
+            <div class="status-row">
+              <span id="statusText">Preparing optimizer…</span>
+              <strong id="progressText">0%</strong>
+            </div>
+            <div class="bar"><div id="progressBar"></div></div>
+            <div class="log" id="log"></div>
+          </div>
+
+          <div class="result" id="result">
+            <h3>Optimization complete</h3>
+            <div class="result-stats" id="resultStats"></div>
+            <video id="outputPreview" controls muted></video>
+            <div class="actions">
+              <a class="download" id="downloadBtn" download>Download Optimized MP4</a>
+            </div>
+          </div>
+
+          <div class="privacy-note">
+            <strong>Private by design:</strong> the selected file is processed inside your browser. It is not uploaded to Carasia or a conversion server. The FFmpeg WebAssembly engine itself is downloaded when you first run an optimization.
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">Carasia Consulting · Video Optimizer</div>
+  </footer>
+
+<script type="module">
+  import { FFmpeg } from "https://esm.sh/@ffmpeg/ffmpeg@0.12.15";
+  import { fetchFile, toBlobURL } from "https://esm.sh/@ffmpeg/util@0.12.2";
+
+  const fileInput = document.getElementById("fileInput");
+  const dropzone = document.getElementById("dropzone");
+  const fileCard = document.getElementById("fileCard");
+  const preview = document.getElementById("preview");
+  const outputPreview = document.getElementById("outputPreview");
+  const optimizeBtn = document.getElementById("optimizeBtn");
+  const resetBtn = document.getElementById("resetBtn");
+  const preset = document.getElementById("preset");
+  const presetHelp = document.getElementById("presetHelp");
+  const audio = document.getElementById("audio");
+  const statusBox = document.getElementById("statusBox");
+  const statusText = document.getElementById("statusText");
+  const progressText = document.getElementById("progressText");
+  const progressBar = document.getElementById("progressBar");
+  const logBox = document.getElementById("log");
+  const result = document.getElementById("result");
+  const resultStats = document.getElementById("resultStats");
+  const downloadBtn = document.getElementById("downloadBtn");
+
+  let currentFile = null;
+  let inputURL = null;
+  let outputURL = null;
+  let ffmpeg = null;
+  let ffmpegLoaded = false;
+
+  const PRESETS = {
+    background: {
+      label: "Website Background",
+      help: "1080p max · 30 fps · H.264 · no audio · CRF 24",
+      vf: "scale=w=min(1920\\,iw):h=-2,fps=30",
+      crf: "24",
+      preset: "medium"
+    },
+    balanced: {
+      label: "Balanced Quality",
+      help: "1080p max · 30 fps · H.264 · higher quality · CRF 21",
+      vf: "scale=w=min(1920\\,iw):h=-2,fps=30",
+      crf: "21",
+      preset: "medium"
+    },
+    small: {
+      label: "Extra Small File",
+      help: "1280p max width · 24 fps · H.264 · stronger compression · CRF 28",
+      vf: "scale=w=min(1280\\,iw):h=-2,fps=24",
+      crf: "28",
+      preset: "medium"
+    }
+  };
+
+  function formatBytes(bytes) {
+    if (!Number.isFinite(bytes)) return "—";
+    const units = ["B", "KB", "MB", "GB"];
+    let value = bytes, i = 0;
+    while (value >= 1024 && i < units.length - 1) { value /= 1024; i++; }
+    return `${value.toFixed(i > 1 ? 2 : 1)} ${units[i]}`;
+  }
+
+  function formatDuration(seconds) {
+    if (!Number.isFinite(seconds)) return "—";
+    const m = Math.floor(seconds / 60);
+    const s = Math.round(seconds % 60).toString().padStart(2, "0");
+    return `${m}:${s}`;
+  }
+
+  function setProgress(value) {
+    const pct = Math.max(0, Math.min(100, Math.round(value * 100)));
+    progressText.textContent = `${pct}%`;
+    progressBar.style.width = `${pct}%`;
+  }
+
+  function appendLog(message) {
+    logBox.textContent = message;
+    logBox.scrollTop = logBox.scrollHeight;
+  }
+
+  async function loadFFmpeg() {
+    if (ffmpegLoaded) return;
+
+    statusBox.classList.add("show");
+    statusText.textContent = "Loading video engine…";
+    setProgress(0);
+
+    ffmpeg = new FFmpeg();
+
+    ffmpeg.on("log", ({ message }) => appendLog(message));
+    ffmpeg.on("progress", ({ progress }) => {
+      if (Number.isFinite(progress)) setProgress(progress);
+    });
+
+    const baseURL = "https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10/dist/umd";
+
+    await ffmpeg.load({
+      coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, "text/javascript"),
+      wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, "application/wasm")
+    });
+
+    ffmpegLoaded = true;
+    statusText.textContent = "Video engine ready.";
+  }
+
+  function useFile(file) {
+    if (!file || !file.type.startsWith("video/")) {
+      alert("Please choose a video file.");
+      return;
+    }
+
+    currentFile = file;
+    if (inputURL) URL.revokeObjectURL(inputURL);
+    inputURL = URL.createObjectURL(file);
+    preview.src = inputURL;
+
+    document.getElementById("fileName").textContent = file.name;
+    document.getElementById("fileSize").textContent = formatBytes(file.size);
+    document.getElementById("fileType").textContent = file.type || "video";
+
+    preview.onloadedmetadata = () => {
+      document.getElementById("duration").textContent = formatDuration(preview.duration);
+      document.getElementById("resolution").textContent = `${preview.videoWidth} × ${preview.videoHeight}`;
+    };
+
+    fileCard.classList.add("show");
+    optimizeBtn.disabled = false;
+    resetBtn.disabled = false;
+    result.classList.remove("show");
+    statusBox.classList.remove("show");
+  }
+
+  fileInput.addEventListener("change", () => useFile(fileInput.files[0]));
+
+  ["dragenter","dragover"].forEach(evt => {
+    dropzone.addEventListener(evt, e => {
+      e.preventDefault();
+      dropzone.classList.add("dragover");
+    });
+  });
+
+  ["dragleave","drop"].forEach(evt => {
+    dropzone.addEventListener(evt, e => {
+      e.preventDefault();
+      dropzone.classList.remove("dragover");
+    });
+  });
+
+  dropzone.addEventListener("drop", e => {
+    useFile(e.dataTransfer.files[0]);
+  });
+
+  preset.addEventListener("change", () => {
+    presetHelp.textContent = PRESETS[preset.value].help;
+  });
+
+  resetBtn.addEventListener("click", () => {
+    currentFile = null;
+    fileInput.value = "";
+    fileCard.classList.remove("show");
+    result.classList.remove("show");
+    statusBox.classList.remove("show");
+    optimizeBtn.disabled = true;
+    resetBtn.disabled = true;
+    preview.removeAttribute("src");
+    outputPreview.removeAttribute("src");
+    if (inputURL) URL.revokeObjectURL(inputURL);
+    if (outputURL) URL.revokeObjectURL(outputURL);
+    inputURL = outputURL = null;
+  });
+
+  optimizeBtn.addEventListener("click", async () => {
+    if (!currentFile) return;
+
+    optimizeBtn.disabled = true;
+    resetBtn.disabled = true;
+    result.classList.remove("show");
+    statusBox.classList.add("show");
+    statusText.textContent = "Preparing video…";
+    appendLog("");
+    setProgress(0);
+
+    try {
+      await loadFFmpeg();
+
+      const extension = (currentFile.name.split(".").pop() || "mp4").replace(/[^a-z0-9]/gi,"").toLowerCase();
+      const inputName = `input.${extension || "mp4"}`;
+      const outputName = "optimized.mp4";
+      const cfg = PRESETS[preset.value];
+
+      statusText.textContent = "Reading selected video…";
+      await ffmpeg.writeFile(inputName, await fetchFile(currentFile));
+
+      const args = [
+        "-i", inputName,
+        "-vf", cfg.vf,
+        "-c:v", "libx264",
+        "-preset", cfg.preset,
+        "-crf", cfg.crf,
+        "-pix_fmt", "yuv420p",
+        "-movflags", "+faststart"
+      ];
+
+      if (audio.value === "remove") {
+        args.push("-an");
+      } else {
+        args.push("-c:a", "aac", "-b:a", "128k");
+      }
+
+      args.push(outputName);
+
+      statusText.textContent = "Optimizing video… keep this tab open.";
+      setProgress(0);
+
+      await ffmpeg.exec(args);
+
+      statusText.textContent = "Preparing download…";
+      const data = await ffmpeg.readFile(outputName);
+      const blob = new Blob([data.buffer], { type: "video/mp4" });
+
+      if (outputURL) URL.revokeObjectURL(outputURL);
+      outputURL = URL.createObjectURL(blob);
+
+      outputPreview.src = outputURL;
+      downloadBtn.href = outputURL;
+
+      const base = currentFile.name.replace(/\.[^.]+$/, "");
+      downloadBtn.download = `${base}_web.mp4`;
+
+      const reduction = currentFile.size > 0
+        ? Math.round((1 - blob.size / currentFile.size) * 100)
+        : 0;
+
+      resultStats.textContent =
+        `${formatBytes(currentFile.size)} → ${formatBytes(blob.size)} ` +
+        `(${reduction >= 0 ? reduction + "% smaller" : Math.abs(reduction) + "% larger"})`;
+
+      setProgress(1);
+      statusText.textContent = "Complete.";
+      result.classList.add("show");
+
+      try {
+        await ffmpeg.deleteFile(inputName);
+        await ffmpeg.deleteFile(outputName);
+      } catch (_) {}
+
+    } catch (error) {
+      console.error(error);
+      statusText.textContent = "Optimization failed.";
+      appendLog(error?.message || String(error));
+      alert(
+        "The browser could not complete this conversion. Very large videos can exceed browser memory. " +
+        "Try the Extra Small File preset or a shorter source video."
+      );
+    } finally {
+      optimizeBtn.disabled = false;
+      resetBtn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
