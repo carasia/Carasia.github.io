@@ -198,7 +198,20 @@
         linear-gradient(135deg, #02142f 0%, var(--blue) 45%, #075d6f 78%, #0b7f8b 100%);
     }
 
-    .hero::before,
+   .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:1;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(2,20,47,.88) 0%,
+            rgba(5,39,91,.72) 35%,
+            rgba(5,39,91,.50) 65%,
+            rgba(2,20,47,.72) 100%
+        );
+}
     .hero::after {
       content: "";
       position: absolute;
