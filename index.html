@@ -652,7 +652,7 @@
       background:
         linear-gradient(105deg, #02142f 0%, #05275B 52%, #0a5968 100%);
     }
-    /* Blue color-grade layer over the hero video */
+    /* Horizontal blue color-grade layer over the hero video */
     .hero-premium::before {
       content: "";
       position: absolute;
@@ -662,37 +662,41 @@
       height: auto;
       border: 0;
       border-radius: 0;
-      background: #2A8B99;
-      mix-blend-mode: color;
-      opacity: .78;
       pointer-events: none;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(42, 139, 153, .92) 0%,
+          rgba(42, 139, 153, .82) 24%,
+          rgba(42, 139, 153, .62) 46%,
+          rgba(42, 139, 153, .34) 68%,
+          rgba(42, 139, 153, .08) 88%,
+          rgba(42, 139, 153, 0) 100%
+        );
+      mix-blend-mode: color;
     }
 
 
-    /* Separate dark navy layer for text readability */
+    /* Horizontal navy readability layer */
     .hero-premium::after {
       content: "";
       position: absolute;
       inset: 0;
-      z-index: 1;
+      z-index: 2;
       width: auto;
       height: auto;
       border: 0;
       border-radius: 0;
+      pointer-events: none;
       background:
         linear-gradient(
           90deg,
-          rgba(2, 20, 47, .78) 0%,
-          rgba(5, 39, 91, .66) 42%,
-          rgba(5, 39, 91, .48) 72%,
-          rgba(2, 20, 47, .56) 100%
-        ),
-        linear-gradient(
-          180deg,
-          rgba(2, 20, 47, .18) 0%,
-          rgba(2, 20, 47, .42) 100%
+          rgba(2, 20, 47, .84) 0%,
+          rgba(2, 20, 47, .68) 34%,
+          rgba(5, 39, 91, .46) 58%,
+          rgba(5, 39, 91, .24) 78%,
+          rgba(2, 20, 47, .08) 100%
         );
-      pointer-events: none;
     }
     .hero-video-bg {
       position: absolute;
@@ -703,9 +707,9 @@
       object-position: center;
       z-index: 0;
       filter:
-        brightness(.48)
-        saturate(.85)
-        contrast(.78);
+        brightness(.50)
+        saturate(.90)
+        contrast(.80);
       transform: scale(1.03);
     }
 
@@ -753,7 +757,7 @@
 
     .hero-premium-grid {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       display: grid;
       grid-template-columns: 1.14fr .86fr;
       align-items: center;
