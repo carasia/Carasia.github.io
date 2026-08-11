@@ -198,20 +198,7 @@
         linear-gradient(135deg, #02142f 0%, var(--blue) 45%, #075d6f 78%, #0b7f8b 100%);
     }
 
-   .hero::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    z-index:1;
-    background:
-        linear-gradient(
-            90deg,
-            rgba(2,20,47,.88) 0%,
-            rgba(5,39,91,.72) 35%,
-            rgba(5,39,91,.50) 65%,
-            rgba(2,20,47,.72) 100%
-        );
-}
+    .hero::before,
     .hero::after {
       content: "";
       position: absolute;
@@ -672,9 +659,8 @@
       inset: 0;
       z-index: 1;
       background:
-        linear-gradient(100deg, rgba(2,20,47,.90) 0%, rgba(5,39,91,.72) 48%, rgba(10,89,104,.46) 100%),
-        radial-gradient(circle at 78% 22%, rgba(42,139,153,.20), transparent 30%),
-        radial-gradient(circle at 12% 80%, rgba(200,154,61,.10), transparent 28%);
+        linear-gradient(90deg, rgba(2,20,47,.94) 0%, rgba(5,39,91,.88) 42%, rgba(5,39,91,.76) 68%, rgba(2,20,47,.82) 100%),
+        linear-gradient(180deg, rgba(2,20,47,.24) 0%, rgba(2,20,47,.54) 100%);
       pointer-events: none;
     }
 
@@ -686,6 +672,13 @@
       object-fit: cover;
       object-position: center;
       z-index: 0;
+      filter: brightness(.56) saturate(.70) contrast(.92);
+      transform: scale(1.01);
+    }
+
+    .premium-copy,
+    .hero-insight-card {
+      text-shadow: 0 2px 18px rgba(0,0,0,.28);
     }
 
     .hero-map {
