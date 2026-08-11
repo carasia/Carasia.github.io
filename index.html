@@ -653,15 +653,29 @@
         linear-gradient(105deg, #02142f 0%, #05275B 52%, #0a5968 100%);
     }
 
-    .hero-premium::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background:
-        linear-gradient(90deg, rgba(2,20,47,.94) 0%, rgba(5,39,91,.88) 42%, rgba(5,39,91,.76) 68%, rgba(2,20,47,.82) 100%),
-        linear-gradient(180deg, rgba(2,20,47,.24) 0%, rgba(2,20,47,.54) 100%);
-      pointer-events: none;
+  .hero-premium::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  background:
+      linear-gradient(
+          90deg,
+          rgba(2,20,47,.92) 0%,
+          rgba(5,39,91,.88) 35%,
+          rgba(5,39,91,.78) 60%,
+          rgba(5,39,91,.72) 100%
+      ),
+      linear-gradient(
+          180deg,
+          rgba(3,33,84,.42) 0%,
+          rgba(5,39,91,.55) 50%,
+          rgba(2,20,47,.72) 100%
+      ),
+      rgba(5,39,91,.28);
+
     }
 
     .hero-video-bg {
