@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Catálogo de productos disponibles a través de Carasia Consulting.">
+  <title>Productos | Carasia Consulting</title>
+  <link rel="stylesheet" href="assets/catalog.css">
+</head>
+<body data-page="catalog">
+  <header class="catalog-header">
+    <div class="container catalog-nav">
+      <a class="catalog-logo" href="index.html" aria-label="Carasia Consulting"><img src="carasia-logo.png" alt="Carasia Consulting"></a>
+      <nav class="catalog-links" aria-label="Navegación principal">
+        <a href="catalog.html" data-en="Products" data-es="Productos">Productos</a>
+        <a href="index.html#services" data-en="Services" data-es="Servicios">Servicios</a>
+        <a href="index.html#about" data-en="About" data-es="Nosotros">Nosotros</a>
+        <a href="index.html#contact" data-en="Contact" data-es="Contacto">Contacto</a>
+      </nav>
+      <div class="language-switcher" aria-label="Idioma">
+        <button class="lang-button active" type="button" data-lang="es">🇩🇴 ES</button><span>|</span>
+        <button class="lang-button" type="button" data-lang="en">🇺🇸 EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="catalog-hero">
+      <div class="container">
+        <div class="catalog-hero-content">
+          <span class="eyebrow" data-en="Product Catalog" data-es="Catálogo de productos">Catálogo de productos</span>
+          <h1 data-en="Products" data-es="Productos">Productos</h1>
+          <p data-en="Products selected for real business needs." data-es="Productos seleccionados para necesidades empresariales reales.">Productos seleccionados para necesidades empresariales reales.</p>
+          <div class="catalog-tools" aria-label="Herramientas del catálogo">
+            <div class="search-row">
+              <input id="product-search" type="search" data-placeholder-en="Search by product, model, or application" data-placeholder-es="Buscar por producto, modelo o aplicación" placeholder="Buscar por producto, modelo o aplicación" aria-label="Buscar productos">
+              <div class="result-count" id="result-count"></div>
+            </div>
+            <div class="filter-row" id="category-filters"></div>
+          </div>
+        </div>
+        <div class="trade-globe" aria-hidden="true"><span></span><span></span><span></span></div>
+      </div>
+    </section>
+
+    <section class="catalog-content">
+      <div class="container" id="catalog-results"></div>
+    </section>
+  </main>
+
+  <footer class="catalog-footer">
+    <div class="container"><span>© Carasia Consulting</span><span data-en="China ↔ Caribbean sourcing support" data-es="Apoyo de abastecimiento China ↔ Caribe">Apoyo de abastecimiento China ↔ Caribe</span></div>
+  </footer>
+  <script src="assets/catalog.js"></script>
+</body>
+</html>
