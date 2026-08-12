@@ -6,13 +6,72 @@
   <meta name="description" content="Catálogo de productos disponibles a través de Carasia Consulting.">
   <title>Productos | Carasia Consulting</title>
   <link rel="stylesheet" href="assets/catalog.css">
+  <style>
+    .products-menu { position: relative; }
+    .products-menu summary {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      cursor: pointer;
+      font-weight: 700;
+      list-style: none;
+    }
+    .products-menu summary::-webkit-details-marker { display: none; }
+    .products-menu summary::after {
+      content: "▾";
+      color: var(--gold);
+      font-size: .75rem;
+      transition: transform .2s ease;
+    }
+    .products-menu[open] summary::after { transform: rotate(180deg); }
+    .products-dropdown {
+      position: absolute;
+      top: calc(100% + 14px);
+      left: 0;
+      z-index: 50;
+      min-width: 275px;
+      overflow: hidden;
+      padding: 8px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: white;
+      box-shadow: var(--shadow);
+    }
+    .products-dropdown a {
+      display: block;
+      padding: 11px 13px;
+      border-radius: 9px;
+      color: var(--blue);
+      white-space: nowrap;
+    }
+    .products-dropdown a:hover {
+      color: var(--blue);
+      background: var(--off-white);
+    }
+    .products-dropdown a[data-category="all"] {
+      margin-bottom: 5px;
+      border-bottom: 1px solid var(--border);
+      border-radius: 9px 9px 0 0;
+      color: var(--teal);
+    }
+  </style>
 </head>
 <body data-page="catalog">
   <header class="catalog-header">
     <div class="container catalog-nav">
       <a class="catalog-logo" href="index.html" aria-label="Carasia Consulting"><img src="carasia-logo.png" alt="Carasia Consulting"></a>
       <nav class="catalog-links" aria-label="Navegación principal">
-        <a href="catalog.html" data-en="Products" data-es="Productos">Productos</a>
+        <details class="products-menu">
+          <summary><span data-en="Products" data-es="Productos">Productos</span></summary>
+          <div class="products-dropdown">
+            <a href="catalog.html" data-category="all" data-en="All Products" data-es="Todos los productos">Todos los productos</a>
+            <a href="catalog.html?category=Vehicle%20Accessories" data-category="Vehicle Accessories" data-en="Vehicle Accessories" data-es="Accesorios para vehículos">Accesorios para vehículos</a>
+            <a href="catalog.html?category=Construction%20Tools" data-category="Construction Tools" data-en="Construction Tools" data-es="Herramientas de construcción">Herramientas de construcción</a>
+            <a href="catalog.html?category=LED%20Lights" data-category="LED Lights" data-en="LED Lights" data-es="Luces LED">Luces LED</a>
+            <a href="catalog.html?category=Solar%20%26%20Energy" data-category="Solar &amp; Energy" data-en="Solar &amp; Energy" data-es="Energía solar y almacenamiento">Energía solar y almacenamiento</a>
+          </div>
+        </details>
         <a href="index.html#services" data-en="Services" data-es="Servicios">Servicios</a>
         <a href="index.html#about" data-en="About" data-es="Nosotros">Nosotros</a>
         <a href="index.html#contact" data-en="Contact" data-es="Contacto">Contacto</a>
