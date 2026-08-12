@@ -185,6 +185,53 @@
       color: var(--gold);
     }
 
+    .products-menu { position: relative; }
+    .products-menu summary {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      list-style: none;
+    }
+    .products-menu summary::-webkit-details-marker { display: none; }
+    .products-menu summary::after {
+      content: "▾";
+      color: var(--gold);
+      font-size: .75rem;
+      transition: transform .2s ease;
+    }
+    .products-menu[open] summary::after { transform: rotate(180deg); }
+    .products-dropdown {
+      position: absolute;
+      top: calc(100% + 14px);
+      left: 0;
+      z-index: 100;
+      min-width: 275px;
+      overflow: hidden;
+      padding: 8px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: white;
+      box-shadow: var(--shadow);
+    }
+    .products-dropdown a {
+      display: block;
+      padding: 11px 13px;
+      border-radius: 9px;
+      color: var(--blue);
+      white-space: nowrap;
+    }
+    .products-dropdown a:hover {
+      color: var(--blue);
+      background: var(--off-white);
+    }
+    .products-dropdown a[data-category="all"] {
+      margin-bottom: 5px;
+      border-bottom: 1px solid var(--border);
+      border-radius: 9px 9px 0 0;
+      color: var(--blue-light);
+    }
+
     .hero {
       position: relative;
       overflow: hidden;
@@ -1220,7 +1267,16 @@
 <img alt="Carasia Consulting logo" src="carasia-logo.png"/>
 </a>
 <nav aria-label="Main navigation" class="nav-links">
-<a data-en="Products" data-es="Productos" href="catalog.html">Productos</a>
+<details class="products-menu">
+<summary><span data-en="Products" data-es="Productos">Productos</span></summary>
+<div class="products-dropdown">
+<a data-category="all" data-en="All Products" data-es="Todos los productos" href="catalog.html">Todos los productos</a>
+<a data-category="Vehicle Accessories" data-en="Vehicle Accessories" data-es="Accesorios para vehículos" href="catalog.html?category=Vehicle%20Accessories">Accesorios para vehículos</a>
+<a data-category="Construction Tools" data-en="Construction Tools" data-es="Herramientas de construcción" href="catalog.html?category=Construction%20Tools">Herramientas de construcción</a>
+<a data-category="LED Lights" data-en="LED Lights" data-es="Luces LED" href="catalog.html?category=LED%20Lights">Luces LED</a>
+<a data-category="Solar &amp; Energy" data-en="Solar &amp; Energy" data-es="Energía solar y almacenamiento" href="catalog.html?category=Solar%20%26%20Energy">Energía solar y almacenamiento</a>
+</div>
+</details>
 <a data-en="Services" data-es="Servicios" href="#services">Servicios</a>
 <a data-en="About" data-es="Nosotros" href="#about">Nosotros</a>
 <a data-en="Why Choose Us" data-es="Por qué elegirnos" href="#why-us">Por qué elegirnos</a>
@@ -1485,6 +1541,17 @@
 
       document.querySelectorAll(".lang-button").forEach(button => {
         button.classList.toggle("active", button.dataset.lang === lang);
+      });
+
+      document.querySelectorAll(".products-dropdown").forEach(menu => {
+        const links = [...menu.querySelectorAll("a")];
+        const allProducts = links.find(link => link.dataset.category === "all");
+        const categories = links
+          .filter(link => link.dataset.category !== "all")
+          .sort((a, b) => a.textContent.trim().localeCompare(
+            b.textContent.trim(), lang, { sensitivity: "base" }
+          ));
+        menu.replaceChildren(...(allProducts ? [allProducts] : []), ...categories);
       });
     }
 
