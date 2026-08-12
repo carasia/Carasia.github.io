@@ -382,29 +382,52 @@
       position: relative;
       overflow: hidden;
       border-radius: 28px;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,.18), transparent 24%),
-        radial-gradient(circle at 78% 82%, rgba(200,154,61,.28), transparent 28%),
-        linear-gradient(135deg, #05275B 0%, #176e7d 58%, #2A8B99 100%);
+      background: url("pexels-pixabay-268460.jpg") center center / cover no-repeat;
       box-shadow: 0 28px 68px rgba(5,39,91,.22);
+      transition: transform .45s ease;
+    }
+
+    .about-panel:hover {
+      transform: scale(1.02);
     }
 
     .about-panel::before {
       content: "";
       position: absolute;
       inset: 28px;
+      z-index: 2;
       border: 2px solid rgba(255, 255, 255, 0.18);
       border-radius: 22px;
+      pointer-events: none;
+    }
+
+    .about-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(5,39,91,.88),
+          rgba(14,73,120,.62),
+          rgba(42,139,153,.55),
+          rgba(5,39,91,.86)
+        );
+      mix-blend-mode: multiply;
+      pointer-events: none;
     }
 
     .about-panel-content {
       position: absolute;
       inset: 0;
+      z-index: 3;
       display: grid;
       place-items: center;
       padding: 54px;
       text-align: center;
       color: var(--white);
+      text-shadow: 0 2px 18px rgba(0,0,0,.28);
     }
 
     .about-panel-content strong {
