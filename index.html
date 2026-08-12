@@ -1171,9 +1171,46 @@
       }
     }
   
-.social-icons{display:flex;justify-content:center;gap:18px;margin-top:28px;}
-.social-icons a{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;color:var(--blue);border:2px solid var(--blue);transition:.25s ease;}
-.social-icons a:hover{background:var(--blue);color:#fff;transform:translateY(-2px);}
+
+
+    .social-icons{
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:22px;
+    }
+
+    .social-icons a{
+      display:grid;
+      place-items:center;
+      width:46px;
+      height:46px;
+      border:2px solid var(--blue);
+      border-radius:13px;
+      color:var(--blue);
+      background:#ffffff;
+      box-shadow:0 8px 20px rgba(5,39,91,.08);
+      transition:
+        transform .22s ease,
+        background .22s ease,
+        color .22s ease,
+        box-shadow .22s ease;
+    }
+
+    .social-icons a:hover{
+      background:var(--blue);
+      color:#ffffff;
+      transform:translateY(-2px);
+      box-shadow:0 12px 24px rgba(5,39,91,.18);
+    }
+
+    .social-icons svg{
+      width:23px;
+      height:23px;
+      display:block;
+    }
+
 </style>
 </head>
 <body>
@@ -1352,6 +1389,42 @@
 <strong data-en="Service Area" data-es="Área de servicio" data-i18n="contact.area">Área de servicio</strong>
 <span data-en="Remote and in-person consulting" data-es="Consultoría remota y presencial" data-i18n="contact.areaValue">Consultoría remota y presencial</span>
 </div>
+
+<div class="social-icons" aria-label="Social media and email">
+  <a href="https://instagram.com/YOURUSERNAME" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+    </svg>
+  </a>
+
+  <a href="https://facebook.com/YOURPAGE" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M13.5 22v-9h3l.5-3h-3.5V8.1c0-.9.3-1.6 1.7-1.6H17V3.8c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.4V10H7.5v3h2.8v9h3.2z"></path>
+    </svg>
+  </a>
+
+  <a href="https://linkedin.com/company/YOURCOMPANY" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M5.3 3.8A1.9 1.9 0 1 1 5.3 7.6a1.9 1.9 0 0 1 0-3.8zM3.7 9h3.2v11.3H3.7V9zm5.2 0H12v1.5h.1c.4-.8 1.6-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.2h-3.2v-5.5c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9v5.6H8.9V9z"></path>
+    </svg>
+  </a>
+
+  <a href="mailto:YOUR_EMAIL@example.com" aria-label="Email" title="Email">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+      <path d="m3 7 9 6 9-6"></path>
+    </svg>
+  </a>
+
+  <a href="https://wa.me/YOURNUMBER" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4Zm-8.4 18.2c-1.7 0-3.4-.5-4.9-1.3l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 1 1 8.3 4.6Zm5.4-7.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.8-2.8-1.5-3.9-3.4-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.6c.2.2 2.4 3.7 5.9 5.2.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4Z"></path>
+    </svg>
+  </a>
+</div>
+
 </div>
 </div>
 <div class="contact-card">
@@ -1381,12 +1454,6 @@
 </label>
 <button class="button button-primary" data-en="Send Message" data-es="Enviar mensaje" type="submit">Enviar mensaje</button>
 </form>
-
-<div class="social-icons">
-<a href="https://instagram.com/YOURUSERNAME" target="_blank" rel="noopener" aria-label="Instagram">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-</a>
-</div>
 
 </div>
 </div>
