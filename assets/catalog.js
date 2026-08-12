@@ -132,6 +132,14 @@ function productName(product) {
     : product.nameEn;
 }
 
+function productTitle(product) {
+  const name = productName(product);
+
+  return product.category === "LED Lights" && product.model
+    ? `${name} — ${product.model}`
+    : name;
+}
+
 function application(product) {
   return state.lang === "es"
     ? product.applicationEs
@@ -150,11 +158,11 @@ function productCard(product) {
       <a
         class="product-image"
         href="product.html?id=${encodeURIComponent(product.sku)}"
-        aria-label="${esc(productName(product))}"
+        aria-label="${esc(productTitle(product))}"
       >
         <img
           src="${esc(product.image)}"
-          alt="${esc(productName(product))}"
+          alt="${esc(productTitle(product))}"
           loading="lazy"
         >
       </a>
@@ -165,7 +173,7 @@ function productCard(product) {
           <span>${esc(product.sku)}</span>
         </div>
 
-        <h3>${esc(productName(product))}</h3>
+        <h3>${esc(productTitle(product))}</h3>
 
         <p>${esc(application(product))}</p>
 
@@ -173,7 +181,7 @@ function productCard(product) {
           class="card-link"
           href="product.html?id=${encodeURIComponent(product.sku)}"
         >
-          ${text("Ver detalles →", "View details →")}
+          ${text("Ver detalles", "View details")}
         </a>
       </div>
     </article>
@@ -351,18 +359,18 @@ function renderProduct() {
   }
 
   document.title =
-    `${productName(product)} | Carasia Consulting`;
+    `${productTitle(product)} | Carasia Consulting`;
 
   const subject = encodeURIComponent(
     `${text("Consulta sobre", "Inquiry about")} ` +
-    `${product.sku} - ${productName(product)}`
+    `${product.sku} - ${productTitle(product)}`
   );
 
   const message = encodeURIComponent(
     `${text(
       "Hola, quisiera solicitar información sobre",
       "Hello, I would like information about"
-    )} ${product.sku} - ${productName(product)}.`
+    )} ${product.sku} - ${productTitle(product)}.`
   );
 
   root.innerHTML = `
@@ -374,7 +382,7 @@ function renderProduct() {
       <div class="product-gallery">
         <img
           src="${esc(product.image)}"
-          alt="${esc(productName(product))}"
+          alt="${esc(productTitle(product))}"
         >
       </div>
 
@@ -385,11 +393,11 @@ function renderProduct() {
           ${esc(subcategoryLabel(product.subcategory))}
         </span>
 
-        <h1>${esc(productName(product))}</h1>
+        <h1>${esc(productTitle(product))}</h1>
 
         <div class="product-model">
           ${esc(product.sku)}
-          ${product.model
+          ${product.model && product.category !== "LED Lights"
             ? ` · ${esc(product.model)}`
             : ""}
         </div>
