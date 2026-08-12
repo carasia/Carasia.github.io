@@ -18,22 +18,26 @@ const esc = value =>
 
 const categoryNames = {
   "Vehicle Accessories": {
-    es: "Accesorios para vehÃ­culos",
+    es: "Accesorios para vehículos",
     en: "Vehicle Accessories"
   },
   "Construction Tools": {
-    es: "Herramientas de construcciÃ³n",
+    es: "Herramientas de construcción",
     en: "Construction Tools"
   },
+  "LED Lights": {
+    es: "Luces LED",
+    en: "LED Lights"
+  },
   "Solar & Energy": {
-    es: "EnergÃ­a solar y almacenamiento",
+    es: "Energía solar y almacenamiento",
     en: "Solar & Energy"
   },
 };
 
 const subcategoryNames = {
   "Floor Mats": {
-    es: "Alfombras para vehÃ­culos",
+    es: "Alfombras para vehículos",
     en: "Floor Mats"
   },
   "Warning Lights": {
@@ -45,7 +49,7 @@ const subcategoryNames = {
     en: "Energy Storage & Inverters"
   },
   "Core Drilling": {
-    es: "PerforaciÃ³n con corona",
+    es: "Perforación con corona",
     en: "Core Drilling"
   },
   "Cutting Discs": {
@@ -91,6 +95,24 @@ function localizeStatic() {
       "active",
       button.dataset.lang === state.lang
     );
+  });
+
+  sortProductMenu();
+}
+
+function sortProductMenu() {
+  document.querySelectorAll(".products-dropdown").forEach(menu => {
+    const links = [...menu.querySelectorAll("a")];
+    const allProducts = links.find(link => link.dataset.category === "all");
+    const categories = links
+      .filter(link => link.dataset.category !== "all")
+      .sort((a, b) => a.textContent.trim().localeCompare(
+        b.textContent.trim(),
+        state.lang,
+        { sensitivity: "base" }
+      ));
+
+    menu.replaceChildren(...(allProducts ? [allProducts] : []), ...categories);
   });
 }
 
@@ -151,7 +173,7 @@ function productCard(product) {
           class="card-link"
           href="product.html?id=${encodeURIComponent(product.sku)}"
         >
-          ${text("Ver detalles â†’", "View details â†’")}
+          ${text("Ver detalles →", "View details →")}
         </a>
       </div>
     </article>
@@ -163,7 +185,9 @@ function renderFilters() {
     ...new Set(
       state.products.map(product => product.category)
     )
-  ];
+  ].sort((a, b) => categoryLabel(a).localeCompare(
+    categoryLabel(b), state.lang, { sensitivity: "base" }
+  ));
 
   const root = document.getElementById("category-filters");
 
@@ -261,7 +285,9 @@ function renderCatalog() {
     ...new Set(
       visible.map(product => product.category)
     )
-  ];
+  ].sort((a, b) => categoryLabel(a).localeCompare(
+    categoryLabel(b), state.lang, { sensitivity: "base" }
+  ));
 
   root.innerHTML = categories.map(category => {
     const products = visible.filter(
@@ -273,7 +299,7 @@ function renderCatalog() {
         <div class="category-heading">
           <div>
             <span class="eyebrow">
-              ${text("CategorÃ­a", "Category")}
+              ${text("Categoría", "Category")}
             </span>
 
             <h2>${esc(categoryLabel(category))}</h2>
@@ -310,12 +336,12 @@ function renderProduct() {
   if (!product) {
     root.innerHTML = `
       <a class="back-link" href="catalog.html">
-        â† ${text("Volver al catÃ¡logo", "Back to catalog")}
+        ← ${text("Volver al catálogo", "Back to catalog")}
       </a>
 
       <div class="empty-state">
         ${text(
-          "No se encontrÃ³ este producto.",
+          "No se encontró este producto.",
           "This product could not be found."
         )}
       </div>
@@ -334,14 +360,14 @@ function renderProduct() {
 
   const message = encodeURIComponent(
     `${text(
-      "Hola, quisiera solicitar informaciÃ³n sobre",
+      "Hola, quisiera solicitar información sobre",
       "Hello, I would like information about"
     )} ${product.sku} - ${productName(product)}.`
   );
 
   root.innerHTML = `
     <a class="back-link" href="catalog.html">
-      â† ${text("Volver al catÃ¡logo", "Back to catalog")}
+      ← ${text("Volver al catálogo", "Back to catalog")}
     </a>
 
     <div class="product-layout">
@@ -355,7 +381,7 @@ function renderProduct() {
       <article class="product-details">
         <span class="product-category">
           ${esc(categoryLabel(product.category))}
-          Â·
+          ·
           ${esc(subcategoryLabel(product.subcategory))}
         </span>
 
@@ -364,7 +390,7 @@ function renderProduct() {
         <div class="product-model">
           ${esc(product.sku)}
           ${product.model
-            ? ` Â· ${esc(product.model)}`
+            ? ` · ${esc(product.model)}`
             : ""}
         </div>
 
@@ -383,14 +409,14 @@ function renderProduct() {
         <section class="detail-panel">
           <h2>
             ${text(
-              "Disponibilidad y cotizaciÃ³n",
+              "Disponibilidad y cotización",
               "Availability and quotation"
             )}
           </h2>
 
           <p>
             ${text(
-              "Las cantidades, opciones, plazos y precios se confirman segÃºn los requisitos de cada solicitud.",
+              "Las cantidades, opciones, plazos y precios se confirman según los requisitos de cada solicitud.",
               "Quantities, options, lead times, and pricing are confirmed according to each inquiry's requirements."
             )}
           </p>
@@ -402,7 +428,7 @@ function renderProduct() {
             href="mailto:carasiaconsulting@gmail.com?subject=${subject}&body=${message}"
           >
             ${text(
-              "Solicitar cotizaciÃ³n",
+              "Solicitar cotización",
               "Request a quote"
             )}
           </a>
@@ -433,6 +459,17 @@ async function initialize() {
   }
 
   state.products = await response.json();
+
+  const requestedCategory = new URLSearchParams(location.search).get("category");
+  const availableCategories = new Set(
+    state.products.map(product => product.category)
+  );
+
+  state.category = requestedCategory === "all" || !requestedCategory
+    ? "all"
+    : availableCategories.has(requestedCategory)
+      ? requestedCategory
+      : "all";
 
   localizeStatic();
 
@@ -478,7 +515,7 @@ initialize().catch(error => {
     root.innerHTML = `
       <div class="empty-state">
         ${text(
-          "No fue posible cargar el catÃ¡logo.",
+          "No fue posible cargar el catálogo.",
           "The catalog could not be loaded."
         )}
       </div>
