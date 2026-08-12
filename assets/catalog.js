@@ -18,26 +18,34 @@ const esc = value =>
 
 const categoryNames = {
   "Vehicle Accessories": {
-    es: "Accesorios para vehículos",
+    es: "Accesorios para vehÃ­culos",
     en: "Vehicle Accessories"
   },
   "Construction Tools": {
-    es: "Herramientas de construcción",
+    es: "Herramientas de construcciÃ³n",
     en: "Construction Tools"
   },
   "Solar & Energy": {
-    es: "Energía solar y almacenamiento",
+    es: "EnergÃ­a solar y almacenamiento",
     en: "Solar & Energy"
   },
 };
 
 const subcategoryNames = {
   "Floor Mats": {
-    es: "Alfombras para vehículos",
+    es: "Alfombras para vehÃ­culos",
     en: "Floor Mats"
   },
+  "Warning Lights": {
+    es: "Luces de advertencia",
+    en: "Warning Lights"
+  },
+  "Energy Storage & Inverters": {
+    es: "Almacenamiento e inversores",
+    en: "Energy Storage & Inverters"
+  },
   "Core Drilling": {
-    es: "Perforación con corona",
+    es: "PerforaciÃ³n con corona",
     en: "Core Drilling"
   },
   "Cutting Discs": {
@@ -143,7 +151,7 @@ function productCard(product) {
           class="card-link"
           href="product.html?id=${encodeURIComponent(product.sku)}"
         >
-          ${text("Ver detalles →", "View details →")}
+          ${text("Ver detalles â†’", "View details â†’")}
         </a>
       </div>
     </article>
@@ -265,7 +273,7 @@ function renderCatalog() {
         <div class="category-heading">
           <div>
             <span class="eyebrow">
-              ${text("Categoría", "Category")}
+              ${text("CategorÃ­a", "Category")}
             </span>
 
             <h2>${esc(categoryLabel(category))}</h2>
@@ -302,12 +310,12 @@ function renderProduct() {
   if (!product) {
     root.innerHTML = `
       <a class="back-link" href="catalog.html">
-        ← ${text("Volver al catálogo", "Back to catalog")}
+        â† ${text("Volver al catÃ¡logo", "Back to catalog")}
       </a>
 
       <div class="empty-state">
         ${text(
-          "No se encontró este producto.",
+          "No se encontrÃ³ este producto.",
           "This product could not be found."
         )}
       </div>
@@ -326,14 +334,14 @@ function renderProduct() {
 
   const message = encodeURIComponent(
     `${text(
-      "Hola, quisiera solicitar información sobre",
+      "Hola, quisiera solicitar informaciÃ³n sobre",
       "Hello, I would like information about"
     )} ${product.sku} - ${productName(product)}.`
   );
 
   root.innerHTML = `
     <a class="back-link" href="catalog.html">
-      ← ${text("Volver al catálogo", "Back to catalog")}
+      â† ${text("Volver al catÃ¡logo", "Back to catalog")}
     </a>
 
     <div class="product-layout">
@@ -347,7 +355,7 @@ function renderProduct() {
       <article class="product-details">
         <span class="product-category">
           ${esc(categoryLabel(product.category))}
-          ·
+          Â·
           ${esc(subcategoryLabel(product.subcategory))}
         </span>
 
@@ -356,7 +364,7 @@ function renderProduct() {
         <div class="product-model">
           ${esc(product.sku)}
           ${product.model
-            ? ` · ${esc(product.model)}`
+            ? ` Â· ${esc(product.model)}`
             : ""}
         </div>
 
@@ -375,14 +383,14 @@ function renderProduct() {
         <section class="detail-panel">
           <h2>
             ${text(
-              "Disponibilidad y cotización",
+              "Disponibilidad y cotizaciÃ³n",
               "Availability and quotation"
             )}
           </h2>
 
           <p>
             ${text(
-              "Las cantidades, opciones, plazos y precios se confirman según los requisitos de cada solicitud.",
+              "Las cantidades, opciones, plazos y precios se confirman segÃºn los requisitos de cada solicitud.",
               "Quantities, options, lead times, and pricing are confirmed according to each inquiry's requirements."
             )}
           </p>
@@ -394,7 +402,7 @@ function renderProduct() {
             href="mailto:carasiaconsulting@gmail.com?subject=${subject}&body=${message}"
           >
             ${text(
-              "Solicitar cotización",
+              "Solicitar cotizaciÃ³n",
               "Request a quote"
             )}
           </a>
@@ -470,7 +478,7 @@ initialize().catch(error => {
     root.innerHTML = `
       <div class="empty-state">
         ${text(
-          "No fue posible cargar el catálogo.",
+          "No fue posible cargar el catÃ¡logo.",
           "The catalog could not be loaded."
         )}
       </div>
