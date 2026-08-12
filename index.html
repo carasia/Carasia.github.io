@@ -1170,7 +1170,11 @@
         text-align: center;
       }
     }
-  </style>
+  
+.social-icons{display:flex;justify-content:center;gap:18px;margin-top:28px;}
+.social-icons a{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;color:var(--blue);border:2px solid var(--blue);transition:.25s ease;}
+.social-icons a:hover{background:var(--blue);color:#fff;transform:translateY(-2px);}
+</style>
 </head>
 <body>
 <header>
@@ -1338,7 +1342,7 @@
 <div class="contact-details">
 <div class="contact-item">
 <strong data-en="Email" data-es="Correo electrónico" data-i18n="contact.email">Correo electrónico</strong>
-<span>CarasiaConsulting@gmail.com</span>
+<span>your-email@example.com</span>
 </div>
 <div class="contact-item">
 <strong data-en="Phone" data-es="Teléfono" data-i18n="contact.phone">Teléfono</strong>
@@ -1377,6 +1381,13 @@
 </label>
 <button class="button button-primary" data-en="Send Message" data-es="Enviar mensaje" type="submit">Enviar mensaje</button>
 </form>
+
+<div class="social-icons">
+<a href="https://instagram.com/YOURUSERNAME" target="_blank" rel="noopener" aria-label="Instagram">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+</a>
+</div>
+
 </div>
 </div>
 </section>
