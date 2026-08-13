@@ -57,7 +57,7 @@ img {
 }
 
 .catalog-nav {
-  min-height: 82px;
+  min-height: 96px;
   display: flex;
   align-items: center;
   gap: 28px;
