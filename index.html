@@ -454,6 +454,22 @@
         height: 100%;
         object-fit: cover;
       }
+      .proof-section:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          rgba(42, 139, 153, 0.86) 0%,
+          rgba(42, 139, 153, 0.7) 28%,
+          rgba(42, 139, 153, 0.4) 58%,
+          rgba(42, 139, 153, 0.14) 82%,
+          rgba(42, 139, 153, 0) 100%
+        );
+        mix-blend-mode: color;
+        pointer-events: none;
+      }
       .proof-section:after {
         content: "";
         position: absolute;
