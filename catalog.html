@@ -1,73 +1,26 @@
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Catálogo de productos disponibles a través de Carasia Consulting.">
-  <title>Productos | Carasia Consulting</title>
-  <link rel="stylesheet" href="assets/catalog.css">
-</head>
-<body data-page="catalog">
-  <header class="catalog-header">
-    <div class="container catalog-nav">
-      <a class="catalog-logo" href="index.html" aria-label="Carasia Consulting"><img src="carasia-logo.png" alt="Carasia Consulting"></a>
-      <nav class="catalog-links" id="catalog-navigation" aria-label="Navegación principal">
-        <details class="products-menu">
-          <summary><span data-en="Products" data-es="Productos">Productos</span></summary>
-          <div class="products-dropdown">
-            <a href="catalog.html" data-category="all" data-en="All Products" data-es="Todos los productos">Todos los productos</a>
-            <a href="catalog.html?category=Vehicle%20Accessories" data-category="Vehicle Accessories" data-en="Vehicle Accessories" data-es="Accesorios para vehículos">Accesorios para vehículos</a>
-            <a href="catalog.html?category=Construction%20Tools" data-category="Construction Tools" data-en="Construction Tools" data-es="Herramientas de construcción">Herramientas de construcción</a>
-            <a href="catalog.html?category=LED%20Lights" data-category="LED Lights" data-en="LED Lights" data-es="Luces LED">Luces LED</a>
-            <a href="catalog.html?category=Solar%20%26%20Energy" data-category="Solar &amp; Energy" data-en="Solar &amp; Energy" data-es="Energía solar y almacenamiento">Energía solar y almacenamiento</a>
-          </div>
-        </details>
-        <a href="index.html#services" data-en="Services" data-es="Servicios">Servicios</a>
-        <a href="index.html#about" data-en="About" data-es="Nosotros">Nosotros</a>
-        <a href="index.html#contact" data-en="Contact" data-es="Contacto">Contacto</a>
-      </nav>
-      <div class="language-switcher" aria-label="Idioma">
-        <button class="lang-button active" type="button" data-lang="es">🇩🇴 ES</button><span>|</span>
-        <button class="lang-button" type="button" data-lang="en">🇺🇸 EN</button>
-      </div>
-      <button class="catalog-menu-button" type="button" aria-controls="catalog-navigation" aria-expanded="false" aria-label="Abrir menú"><span></span></button>
-    </div>
-  </header>
-  <main>
-    <section class="catalog-hero">
-      <div class="container">
-        <div class="catalog-hero-content">
-          <span class="eyebrow" data-en="Product Catalog" data-es="Catálogo de productos">Catálogo de productos</span>
-          <h1 data-en="Products" data-es="Productos">Productos</h1>
-          <p data-en="Products selected for real business needs." data-es="Productos seleccionados para necesidades empresariales reales.">Productos seleccionados para necesidades empresariales reales.</p>
-          <div class="catalog-tools" aria-label="Herramientas del catálogo">
-            <div class="search-row">
-              <input id="product-search" type="search" data-placeholder-en="Search by product, model, or application" data-placeholder-es="Buscar por producto, modelo o aplicación" placeholder="Buscar por producto, modelo o aplicación" aria-label="Buscar productos">
-              <div class="result-count" id="result-count"></div>
-            </div>
-            <div class="filter-row" id="category-filters"></div>
-          </div>
-        </div>
-        <div class="trade-globe" aria-hidden="true"><span></span><span></span><span></span></div>
-      </div>
-    </section>
-    <section class="catalog-content"><div class="container" id="catalog-results"></div></section>
-  </main>
-  <footer class="catalog-footer"><div class="container"><span>© Carasia Consulting</span><span data-en="China ↔ Caribbean sourcing support" data-es="Apoyo de abastecimiento China ↔ Caribe">Apoyo de abastecimiento China ↔ Caribe</span></div></footer>
-  <script src="assets/catalog.js"></script>
-  <script>
-    const catalogMenuButton = document.querySelector(".catalog-menu-button");
-    const catalogNavigation = document.getElementById("catalog-navigation");
-    catalogMenuButton?.addEventListener("click", () => {
-      const isOpen = catalogMenuButton.getAttribute("aria-expanded") === "true";
-      catalogMenuButton.setAttribute("aria-expanded", String(!isOpen));
-      catalogMenuButton.setAttribute("aria-label", !isOpen ? "Cerrar menú" : "Abrir menú");
-      catalogNavigation?.classList.toggle("mobile-open", !isOpen);
-    });
-    catalogNavigation?.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
-      catalogNavigation.classList.remove("mobile-open");
-      catalogMenuButton?.setAttribute("aria-expanded", "false");
-    }));
-  </script>
-</body>
-</html>
+</style>
+      .site-header .brand {
+        width: 230px;
+        height: 70px;
+        flex: 0 0 230px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+      }
+      .site-header .brand img {
+        width: 230px;
+        height: auto;
+        max-height: none;
+        object-fit: initial;
+        display: block;
+      }
+      @media (max-width: 560px) {
+        .site-header .brand {
+          width: 195px;
+          height: 60px;
+          flex-basis: 195px;
+        }
+        .site-header .brand img {
+          width: 195px;
+        }
+      }
