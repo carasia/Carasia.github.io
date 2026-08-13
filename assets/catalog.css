@@ -1024,3 +1024,33 @@ img {
     }
   }
 }
+
+/* Construction-tool two-image product detail gallery */
+.product-media-stack {
+  display: grid;
+  gap: 22px;
+  min-width: 0;
+}
+.product-media-stack .product-gallery {
+  position: static;
+}
+.product-gallery-secondary {
+  min-height: 0;
+}
+.product-gallery-secondary img {
+  max-height: none;
+  height: auto;
+}
+@media (max-width: 560px) {
+  .product-media-stack { gap: 18px; }
+  .product-media-stack .product-gallery {
+    height: auto;
+    max-height: none;
+    aspect-ratio: auto;
+  }
+  .product-media-stack .product-gallery img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+  }
+}
