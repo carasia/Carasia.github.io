@@ -170,7 +170,7 @@ function productCard(product) {
       <div class="product-card-body">
         <div class="product-meta">
           <span>${esc(subcategoryLabel(product.subcategory))}</span>
-          <span>${esc(product.sku)}</span>
+          <span>${esc(product.sku)}${product.model && product.category !== "LED Lights" ? ` · ${esc(product.model)}` : ""}</span>
         </div>
 
         <h3>${esc(productTitle(product))}</h3>
@@ -379,11 +379,21 @@ function renderProduct() {
     </a>
 
     <div class="product-layout">
-      <div class="product-gallery">
-        <img
-          src="${esc(product.image)}"
-          alt="${esc(productTitle(product))}"
-        >
+      <div class="product-media-stack">
+        <div class="product-gallery">
+          <img
+            src="${esc(product.image)}"
+            alt="${esc(productTitle(product))}"
+          >
+        </div>
+        ${product.catalogImage ? `
+          <div class="product-gallery product-gallery-secondary">
+            <img
+              src="${esc(product.catalogImage)}"
+              alt="${esc(productTitle(product))} — ${text("página del catálogo", "catalog page")}"
+            >
+          </div>
+        ` : ""}
       </div>
 
       <article class="product-details">
