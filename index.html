@@ -71,9 +71,7 @@
         backdrop-filter: blur(12px);
       }
       .nav {
-        min-height: 108px;
-        height: auto;
-        padding: 10px 0;
+        height: 84px;
         display: flex;
         align-items: center;
         gap: 30px;
@@ -934,9 +932,15 @@
         }
       }
       .brand img {
-        width: clamp(280px, 25vw, 360px);
+        width: 320px;
         height: auto;
         max-height: none;
+        object-fit: contain;
+      }
+      .site-header .brand img {
+        width: 300px;
+        height: 66px;
+        max-height: 66px;
         object-fit: contain;
       }
       .hero-video-bg,
@@ -1033,7 +1037,7 @@
           margin-top: 8px;
         }
         .brand img {
-          width: 250px;
+          width: 220px;
         }
       }
     </style>
