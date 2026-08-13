@@ -397,10 +397,76 @@
         color: #dce7ed;
       }
       .proof-grid {
+        position: relative;
+        z-index: 2;
         display: grid;
-        grid-template-columns: 0.7fr 1.45fr 0.65fr;
-        gap: 28px;
+        grid-template-columns: 0.9fr 1.35fr;
+        gap: 64px;
         align-items: center;
+      }
+      .proof-section {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+      }
+      .proof-section-video {
+        position: absolute;
+        z-index: -2;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .proof-section:after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          rgba(3, 29, 67, 0.95),
+          rgba(5, 39, 91, 0.78),
+          rgba(0, 57, 94, 0.68)
+        );
+      }
+      .proof-section .section-title,
+      .proof-section .section-intro {
+        color: #fff;
+      }
+      .proof-section .notice {
+        color: #eef6f8;
+        border-color: rgba(99, 210, 218, 0.8);
+        background: rgba(3, 29, 67, 0.68);
+        backdrop-filter: blur(10px);
+      }
+      .proof-section .proof-media {
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        background:
+          linear-gradient(rgba(2, 32, 66, 0.18), rgba(2, 32, 66, 0.28)),
+          url("https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=1300&q=85")
+            center/cover;
+      }
+      .proof-section .proof-list {
+        color: #fff;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+      .proof-section .proof-list .check {
+        min-height: 138px;
+        margin: 0;
+        align-items: flex-start;
+        padding: 26px;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        border-top: 3px solid var(--gold);
+        border-radius: 18px;
+        background: rgba(3, 29, 67, 0.65);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
       }
       .proof-media {
         min-height: 350px;
@@ -1012,7 +1078,21 @@
           <div class="steps" id="steps"></div>
         </div>
       </section>
-      <section class="section" id="proof">
+      <section class="section proof-section" id="proof">
+        <video
+          class="proof-section-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-hidden="true"
+        >
+          <source
+            src="videos/Ship_Cruzin_Side_web_1080p.mp4"
+            type="video/mp4"
+          />
+        </video>
         <div class="container proof-grid">
           <div>
             <h2 class="section-title" style="font-size: 2.25rem">
@@ -1040,38 +1120,42 @@
               >
             </div>
           </div>
-          <div class="proof-media">
-            <video
-              class="proof-video-bg"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="metadata"
-              aria-hidden="true"
-            >
-              <source
-                src="videos/Ship_Cruzin_Side_web_1080p.mp4"
-                type="video/mp4"
-              /></video
-            ><span class="play">▶</span>
-          </div>
           <div class="proof-list">
             <div class="check">
-              <span class="es">Exterior y letreros</span
-              ><span class="en">Exterior and signage</span>
+              <span class="es"
+                ><strong>Exterior y letreros</strong><br />Verificamos la
+                ubicación y las instalaciones exteriores.</span
+              ><span class="en"
+                ><strong>Exterior and signage</strong><br />We verify the
+                location and external facilities.</span
+              >
             </div>
             <div class="check">
-              <span class="es">Área de producción</span
-              ><span class="en">Production area</span>
+              <span class="es"
+                ><strong>Área de producción</strong><br />Evaluamos equipos,
+                procesos y organización.</span
+              ><span class="en"
+                ><strong>Production area</strong><br />We assess equipment,
+                processes, and organization.</span
+              >
             </div>
             <div class="check">
-              <span class="es">Muestras de producto</span
-              ><span class="en">Product samples</span>
+              <span class="es"
+                ><strong>Muestras de producto</strong><br />Revisamos la calidad
+                y los acabados visibles.</span
+              ><span class="en"
+                ><strong>Product samples</strong><br />We review visible quality
+                and finishes.</span
+              >
             </div>
             <div class="check">
-              <span class="es">Empaque y etiquetado</span
-              ><span class="en">Packaging and labeling</span>
+              <span class="es"
+                ><strong>Empaque y etiquetado</strong><br />Documentamos el
+                empaque, las etiquetas y las marcas.</span
+              ><span class="en"
+                ><strong>Packaging and labeling</strong><br />We document
+                packaging, labels, and markings.</span
+              >
             </div>
           </div>
         </div>
