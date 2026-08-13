@@ -434,14 +434,17 @@
         position: relative;
         z-index: 2;
         display: grid;
-        grid-template-columns: 0.9fr 1.35fr;
-        gap: 64px;
-        align-items: center;
+        grid-template-columns: minmax(280px, 0.82fr) minmax(120px, 0.5fr) minmax(360px, 1fr);
+        gap: clamp(32px, 5vw, 76px);
+        align-items: stretch;
       }
       .proof-section {
         position: relative;
         isolation: isolate;
         overflow: hidden;
+        min-height: 640px;
+        display: grid;
+        align-items: center;
       }
       .proof-section-video {
         position: absolute;
@@ -458,20 +461,55 @@
         inset: 0;
         background: linear-gradient(
           90deg,
-          rgba(3, 29, 67, 0.95),
-          rgba(5, 39, 91, 0.78),
-          rgba(0, 57, 94, 0.68)
+          rgba(3, 29, 67, 0.72) 0%,
+          rgba(5, 39, 91, 0.2) 42%,
+          rgba(3, 29, 67, 0.46) 100%
         );
+      }
+      .proof-copy {
+        grid-column: 1;
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(30px, 4vw, 54px) clamp(24px, 3vw, 42px);
+        border-left: 2px solid rgba(224, 179, 90, 0.92);
+        background: rgba(3, 29, 67, 0.48);
+        backdrop-filter: blur(8px);
+      }
+      .proof-eyebrow {
+        margin-bottom: 20px;
+        color: #e0b35a;
+        font-size: 0.76rem;
+        font-weight: 900;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
       }
       .proof-section .section-title,
       .proof-section .section-intro {
         color: #fff;
       }
+      .proof-section .section-title {
+        max-width: 390px;
+        font-size: clamp(1.8rem, 2.8vw, 2.65rem);
+        line-height: 1.08;
+      }
+      .proof-section .section-intro {
+        margin-top: 22px;
+        max-width: 400px;
+        font-size: 0.98rem;
+        line-height: 1.65;
+      }
       .proof-section .notice {
+        margin-top: 30px;
+        padding: 20px 0 0;
         color: #eef6f8;
-        border-color: rgba(99, 210, 218, 0.8);
-        background: rgba(3, 29, 67, 0.68);
-        backdrop-filter: blur(10px);
+        border: 0;
+        border-top: 1px solid rgba(224, 179, 90, 0.72);
+        border-radius: 0;
+        background: transparent;
+        font-size: 0.78rem;
+        line-height: 1.55;
       }
       .proof-section .proof-media {
         border: 1px solid rgba(255, 255, 255, 0.35);
@@ -481,26 +519,51 @@
             center/cover;
       }
       .proof-section .proof-list {
+        grid-column: 3;
+        align-self: center;
         color: #fff;
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
+        grid-template-columns: 1fr;
+        gap: 0;
         padding: 0;
         border: 0;
         background: transparent;
         box-shadow: none;
       }
       .proof-section .proof-list .check {
-        min-height: 138px;
+        position: relative;
+        min-height: 0;
         margin: 0;
-        align-items: flex-start;
-        padding: 26px;
-        border: 1px solid rgba(255, 255, 255, 0.28);
-        border-top: 3px solid var(--gold);
-        border-radius: 18px;
-        background: rgba(3, 29, 67, 0.65);
-        backdrop-filter: blur(12px);
-        box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
+        padding: 24px 0 24px 58px;
+        border: 0;
+        border-bottom: 1px solid rgba(224, 179, 90, 0.72);
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        font-size: 0.94rem;
+        line-height: 1.5;
+      }
+      .proof-section .proof-list .check:last-child {
+        border-bottom: 0;
+      }
+      .proof-section .proof-list .check::before {
+        content: "\2713";
+        position: absolute;
+        top: 23px;
+        left: 0;
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border: 1px solid rgba(99, 210, 218, 0.92);
+        border-radius: 50%;
+        color: #63d2da;
+        background: rgba(3, 29, 67, 0.38);
+        font-size: 1.1rem;
+        font-weight: 900;
+      }
+      .proof-section .proof-list strong {
+        font-size: 1rem;
       }
       .proof-media {
         min-height: 350px;
@@ -715,9 +778,18 @@
           padding: 14px 0;
         }
         .hero-grid,
-        .proof-grid,
         .inquiry {
           grid-template-columns: 1fr;
+        }
+        .proof-grid {
+          grid-template-columns: minmax(260px, 0.8fr) minmax(320px, 1fr);
+          gap: 38px;
+        }
+        .proof-copy {
+          grid-column: 1;
+        }
+        .proof-section .proof-list {
+          grid-column: 2;
         }
         .hero-grid {
           gap: 35px;
@@ -783,6 +855,34 @@
         }
         .section {
           padding: 68px 0;
+        }
+        .proof-section {
+          min-height: 0;
+        }
+        .proof-grid {
+          grid-template-columns: 1fr;
+          gap: 26px;
+        }
+        .proof-copy,
+        .proof-section .proof-list {
+          grid-column: 1;
+        }
+        .proof-copy {
+          padding: 28px 24px;
+          background: rgba(3, 29, 67, 0.66);
+        }
+        .proof-section .proof-list {
+          padding: 8px 22px;
+          background: rgba(3, 29, 67, 0.58);
+          backdrop-filter: blur(8px);
+        }
+        .proof-section .proof-list .check {
+          padding: 20px 0 20px 50px;
+        }
+        .proof-section .proof-list .check::before {
+          top: 19px;
+          width: 32px;
+          height: 32px;
         }
         .inquiry-copy,
         .form {
@@ -1186,8 +1286,12 @@
           />
         </video>
         <div class="container proof-grid">
-          <div>
-            <h2 class="section-title" style="font-size: 2.25rem">
+          <div class="proof-copy">
+            <p class="proof-eyebrow">
+              <span class="es">Lo que verificamos</span
+              ><span class="en">What we verify</span>
+            </p>
+            <h2 class="section-title">
               <span class="es">Información real antes de avanzar.</span
               ><span class="en">Real information before moving forward.</span>
             </h2>
