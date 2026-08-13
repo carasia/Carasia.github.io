@@ -11,7 +11,7 @@
   <header class="catalog-header">
     <div class="container catalog-nav">
       <a class="catalog-logo" href="index.html" aria-label="Carasia Consulting"><img src="carasia-logo.png" alt="Carasia Consulting"></a>
-      <nav class="catalog-links" aria-label="Navegación principal">
+      <nav class="catalog-links" id="catalog-navigation" aria-label="Navegación principal">
         <a href="catalog.html" data-en="Products" data-es="Productos">Productos</a>
         <a href="index.html#services" data-en="Services" data-es="Servicios">Servicios</a>
         <a href="index.html#contact" data-en="Contact" data-es="Contacto">Contacto</a>
@@ -20,6 +20,7 @@
         <button class="lang-button active" type="button" data-lang="es">🇩🇴 ES</button><span>|</span>
         <button class="lang-button" type="button" data-lang="en">🇺🇸 EN</button>
       </div>
+      <button class="catalog-menu-button" type="button" aria-controls="catalog-navigation" aria-expanded="false" aria-label="Abrir menú"><span></span></button>
     </div>
   </header>
   <main class="product-page">
@@ -29,5 +30,23 @@
     <div class="container"><span>© Carasia Consulting</span><span data-en="Product sourcing with clear communication" data-es="Abastecimiento de productos con comunicación clara">Abastecimiento de productos con comunicación clara</span></div>
   </footer>
   <script src="assets/catalog.js"></script>
+  <script>
+    const catalogMenuButton = document.querySelector(".catalog-menu-button");
+    const catalogNavigation = document.getElementById("catalog-navigation");
+
+    catalogMenuButton?.addEventListener("click", () => {
+      const isOpen = catalogMenuButton.getAttribute("aria-expanded") === "true";
+      catalogMenuButton.setAttribute("aria-expanded", String(!isOpen));
+      catalogMenuButton.setAttribute("aria-label", !isOpen ? "Cerrar menú" : "Abrir menú");
+      catalogNavigation?.classList.toggle("mobile-open", !isOpen);
+    });
+
+    catalogNavigation?.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        catalogNavigation.classList.remove("mobile-open");
+        catalogMenuButton?.setAttribute("aria-expanded", "false");
+      });
+    });
+  </script>
 </body>
 </html>
