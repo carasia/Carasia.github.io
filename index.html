@@ -842,8 +842,26 @@
         position: relative;
       }
       .products-menu summary {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
         cursor: pointer;
         list-style: none;
+      }
+      .products-menu summary::-webkit-details-marker {
+        display: none;
+      }
+      .products-menu summary::after {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: translateY(-2px) rotate(45deg);
+        transition: transform 0.2s ease;
+      }
+      .products-menu[open] summary::after {
+        transform: translateY(2px) rotate(225deg);
       }
       .products-dropdown {
         display: grid;
@@ -927,7 +945,7 @@
           <button type="button" data-lang="es">🇩🇴 ES</button
           ><button type="button" data-lang="en">🇺🇸 EN</button>
         </div>
-        <a class="btn header-cta" href="#contact"
+        <a class="btn header-cta sourcing-cta" href="#contact"
           ><span class="es">Solicitar apoyo</span
           ><span class="en">Request Sourcing Support</span></a
         ><button
@@ -998,7 +1016,7 @@
               >
             </div>
             <div class="actions">
-              <a class="btn btn-primary" href="#contact"
+              <a class="btn btn-primary sourcing-cta" href="#contact"
                 ><span class="es">Cuéntenos qué necesita</span
                 ><span class="en">Tell Us What You Need</span></a
               ><a class="btn btn-secondary" href="catalog.html"
@@ -1514,6 +1532,20 @@
           "aria-expanded",
           document.querySelector("#nav").classList.contains("open"),
         );
+      });
+      document.querySelectorAll(".sourcing-cta").forEach((button) => {
+        button.addEventListener("click", (event) => {
+          event.preventDefault();
+          document.querySelector("#contact").scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+          window.setTimeout(() => {
+            document.querySelector('input[name="product"]').focus({
+              preventScroll: true,
+            });
+          }, 650);
+        });
       });
     </script>
   </body>
