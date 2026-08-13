@@ -65,8 +65,9 @@ img {
 
 .catalog-logo img {
   display: block;
-  width: 168px;
-  max-height: 62px;
+  width: 230px;
+  height: auto;
+  max-height: none;
   object-fit: contain;
 }
 
