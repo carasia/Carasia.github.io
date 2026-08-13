@@ -1054,3 +1054,16 @@ img {
     max-height: none;
   }
 }
+.product-card .product-image img,
+.product-gallery img {
+  max-width: 94%;
+  max-height: 94%;
+}
+
+@media (max-width: 560px) {
+  .product-card .product-image img,
+  .product-gallery img {
+    max-width: 96%;
+    max-height: 96%;
+  }
+}
