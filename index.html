@@ -231,9 +231,12 @@
         color: #fff;
         font-weight: 700;
       }
-      .hero-proof span:first-child {
+      .hero-proof-icon {
+        width: 28px;
+        height: 32px;
+        flex: 0 0 28px;
+        display: block;
         color: var(--gold);
-        font-size: 1.35rem;
       }
       .actions {
         display: flex;
@@ -312,8 +315,22 @@
         border: 0;
       }
       .cap-icon {
-        font-size: 2rem;
+        width: 42px;
+        height: 42px;
+        display: grid;
+        flex: 0 0 42px;
+        place-items: center;
         color: var(--teal);
+      }
+      .cap-icon svg {
+        width: 38px;
+        height: 38px;
+        display: block;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
       }
       .cap strong {
         display: block;
@@ -942,8 +959,20 @@
               >
             </p>
             <div class="hero-proof">
-              <span>✓</span
-              ><span
+              <svg
+                class="hero-proof-icon"
+                viewBox="0 0 24 28"
+                role="img"
+                aria-label="Verified"
+              >
+                <path
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  d="M12 1.5c3.2 2.2 6.6 3.5 10 3.8v7.1c0 6.7-4 11.8-10 14.1-6-2.3-10-7.4-10-14.1V5.3c3.4-.3 6.8-1.6 10-3.8Zm5.4 8.1a1.25 1.25 0 0 0-1.8 0l-5.2 5.3-2.1-2.1a1.27 1.27 0 0 0-1.8 1.8l3 3a1.25 1.25 0 0 0 1.8 0l6.1-6.2a1.25 1.25 0 0 0 0-1.8Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span
                 ><span class="es"
                   >Cientos de proveedores. Decenas de miles de productos.<br />Un
                   solo equipo coordinado.</span
@@ -1001,7 +1030,16 @@
       <section class="capabilities">
         <div class="container cap-grid">
           <div class="cap">
-            <span class="cap-icon">◎</span>
+            <span class="cap-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48">
+                <circle cx="24" cy="13" r="6"></circle>
+                <circle cx="10.5" cy="18" r="4.5"></circle>
+                <circle cx="37.5" cy="18" r="4.5"></circle>
+                <path d="M14 39v-4c0-6 4.5-10 10-10s10 4 10 10v4"></path>
+                <path d="M3 38v-3c0-5 3.2-8 7.5-8 2 0 3.8.7 5.1 2"></path>
+                <path d="M45 38v-3c0-5-3.2-8-7.5-8-2 0-3.8.7-5.1 2"></path>
+              </svg>
+            </span>
             <div>
               <strong
                 ><span class="es">Equipo en China</span
@@ -1015,7 +1053,17 @@
             </div>
           </div>
           <div class="cap">
-            <span class="cap-icon">⌘</span>
+            <span class="cap-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48">
+                <circle cx="8" cy="24" r="4"></circle>
+                <circle cx="24" cy="10" r="4"></circle>
+                <circle cx="40" cy="18" r="4"></circle>
+                <circle cx="35" cy="38" r="4"></circle>
+                <path
+                  d="m11.5 21.5 9-8.5M27.8 11.6l8.5 4.8M38.8 22l-2.6 12M31.2 38H18c-5.5 0-10-4.5-10-10"
+                ></path>
+              </svg>
+            </span>
             <div>
               <strong
                 ><span class="es">Cientos de proveedores</span
@@ -1029,7 +1077,13 @@
             </div>
           </div>
           <div class="cap">
-            <span class="cap-icon">▦</span>
+            <span class="cap-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48">
+                <path d="m7 15 17-9 17 9-17 9-17-9Z"></path>
+                <path d="m7 15 17 9 17-9v20l-17 8-17-8V15Z"></path>
+                <path d="M24 24v19M15 20v8l9 4 9-4v-8"></path>
+              </svg>
+            </span>
             <div>
               <strong
                 ><span class="es">Decenas de miles de productos</span
@@ -1044,7 +1098,15 @@
             </div>
           </div>
           <div class="cap">
-            <span class="cap-icon">⚖</span>
+            <span class="cap-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48">
+                <path d="M24 7v34M14 41h20M10 13h28"></path>
+                <path d="m12 13-7 13h14l-7-13ZM36 13l-7 13h14l-7-13Z"></path>
+                <path
+                  d="M5 26c1.5 4 12.5 4 14 0M29 26c1.5 4 12.5 4 14 0"
+                ></path>
+              </svg>
+            </span>
             <div>
               <strong
                 ><span class="es">Comparación independiente</span
