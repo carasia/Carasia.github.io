@@ -542,3 +542,46 @@ initialize().catch(error => {
 
   console.error(error);
 });
+
+function openCatalogLightbox(src, altText) {
+  let box = document.getElementById("catalog-image-lightbox");
+  if (!box) {
+    box = document.createElement("div");
+    box.id = "catalog-image-lightbox";
+    box.className = "catalog-lightbox";
+    box.innerHTML = '<button class="catalog-lightbox-close" type="button" aria-label="Close enlarged image">&times;</button><img class="catalog-lightbox-image" alt="">';
+    document.body.appendChild(box);
+    box.addEventListener("click", (e) => {
+      if (e.target === box || e.target.closest(".catalog-lightbox-close")) {
+        box.classList.remove("open");
+        document.body.classList.remove("lightbox-open");
+      }
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        box.classList.remove("open");
+        document.body.classList.remove("lightbox-open");
+      }
+    });
+  }
+  const image = box.querySelector(".catalog-lightbox-image");
+  image.src = src;
+  image.alt = altText || "";
+  box.classList.add("open");
+  document.body.classList.add("lightbox-open");
+}
+
+document.addEventListener("click", (event) => {
+  const img = event.target.closest("img");
+  if (img && /-catalog\.webp(?:$|\?)/i.test(img.getAttribute("src") || "")) {
+    event.preventDefault();
+    openCatalogLightbox(img.src, img.alt);
+  }
+});
+document.addEventListener("keydown", (event) => {
+  const img = event.target.closest && event.target.closest("img");
+  if (img && /-catalog\.webp(?:$|\?)/i.test(img.getAttribute("src") || "") && (event.key === "Enter" || event.key === " ")) {
+    event.preventDefault();
+    openCatalogLightbox(img.src, img.alt);
+  }
+});
