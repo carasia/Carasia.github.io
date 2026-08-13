@@ -232,6 +232,38 @@
       color: var(--blue-light);
     }
 
+    .mobile-menu-button {
+      display: none;
+      width: 46px;
+      height: 46px;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--blue);
+      background: var(--white);
+      cursor: pointer;
+      box-shadow: 0 7px 20px rgba(5,39,91,.08);
+    }
+
+    .mobile-menu-button span,
+    .mobile-menu-button::before,
+    .mobile-menu-button::after {
+      content: "";
+      display: block;
+      width: 21px;
+      height: 2px;
+      border-radius: 2px;
+      background: currentColor;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
+    .mobile-menu-button span { margin: 5px 0; }
+    .mobile-menu-button[aria-expanded="true"] span { opacity: 0; }
+    .mobile-menu-button[aria-expanded="true"]::before { transform: translateY(7px) rotate(45deg); }
+    .mobile-menu-button[aria-expanded="true"]::after { transform: translateY(-7px) rotate(-45deg); }
+
     .hero {
       position: relative;
       overflow: hidden;
@@ -1070,7 +1102,19 @@
     }
     .lang-divider { color: var(--border); }
     @media (max-width: 900px) {
-      .language-switcher { margin-left: auto; }
+      .navbar {
+        min-height: 72px;
+        flex-wrap: wrap;
+        gap: 10px 12px;
+        padding: 9px 0;
+      }
+
+      .language-switcher {
+        margin-left: auto;
+        padding: 5px 7px;
+      }
+
+      .mobile-menu-button { display: inline-flex; flex-direction: column; }
       .nav-cta { display: none; }
     }
 
@@ -1096,7 +1140,8 @@
 
     @media (max-width: 600px) {
       .premium-copy h1 {
-        font-size: clamp(2.8rem, 14vw, 4.4rem);
+        font-size: clamp(2.35rem, 12vw, 3.5rem);
+        overflow-wrap: anywhere;
       }
 
       .hero-metrics {
@@ -1117,8 +1162,8 @@
 
     @media (max-width: 600px) {
       .brand-logo img {
-        width: 170px;
-        max-width: 58vw;
+        width: 145px;
+        max-width: 42vw;
       }
     }
 
@@ -1157,7 +1202,50 @@
 
     @media (max-width: 900px) {
       .nav-links {
+        order: 4;
+        width: 100%;
         display: none;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: var(--white);
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.mobile-open {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nav-links > a,
+      .products-menu summary {
+        min-height: 46px;
+        align-items: center;
+        padding: 10px 12px;
+        border-radius: 9px;
+      }
+
+      .nav-links > a:hover,
+      .products-menu summary:hover {
+        background: var(--off-white);
+      }
+
+      .products-dropdown {
+        position: static;
+        width: 100%;
+        min-width: 0;
+        margin: 2px 0 6px;
+        padding: 4px 8px 8px 18px;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .products-dropdown a {
+        white-space: normal;
+      }
       }
 
       .hero {
@@ -1173,7 +1261,7 @@
 
       .hero-grid {
         gap: 38px;
-        padding: 76px 0;
+        padding: 58px 0;
       }
 
       .cards {
@@ -1190,6 +1278,19 @@
     }
 
     @media (max-width: 600px) {
+      .container { width: min(92%, 100% - 28px); }
+
+      .section { padding: 54px 0; }
+
+      .hero-premium-grid {
+        gap: 28px;
+        padding: 58px 0 48px;
+      }
+
+      .hero-copy > p { font-size: 1rem; }
+
+      .hero-insight-card { padding: 22px; }
+
       .navbar .button {
         display: none;
       }
@@ -1205,8 +1306,18 @@
       .hero-card,
       .card,
       .contact-card {
-        padding: 24px;
+        padding: 20px;
       }
+
+      .contact-card form input:not([type="hidden"]),
+      .contact-card form textarea,
+      .contact-card form select {
+        width: 100%;
+        min-width: 0;
+        font-size: 16px;
+      }
+
+      .contact-card form .button { width: 100%; }
 
       .why-boxes {
         grid-template-columns: 1fr;
@@ -1266,7 +1377,7 @@
 <a aria-label="Carasia Consulting home" class="brand brand-logo" href="#home">
 <img alt="Carasia Consulting logo" src="carasia-logo.png"/>
 </a>
-<nav aria-label="Main navigation" class="nav-links">
+<nav aria-label="Main navigation" class="nav-links" id="main-navigation">
 <details class="products-menu">
 <summary><span data-en="Products" data-es="Productos">Productos</span></summary>
 <div class="products-dropdown">
@@ -1287,6 +1398,7 @@
 <span class="lang-divider">|</span>
 <button class="lang-button" data-lang="en" type="button">🇺🇸 <span>EN</span></button>
 </div>
+<button class="mobile-menu-button" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Abrir menú"><span></span></button>
 <a class="button button-primary nav-cta" data-en="Schedule a Consultation" data-es="Programar una consulta" href="#contact">Programar una consulta</a>
 </div>
 </header>
@@ -1557,6 +1669,36 @@
 
     document.querySelectorAll(".lang-button").forEach(button => {
       button.addEventListener("click", () => setLanguage(button.dataset.lang));
+    });
+
+    const mobileMenuButton = document.querySelector(".mobile-menu-button");
+    const mainNavigation = document.getElementById("main-navigation");
+
+    mobileMenuButton?.addEventListener("click", () => {
+      const isOpen = mobileMenuButton.getAttribute("aria-expanded") === "true";
+      mobileMenuButton.setAttribute("aria-expanded", String(!isOpen));
+      mobileMenuButton.setAttribute(
+        "aria-label",
+        !isOpen ? "Cerrar menú" : "Abrir menú"
+      );
+      mainNavigation?.classList.toggle("mobile-open", !isOpen);
+    });
+
+    mainNavigation?.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        if (window.matchMedia("(max-width: 900px)").matches) {
+          mainNavigation.classList.remove("mobile-open");
+          mobileMenuButton?.setAttribute("aria-expanded", "false");
+          mobileMenuButton?.setAttribute("aria-label", "Abrir menú");
+        }
+      });
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 900) {
+        mainNavigation?.classList.remove("mobile-open");
+        mobileMenuButton?.setAttribute("aria-expanded", "false");
+      }
     });
 
     setLanguage(localStorage.getItem("carasiaLanguage") === "en" ? "en" : "es");
