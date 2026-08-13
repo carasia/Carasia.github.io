@@ -937,11 +937,18 @@
         max-height: none;
         object-fit: contain;
       }
-      .site-header .brand img {
+      .site-header .brand {
         width: 300px;
         height: 66px;
-        max-height: 66px;
-        object-fit: contain;
+        flex: 0 0 300px;
+        overflow: hidden;
+      }
+      .site-header .brand img {
+        width: 300px;
+        height: auto;
+        max-height: none;
+        object-fit: initial;
+        display: block;
       }
       .hero-video-bg,
       .proof-video-bg {
@@ -1036,8 +1043,23 @@
           box-shadow: none;
           margin-top: 8px;
         }
-        .brand img {
-          width: 220px;
+        .site-header .brand {
+          width: 260px;
+          height: 66px;
+          flex-basis: 260px;
+        }
+        .site-header .brand img {
+          width: 260px;
+        }
+        @media (max-width: 560px) {
+          .site-header .brand {
+            width: 215px;
+            height: 56px;
+            flex-basis: 215px;
+          }
+          .site-header .brand img {
+            width: 215px;
+          }
         }
       }
     </style>
