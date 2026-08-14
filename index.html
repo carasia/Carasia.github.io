@@ -1089,6 +1089,270 @@
         }
       }
     </style>
+  
+  <style id="proof-orbit-styles">
+
+    #proof-orbit {
+      --carasia-navy: #05275b;
+    --carasia-deep: #031e44;
+      --carasia-teal: #25c2cc;
+      --carasia-gold: #f2b93b;
+      --carasia-white: #ffffff;
+      --carasia-mist: #dceef3;
+      width: 100%;
+      color: var(--carasia-white);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    #proof-orbit .site-shell {
+      overflow: hidden;
+      background: var(--carasia-deep);
+      border-radius: 18px;
+      box-shadow: 0 22px 55px rgba(0, 20, 55, .28);
+    }
+    #proof-orbit .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      padding: 18px 28px;
+      color: var(--carasia-navy);
+      background: var(--carasia-white);
+    }
+    #proof-orbit .wordmark {
+      margin-right: auto;
+      color: var(--carasia-navy);
+      font-weight: 500;
+      letter-spacing: .12em;
+    }
+    #proof-orbit .wordmark small {
+      display: block;
+      color: #168a99;
+      letter-spacing: .25em;
+    }
+    #proof-orbit .nav-item { font-weight: 500; }
+    #proof-orbit .nav-cta {
+      padding: 10px 18px;
+      color: var(--carasia-white);
+      background: #168a99;
+      border-radius: 999px;
+      font-weight: 500;
+    }
+    #proof-orbit .hero-stage {
+      display: grid;
+      grid-template-columns: 1fr 1.08fr;
+      gap: 34px;
+      align-items: center;
+      min-height: 600px;
+      padding: 46px;
+      background:
+        linear-gradient(90deg, rgba(2, 25, 58, .97), rgba(2, 37, 74, .82) 58%, rgba(2, 31, 66, .7)),
+        radial-gradient(circle at 54% 52%, #187d96 0, #075278 24%, #031e44 68%);
+    }
+    #proof-orbit .eyebrow {
+      color: var(--carasia-gold);
+      font-weight: 500;
+      letter-spacing: .15em;
+    }
+    #proof-orbit h1 {
+      max-width: 520px;
+      margin: 14px 0 20px;
+      color: var(--carasia-white);
+      font-size: clamp(52px, 7vw, 82px);
+      line-height: .97;
+      letter-spacing: -.04em;
+      font-weight: 500;
+    }
+    #proof-orbit .hero-copy {
+      max-width: 520px;
+      color: var(--carasia-mist);
+    }
+    #proof-orbit .hero-actions { display: flex; gap: 12px; margin-top: 26px; }
+    #proof-orbit .hero-action {
+      padding: 12px 20px;
+      border: 1px solid var(--carasia-gold);
+      border-radius: 999px;
+      color: var(--carasia-white);
+      font-weight: 500;
+    }
+    #proof-orbit .hero-action.primary { border-color: #168a99; background: #168a99; }
+  #proof-orbit .orbit-panel {
+    width: 90%;
+    box-sizing: border-box;
+    justify-self: end;
+    padding: 20px 22px 14px;
+      border: 1px solid rgba(242, 185, 59, .78);
+      border-radius: 24px;
+    background: rgba(3, 30, 68, .97);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, .24);
+    }
+  #proof-orbit .orbit-panel h2 {
+      margin: 6px 0 8px;
+      color: var(--carasia-gold);
+      letter-spacing: .13em;
+    font-weight: 700;
+  }
+  #proof-orbit .orbit-panel h2::after {
+    content: "";
+    display: block;
+    width: 78px;
+    height: 2px;
+    margin: 12px 0 10px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--carasia-gold), var(--carasia-teal), transparent);
+  }
+  #proof-orbit .orbit-panel p { margin: 0; color: var(--carasia-white); }
+    #proof-orbit .journey {
+      width: 100%;
+      height: auto;
+      margin-top: 10px;
+      overflow: visible;
+    }
+    #proof-orbit .earth-sphere { fill: #062d5c; stroke: #70cbd4; stroke-width: 1.2; }
+    #proof-orbit .earth-graticule { fill: none; stroke: rgba(112, 203, 212, .24); stroke-width: .65; }
+    #proof-orbit .earth-land { fill: rgba(19, 107, 130, .22); stroke: rgba(242, 185, 59, .76); stroke-width: .8; }
+    #proof-orbit .route {
+      fill: none;
+     stroke: var(--carasia-gold);
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+   }
+  #proof-orbit .support-orbit {
+      fill: none;
+      stroke: var(--carasia-teal);
+      stroke-width: 2;
+      stroke-dasharray: 4 8;
+      opacity: .8;
+    animation: carasia-dashes 1.6s linear infinite;
+  }
+  #proof-orbit .support-orbit-front { opacity: 1; }
+  #proof-orbit .service-icon { color: var(--carasia-white); filter: drop-shadow(0 7px 10px rgba(0, 10, 28, .4)); }
+  #proof-orbit .service-icon > circle { fill: #06315e; stroke: var(--carasia-teal); stroke-width: 2; }
+  #proof-orbit .icon-glyph { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  #proof-orbit .icon-accent { stroke: var(--carasia-teal); }
+  #proof-orbit .service-check {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  #proof-orbit .service-check circle { fill: var(--carasia-gold); stroke: var(--carasia-deep); stroke-width: 1.5; }
+  #proof-orbit .service-check path { fill: none; stroke: var(--carasia-deep); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  #proof-orbit .endpoint { fill: var(--carasia-gold); filter: drop-shadow(0 0 6px var(--carasia-gold)); }
+  #proof-orbit .endpoint-flag { filter: drop-shadow(0 3px 5px rgba(0, 10, 28, .55)); }
+   #proof-orbit .ship-dot {
+     fill: var(--carasia-gold);
+     stroke: var(--carasia-white);
+     stroke-width: 2;
+     filter: drop-shadow(0 0 8px var(--carasia-gold));
+   }
+   #proof-orbit .arrival-flare {
+     fill: none;
+     stroke: var(--carasia-gold);
+     stroke-width: 3;
+     opacity: 0;
+     filter: drop-shadow(0 0 10px var(--carasia-gold));
+   }
+    #proof-orbit .destination-pulse { animation: carasia-pulse 4.5s ease-out infinite; transform-origin: 105px 276px; }
+    @keyframes carasia-dashes { to { stroke-dashoffset: -48; } }
+    @keyframes carasia-pulse {
+      0%, 52% { transform: scale(.6); opacity: 0; }
+      62% { transform: scale(1.9); opacity: .45; }
+      76%, 100% { transform: scale(2.4); opacity: 0; }
+    }
+    @media (max-width: 780px) {
+      #proof-orbit .site-nav { padding: 14px 18px; }
+      #proof-orbit .nav-item, #proof-orbit .nav-cta { display: none; }
+    #proof-orbit .hero-stage { grid-template-columns: 1fr; padding: 30px 20px; }
+    #proof-orbit .orbit-panel { width: 100%; justify-self: stretch; }
+      #proof-orbit h1 { font-size: 52px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #proof-orbit .support-orbit,
+      #proof-orbit .destination-pulse { animation: none; }
+    }
+  
+    .proof-orbit-section {
+      min-height: 500px;
+      padding: 0;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, #031e44 0%, rgba(3, 30, 68, .96) 39%, rgba(3, 30, 68, .44) 70%, rgba(3, 30, 68, .12) 100%),
+        radial-gradient(circle at 76% 52%, #187d96 0, #075278 24%, #031e44 68%);
+    }
+    .proof-orbit-section::before,
+    .proof-orbit-section::after { display: none; }
+    .proof-orbit-section .proof-grid {
+      grid-template-columns: minmax(250px, .82fr) minmax(420px, 1.18fr);
+      gap: 8px;
+      min-height: 500px;
+      align-items: center;
+    }
+    .proof-orbit-section .proof-copy {
+      grid-column: 1;
+      padding: 34px 18px 22px 0;
+      border: 0;
+      background: transparent;
+      backdrop-filter: none;
+    }
+    .proof-orbit-section .proof-eyebrow {
+      margin-bottom: 10px;
+      color: #f2b93b;
+    }
+    .proof-orbit-section .proof-orbit-title {
+      max-width: 520px;
+      margin: 12px 0 18px;
+      color: #fff;
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: .98;
+      letter-spacing: -.04em;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, .4);
+    }
+    .proof-orbit-section .proof-orbit-title .accent { color: #f2b93b; }
+    .proof-orbit-section .section-intro {
+      max-width: 440px;
+      margin: 0;
+      color: #eef6f8;
+      font-size: 1.05rem;
+    }
+    #proof-orbit {
+      width: 112%;
+      margin-right: -46px;
+      justify-self: end;
+    }
+    #proof-orbit .orbit-panel {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+    #proof-orbit .journey { margin: 0; }
+    @media (max-width: 900px) {
+      .proof-orbit-section .proof-grid {
+        grid-template-columns: minmax(220px, .72fr) minmax(390px, 1.28fr);
+        gap: 0;
+      }
+      .proof-orbit-section .proof-orbit-title { font-size: clamp(2.7rem, 6vw, 4.2rem); }
+    }
+    @media (max-width: 700px) {
+      .proof-orbit-section .proof-grid {
+        grid-template-columns: 1fr;
+        min-height: 0;
+        padding-top: 52px;
+      }
+      .proof-orbit-section .proof-copy {
+        grid-column: 1;
+        padding: 0 18px;
+      }
+      #proof-orbit {
+        width: 112%;
+        margin: -24px -6% -18px;
+        justify-self: center;
+        opacity: .82;
+      }
+      .proof-orbit-section .proof-orbit-title { font-size: 3.15rem; }
+    }
+  </style>
   </head>
   <body>
     <header class="site-header">
@@ -1362,53 +1626,72 @@
           <div class="steps" id="steps"></div>
         </div>
       </section>
-      <section class="section proof-section" id="proof">
-        <video
-          class="proof-section-video"
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="metadata"
-          aria-hidden="true"
-        >
-          <source
-            src="videos/Ship_Cruzin_Side_web_1080p.mp4"
-            type="video/mp4"
-          />
-        </video>
+      <section class="section proof-section proof-orbit-section" id="proof">
         <div class="container proof-grid">
           <div class="proof-copy">
             <p class="proof-eyebrow">
-              <span class="es">Abastecimiento confiable</span
-              ><span class="en">Reliable Sourcing</span>
+              <span class="es">ABASTEZCA CON FACILIDAD</span>
+              <span class="en">SOURCE WITH EASE</span>
             </p>
-            <h2 class="section-title">
-              <span class="es">Claridad. Opciones. Control.</span
-              ><span class="en">Clarity. Choice. Control.</span>
+            <h2 class="section-title proof-orbit-title">
+              <span class="es"><span class="accent">Claridad.</span><br />Opciones. Control.</span>
+              <span class="en"><span class="accent">Clarity.</span><br />Choice. Control.</span>
             </h2>
-            <svg
-              class="proof-shield"
-              viewBox="0 0 24 28"
-              role="img"
-              aria-label="Verified"
-            >
-              <path
-                fill="currentColor"
-                fill-rule="evenodd"
-                d="M12 1.5c3.2 2.2 6.6 3.5 10 3.8v7.1c0 6.7-4 11.8-10 14.1-6-2.3-10-7.4-10-14.1V5.3c3.4-.3 6.8-1.6 10-3.8Zm5.4 8.1a1.25 1.25 0 0 0-1.8 0l-5.2 5.3-2.1-2.1a1.27 1.27 0 0 0-1.8 1.8l3 3a1.25 1.25 0 0 0 1.8 0l6.1-6.2a1.25 1.25 0 0 0 0-1.8Z"
-                clip-rule="evenodd"
-              />
-            </svg>
             <p class="section-intro">
-              <span class="es"
-                >Nuestro equipo en China garantiza la transparencia del proceso
-                para su tranquilidad.</span
-              ><span class="en"
-                >Our team in China insures transparency of the process for your
-                peace of mind.</span
-              >
+              <span class="es">Nuestro equipo le brinda la confianza para elegir y la capacidad para crecer.</span>
+              <span class="en">Our team gives you the confidence to choose, and ability to grow.</span>
             </p>
+          </div>
+          <div id="proof-orbit" aria-label="Animated sourcing route from China to the Dominican Republic">
+            <div class="orbit-panel">
+<svg class="journey" viewBox="0 20 620 420" role="img" aria-label="Accurate rotating Earth with China and Dominican Republic markers attached to the globe and a looping shipping route">
+        <path class="support-orbit" d="M45 235 A265 165 0 0 1 575 235"/>
+        <g id="carasia-earth-map"></g>
+        <g id="carasia-route-layer"></g>
+        <path class="support-orbit support-orbit-front" d="M45 235 A265 165 0 0 0 575 235"/>
+        <g class="service-icon" data-step="2" data-x="123" data-y="118" transform="translate(123 118)">
+          <title>Clear translation</title>
+          <circle r="32"/>
+          <g class="icon-glyph" transform="translate(-20.4 -20.4) scale(1.7)">
+            <path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/>
+            <path class="icon-accent" d="m22 22-5-10-5 10"/><path class="icon-accent" d="M14 18h6"/>
+          </g>
+          <g class="service-check" transform="translate(22 -22)"><circle r="8"/><path d="m-4 0 3 3 5-7"/></g>
+        </g>
+        <g class="service-icon" data-step="3" data-x="497" data-y="118" transform="translate(497 118)">
+          <title>Verified and certified documentation</title>
+          <circle r="32"/>
+          <g class="icon-glyph" transform="translate(-20.4 -20.4) scale(1.7)">
+            <path d="M7 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10"/>
+            <path d="M7 17V3a2 2 0 0 1 2-2h7l5 5v7"/>
+            <path d="M16 1v5h5"/>
+            <path d="M10 9h7M10 13h4"/>
+            <path class="icon-accent" d="m15 18 2 2 4-5"/>
+          </g>
+          <g class="service-check" transform="translate(22 -22)"><circle r="8"/><path d="m-4 0 3 3 5-7"/></g>
+        </g>
+        <g class="service-icon" data-step="1" data-x="45" data-y="235" transform="translate(45 235)">
+          <title>Verified packaging</title>
+          <circle r="32"/>
+          <g class="icon-glyph" transform="translate(-20.4 -20.4) scale(1.7)">
+            <path d="m16.5 9.4-9-5.2"/><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l2-1.1"/>
+            <path d="M3.3 7 12 12l8.7-5"/><path d="M12 22V12"/>
+            <path class="icon-accent" d="m16 19 2 2 4-4"/>
+          </g>
+          <g class="service-check" transform="translate(22 -22)"><circle r="8"/><path d="m-4 0 3 3 5-7"/></g>
+        </g>
+        <g class="service-icon" data-step="4" data-x="575" data-y="235" transform="translate(575 235)">
+          <title>Dedicated support</title>
+          <circle r="32"/>
+          <g class="icon-glyph" transform="translate(-20.4 -20.4) scale(1.7)">
+            <path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-3"/>
+            <path class="icon-accent" d="M21 16h-3a2 2 0 0 0-2 2v3"/><path class="icon-accent" d="M16 21h-4"/>
+          </g>
+          <g class="service-check" transform="translate(22 -22)"><circle r="8"/><path d="m-4 0 3 3 5-7"/></g>
+        </g>
+        </svg>
+
+            </div>
           </div>
         </div>
       </section>
@@ -1708,5 +1991,268 @@
         });
       });
     </script>
+    <script type="module">
+    (async () => {
+      const root = document.getElementById("proof-orbit");
+      const mapLayer = root.querySelector("#carasia-earth-map");
+      const routeLayer = root.querySelector("#carasia-route-layer");
+      const serviceIcons = [...root.querySelectorAll(".service-icon")];
+      const [{ geoOrthographic, geoPath, geoGraticule10, geoInterpolate, geoDistance }, topojson, atlas] = await Promise.race([
+        Promise.all([
+          import("https://esm.sh/d3-geo@3.1.1"),
+          import("https://esm.sh/topojson-client@3.1.0"),
+          import("https://esm.sh/@d3-maps/atlas@1.0.0/world/countries/countries-110m")
+        ]),
+        new Promise((_, reject) => setTimeout(() => reject(new Error("Map resources timed out")), 4500))
+      ]);
+      const world = atlas.default || atlas;
+      const countries = topojson.feature(world, world.objects.features);
+      const ns = "http://www.w3.org/2000/svg";
+      const make = (name, attrs, parent = mapLayer) => {
+        const el = document.createElementNS(ns, name);
+        Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value));
+        parent.appendChild(el);
+        return el;
+      };
+      const projection = geoOrthographic().translate([310, 250]).scale(184).clipAngle(90).precision(.55);
+      const path = geoPath(projection);
+      const graticuleGeometry = geoGraticule10();
+      const sphere = make("path", { class: "earth-sphere" });
+      const graticule = make("path", { class: "earth-graticule" });
+      const land = make("path", { class: "earth-land" });
+      const route = make("path", { class: "route" }, routeLayer);
+      const chinaDot = make("circle", { class: "endpoint", r: 5 }, routeLayer);
+      const drDot = make("circle", { class: "endpoint", r: 5 }, routeLayer);
+      const makeFlag = (label) => {
+        const flag = make("g", { class: "endpoint-flag", role: "img", "aria-label": label }, routeLayer);
+        const title = make("title", {}, flag);
+        title.textContent = label;
+        return flag;
+      };
+      const chinaFlag = makeFlag("China");
+      make("rect", { x: 0, y: 0, width: 28, height: 18, rx: 2, fill: "#de2910", stroke: "#ffffff", "stroke-width": 1 }, chinaFlag);
+      make("path", { d: "M7 3.5 8 5.8l2.5.2-1.9 1.7.6 2.5L7 8.9l-2.2 1.3.6-2.5L3.5 6l2.5-.2z", fill: "#ffde00" }, chinaFlag);
+      const drFlag = makeFlag("Dominican Republic");
+      make("rect", { x: 0, y: 0, width: 28, height: 18, rx: 2, fill: "#ffffff", stroke: "#ffffff", "stroke-width": 1 }, drFlag);
+      make("path", { d: "M1 1h11v6H1zm15 10h11v6H16z", fill: "#002d62" }, drFlag);
+      make("path", { d: "M16 1h11v6H16zM1 11h11v6H1z", fill: "#ce1126" }, drFlag);
+      make("circle", { cx: 14, cy: 9, r: 1.5, fill: "#f2b93b" }, drFlag);
+     const arrivalFlare = make("circle", { class: "arrival-flare", r: 7 }, routeLayer);
+     const ship = make("circle", { class: "ship-dot", r: 7 }, routeLayer);
+      const china = [114.27, 22.57];
+      const dominicanRepublic = [-69.63, 18.42];
+      const shippingWaypoints = [
+        china,
+        [125, 18],
+        [145, 15],
+        [170, 12],
+        [-155, 10],
+        [-125, 9],
+        [-95, 8],
+        [-79.6, 9.1],
+        [-75, 14],
+        dominicanRepublic
+      ];
+      const unwrap = (points) => {
+        const result = [];
+        points.forEach((point, index) => {
+          let longitude = point[0];
+          if (index) {
+            const previousLongitude = result[index - 1][0];
+            while (longitude - previousLongitude > 180) longitude -= 360;
+            while (longitude - previousLongitude < -180) longitude += 360;
+          }
+          result.push([longitude, point[1]]);
+        });
+        return result;
+      };
+      const catmullRom = (points, samplesPerSegment = 24) => {
+        const result = [];
+        for (let index = 0; index < points.length - 1; index++) {
+          const p0 = points[Math.max(0, index - 1)];
+          const p1 = points[index];
+          const p2 = points[index + 1];
+          const p3 = points[Math.min(points.length - 1, index + 2)];
+          for (let sample = 0; sample < samplesPerSegment; sample++) {
+            const t = sample / samplesPerSegment;
+            const t2 = t * t;
+            const t3 = t2 * t;
+            const interpolate = (axis) => .5 * (
+              2 * p1[axis] +
+              (-p0[axis] + p2[axis]) * t +
+              (2 * p0[axis] - 5 * p1[axis] + 4 * p2[axis] - p3[axis]) * t2 +
+              (-p0[axis] + 3 * p1[axis] - 3 * p2[axis] + p3[axis]) * t3
+            );
+            result.push([interpolate(0), interpolate(1)]);
+          }
+        }
+        result.push(points[points.length - 1]);
+        return result;
+      };
+      const smoothRoute = catmullRom(unwrap(shippingWaypoints));
+      const routeCoordinates = smoothRoute.map(([longitude, latitude]) => [((longitude + 180) % 360 + 360) % 360 - 180, latitude]);
+      const unwrappedRoute = [];
+      routeCoordinates.forEach((point, index) => {
+        let longitude = point[0];
+        if (index) {
+          const previousLongitude = unwrappedRoute[index - 1][0];
+          while (longitude - previousLongitude > 180) longitude -= 360;
+          while (longitude - previousLongitude < -180) longitude += 360;
+        }
+        unwrappedRoute.push([longitude, point[1]]);
+      });
+    const routeDistances = [0];
+    for (let index = 1; index < routeCoordinates.length; index++) {
+      routeDistances.push(routeDistances[index - 1] + geoDistance(routeCoordinates[index - 1], routeCoordinates[index]));
+    }
+    const routeTotalDistance = routeDistances[routeDistances.length - 1];
+    const routeSample = (progress) => {
+      const target = Math.max(0, Math.min(1, progress)) * routeTotalDistance;
+      let low = 0;
+      let high = routeDistances.length - 1;
+      while (low < high) {
+        const middle = Math.floor((low + high) / 2);
+        if (routeDistances[middle] < target) low = middle + 1;
+        else high = middle;
+      }
+      const upper = Math.max(1, low);
+      const lower = upper - 1;
+      const segmentDistance = routeDistances[upper] - routeDistances[lower];
+      const mix = segmentDistance ? (target - routeDistances[lower]) / segmentDistance : 0;
+      return {
+        geographic: geoInterpolate(routeCoordinates[lower], routeCoordinates[upper])(mix),
+        cameraLongitude: unwrappedRoute[lower][0] + (unwrappedRoute[upper][0] - unwrappedRoute[lower][0]) * mix,
+        lower,
+        upper
+      };
+    };
+    const routeFeature = (startProgress, endProgress) => {
+      const startSample = routeSample(startProgress);
+      const endSample = routeSample(endProgress);
+      const middle = routeCoordinates.slice(startSample.upper, endSample.lower + 1);
+      return { type: "LineString", coordinates: [startSample.geographic, ...middle, endSample.geographic] };
+    };
+      const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const start = performance.now();
+    const ease = (value) => {
+      const t = Math.max(0, Math.min(1, value));
+      return t * t * t * (t * (t * 6 - 15) + 10);
+    };
+      const visible = (coordinates, rotate) => geoDistance(coordinates, [-rotate[0], -rotate[1]]) < Math.PI / 2;
+      let lastPaint = -Infinity;
+      const frame = (now) => {
+        if (!reduced && now - lastPaint < 33) {
+          requestAnimationFrame(frame);
+          return;
+        }
+        lastPaint = now;
+        const elapsed = now - start;
+        const cycle = reduced ? .7 : (elapsed % 9000) / 9000;
+        let progress;
+        let cameraLongitude;
+        let routeStart = 0;
+        let routeEnd = 0;
+        if (reduced) {
+          progress = .72;
+          routeEnd = progress;
+        cameraLongitude = routeSample(progress).cameraLongitude;
+        } else if (cycle < .01) {
+          progress = 0;
+          cameraLongitude = unwrappedRoute[0][0];
+        } else if (cycle < .68) {
+          const departureProgress = (cycle - .01) / .67;
+          const travel = ease(Math.pow(departureProgress, .72));
+          progress = travel;
+          routeEnd = travel;
+        cameraLongitude = routeSample(travel).cameraLongitude;
+        } else if (cycle < .7) {
+          progress = 1;
+          routeEnd = 1;
+          cameraLongitude = unwrappedRoute[unwrappedRoute.length - 1][0];
+        } else {
+          progress = 1;
+          routeEnd = 1;
+          routeStart = ease(Math.min(1, (cycle - .7) / .26));
+          const returnTravel = ease((cycle - .7) / .3);
+          const destinationLongitude = unwrappedRoute[unwrappedRoute.length - 1][0];
+          const nextChinaLongitude = unwrappedRoute[0][0] + 360;
+          cameraLongitude = destinationLongitude + (nextChinaLongitude - destinationLongitude) * returnTravel;
+        }
+        projection.rotate([-cameraLongitude, -12, 0]);
+        sphere.setAttribute("d", path({ type: "Sphere" }));
+        graticule.setAttribute("d", path(graticuleGeometry));
+        land.setAttribute("d", path(countries));
+        route.setAttribute("d", routeStart >= .999 ? "" : (path(routeFeature(routeStart, routeEnd)) || ""));
+      const shipPoint = routeSample(progress).geographic;
+        const chinaPoint = projection(china);
+        const drPoint = projection(dominicanRepublic);
+        const projectedShip = projection(shipPoint);
+        const rotationState = projection.rotate();
+        const position = (element, flag, projected, geographic, dx, dy) => {
+          const isVisible = visible(geographic, rotationState);
+          element.style.display = isVisible ? "" : "none";
+          flag.style.display = isVisible ? "" : "none";
+          if (isVisible && projected) {
+            element.setAttribute("cx", projected[0]); element.setAttribute("cy", projected[1]);
+            flag.setAttribute("transform", `translate(${projected[0] + dx} ${projected[1] + dy})`);
+          }
+        };
+        position(chinaDot, chinaFlag, chinaPoint, china, 9, -24);
+        position(drDot, drFlag, drPoint, dominicanRepublic, -37, -24);
+       const shipVisible = visible(shipPoint, rotationState) && projectedShip;
+       ship.style.display = shipVisible ? "" : "none";
+       arrivalFlare.style.display = shipVisible ? "" : "none";
+       if (shipVisible) {
+         ship.setAttribute("cx", projectedShip[0]);
+         ship.setAttribute("cy", projectedShip[1]);
+         arrivalFlare.setAttribute("cx", projectedShip[0]);
+         arrivalFlare.setAttribute("cy", projectedShip[1]);
+         const arrivalStrength = reduced ? 0 : ease(Math.max(0, 1 - Math.abs(cycle - .69) / .055));
+         ship.setAttribute("r", 7 + arrivalStrength * 4);
+         ship.style.filter = `drop-shadow(0 0 ${8 + arrivalStrength * 18}px var(--carasia-gold)) brightness(${1 + arrivalStrength * .75})`;
+         arrivalFlare.setAttribute("r", 8 + arrivalStrength * 24);
+         arrivalFlare.style.opacity = arrivalStrength * .9;
+       }
+       const serviceCycle = (elapsed % 8000) / 8000;
+       serviceIcons.forEach((icon) => {
+         const step = Number(icon.dataset.step);
+         const x = Number(icon.dataset.x);
+         const y = Number(icon.dataset.y);
+         const check = icon.querySelector(".service-check");
+         if (reduced) {
+           icon.setAttribute("transform", `translate(${x} ${y})`);
+           check.style.opacity = "1";
+           check.setAttribute("transform", "translate(22 -22) scale(1)");
+           return;
+         }
+         const pulseStart = .04 + (step - 1) * .19;
+         const pulseLength = .16;
+         const pulsePosition = Math.max(0, Math.min(1, (serviceCycle - pulseStart) / pulseLength));
+         const iconScale = 1 + Math.sin(Math.PI * pulsePosition) * .18;
+         icon.setAttribute("transform", `translate(${x} ${y}) scale(${iconScale})`);
+
+         const revealAt = pulseStart + pulseLength * .48;
+         const clearAt = .88;
+         if (serviceCycle < revealAt) {
+           check.style.opacity = "0";
+           check.setAttribute("transform", "translate(22 -22) scale(0)");
+         } else if (serviceCycle < clearAt) {
+           const checkIn = ease(Math.min(1, (serviceCycle - revealAt) / .035));
+           check.style.opacity = String(checkIn);
+           check.setAttribute("transform", `translate(22 -22) scale(${checkIn})`);
+         } else {
+           const checkOut = ease(Math.min(1, (serviceCycle - clearAt) / .07));
+           check.style.opacity = String(1 - checkOut);
+           check.setAttribute("transform", `translate(22 -22) scale(${1 + checkOut * .55})`);
+         }
+       });
+       if (!reduced) requestAnimationFrame(frame);
+      };
+      requestAnimationFrame(frame);
+    })().catch(() => {
+      const root = document.getElementById("proof-orbit");
+      root.querySelector("#carasia-earth-map").innerHTML = '<circle class="earth-sphere" cx="310" cy="250" r="184"></circle>';
+    });
+  </script>
   </body>
 </html>
