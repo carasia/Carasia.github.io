@@ -226,8 +226,8 @@
         position: relative;
         z-index: 1;
         display: grid;
-        grid-template-columns: 1fr;
-        gap: 70px;
+        grid-template-columns: minmax(0, 1fr) minmax(430px, 0.9fr);
+        gap: clamp(38px, 5vw, 70px);
         align-items: center;
         padding: 78px 0 95px;
       }
@@ -282,6 +282,91 @@
       }
       .comm-card .eyebrow {
         color: #f4c95d;
+      }
+      .hero-orbit-panel {
+        width: 92%;
+        justify-self: end;
+        padding: 20px 22px 14px;
+        color: var(--white);
+        border: 1px solid rgba(211, 166, 47, 0.8);
+        border-radius: 24px;
+        background: rgba(3, 30, 68, 0.97);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+      .hero-orbit-panel h2 {
+        margin: 6px 0 8px;
+        color: #f2b93b;
+        font-size: clamp(1.08rem, 1.7vw, 1.45rem);
+        font-weight: 800;
+        letter-spacing: 0.13em;
+      }
+      .hero-orbit-panel h2::after {
+        content: "";
+        display: block;
+        width: 78px;
+        height: 2px;
+        margin: 12px 0 10px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #f2b93b, #25c2cc, transparent);
+      }
+      .hero-orbit-panel p {
+        margin: 0;
+        color: var(--white);
+      }
+      .hero-orbit-journey {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-top: 10px;
+        overflow: visible;
+      }
+      .hero-orbit-panel .earth-sphere { fill: #062d5c; stroke: #70cbd4; stroke-width: 1.2; }
+      .hero-orbit-panel .earth-graticule { fill: none; stroke: rgba(112, 203, 212, 0.24); stroke-width: 0.65; }
+      .hero-orbit-panel .earth-land { fill: rgba(19, 107, 130, 0.22); stroke: rgba(242, 185, 59, 0.76); stroke-width: 0.8; }
+      .hero-orbit-panel .shipping-route {
+        fill: none;
+        stroke: #f2b93b;
+        stroke-width: 4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .hero-orbit-panel .support-orbit {
+        fill: none;
+        stroke: #25c2cc;
+        stroke-width: 2;
+        stroke-dasharray: 4 8;
+        opacity: 0.8;
+        animation: hero-orbit-dashes 1.6s linear infinite;
+      }
+      .hero-orbit-panel .support-orbit-front { opacity: 1; }
+      .hero-orbit-panel .service-icon {
+        color: var(--white);
+        filter: drop-shadow(0 7px 10px rgba(0, 10, 28, 0.4));
+      }
+      .hero-orbit-panel .service-icon > circle { fill: #06315e; stroke: #25c2cc; stroke-width: 2; }
+      .hero-orbit-panel .icon-glyph { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+      .hero-orbit-panel .icon-accent { stroke: #25c2cc; }
+      .hero-orbit-panel .service-check { opacity: 0; }
+      .hero-orbit-panel .service-check circle { fill: #f2b93b; stroke: var(--deep); stroke-width: 1.5; }
+      .hero-orbit-panel .service-check path { fill: none; stroke: var(--deep); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .hero-orbit-panel .endpoint { fill: #f2b93b; filter: drop-shadow(0 0 6px #f2b93b); }
+      .hero-orbit-panel .endpoint-flag { filter: drop-shadow(0 3px 5px rgba(0, 10, 28, 0.55)); }
+      .hero-orbit-panel .ship-dot {
+        fill: #f2b93b;
+        stroke: var(--white);
+        stroke-width: 2;
+        filter: drop-shadow(0 0 8px #f2b93b);
+      }
+      .hero-orbit-panel .arrival-flare {
+        fill: none;
+        stroke: #f2b93b;
+        stroke-width: 3;
+        opacity: 0;
+        filter: drop-shadow(0 0 10px #f2b93b);
+      }
+      @keyframes hero-orbit-dashes { to { stroke-dashoffset: -48; } }
+      @media (prefers-reduced-motion: reduce) {
+        .hero-orbit-panel .support-orbit { animation: none; }
       }
       .comm-visual {
         height: 170px;
@@ -840,6 +925,10 @@
         .hero-grid {
           gap: 35px;
         }
+        .hero-orbit-panel {
+          width: min(100%, 680px);
+          justify-self: center;
+        }
         .cap-grid {
           grid-template-columns: repeat(2, 1fr);
         }
@@ -865,6 +954,7 @@
         }
         .nav {
           height: 72px;
+          gap: 10px;
         }
         .brand-name {
           font-size: 1rem;
@@ -884,6 +974,14 @@
         }
         .comm-card {
           padding: 22px;
+        }
+        .hero-orbit-panel {
+          width: 100%;
+          padding: 17px 14px 10px;
+          border-radius: 18px;
+        }
+        .hero-orbit-panel h2 {
+          letter-spacing: 0.08em;
         }
         .cap-grid,
         .steps,
@@ -1217,6 +1315,53 @@
             </div>
           </div>
 
+          <aside class="hero-orbit-panel" id="hero-orbit-panel" aria-label="Animated China sourcing route">
+            <h2>CHINA SOURCING, SIMPLIFIED.</h2>
+            <p>One team. Clear communication. Greater control.</p>
+            <svg class="hero-orbit-journey" viewBox="0 20 620 420" role="img" aria-label="Rotating globe showing a shipping route from China to the Dominican Republic">
+              <path class="support-orbit" d="M45 235 A265 165 0 0 1 575 235"></path>
+              <g id="hero-earth-map"></g>
+              <g id="hero-route-layer"></g>
+              <path class="support-orbit support-orbit-front" d="M45 235 A265 165 0 0 0 575 235"></path>
+              <g class="service-icon" data-step="2" data-x="123" data-y="118" transform="translate(123 118)">
+                <title>Translation support</title>
+                <circle r="32"></circle>
+                <g class="icon-glyph" transform="translate(-20.4 -20.4) scale(1.7)">
+                  <path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path>
+                  <path class="icon-accent" d="m22 22-5-10-5 10"></path><path class="icon-accent" d="M14 18h6"></path>
+                </g>
+                <g class="service-check" transform="translate(22 -22)"><circle r="8"></circle><path d="m-4 0 3 3 5-7"></path></g>
+              </g>
+              <g class="service-icon" data-step="3" data-x="497" data-y="118" transform="translate(497 118)">
+                <title>Verified and certified documentation</title>
+                <circle r="32"></circle>
+                <g class="icon-glyph" transform="translate(-20.4 -20.4) scale(1.7)">
+                  <path d="M7 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10"></path>
+                  <path d="M7 17V3a2 2 0 0 1 2-2h7l5 5v7"></path><path d="M16 1v5h5"></path>
+                  <path d="M10 9h7M10 13h4"></path><path class="icon-accent" d="m15 18 2 2 4-5"></path>
+                </g>
+                <g class="service-check" transform="translate(22 -22)"><circle r="8"></circle><path d="m-4 0 3 3 5-7"></path></g>
+              </g>
+              <g class="service-icon" data-step="1" data-x="45" data-y="235" transform="translate(45 235)">
+                <title>Verified packaging</title>
+                <circle r="32"></circle>
+                <g class="icon-glyph" transform="translate(-20.4 -20.4) scale(1.7)">
+                  <path d="m16.5 9.4-9-5.2"></path><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l2-1.1"></path>
+                  <path d="M3.3 7 12 12l8.7-5"></path><path d="M12 22V12"></path><path class="icon-accent" d="m16 19 2 2 4-4"></path>
+                </g>
+                <g class="service-check" transform="translate(22 -22)"><circle r="8"></circle><path d="m-4 0 3 3 5-7"></path></g>
+              </g>
+              <g class="service-icon" data-step="4" data-x="575" data-y="235" transform="translate(575 235)">
+                <title>Dedicated support</title>
+                <circle r="32"></circle>
+                <g class="icon-glyph" transform="translate(-20.4 -20.4) scale(1.7)">
+                  <path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-3"></path>
+                  <path class="icon-accent" d="M21 16h-3a2 2 0 0 0-2 2v3"></path><path class="icon-accent" d="M16 21h-4"></path>
+                </g>
+                <g class="service-check" transform="translate(22 -22)"><circle r="8"></circle><path d="m-4 0 3 3 5-7"></path></g>
+              </g>
+            </svg>
+          </aside>
         </div>
       </section>
       <section class="capabilities">
@@ -1589,6 +1734,252 @@
         </div>
       </div>
     </footer>
+    <script type="module">
+      (async () => {
+        const root = document.querySelector("#hero-orbit-panel");
+        if (!root) return;
+        const mapLayer = root.querySelector("#hero-earth-map");
+        const routeLayer = root.querySelector("#hero-route-layer");
+        const serviceIcons = [...root.querySelectorAll(".service-icon")];
+        const [{ geoOrthographic, geoPath, geoGraticule10, geoInterpolate, geoDistance }, topojson, atlas] = await Promise.race([
+          Promise.all([
+            import("https://esm.sh/d3-geo@3.1.1"),
+            import("https://esm.sh/topojson-client@3.1.0"),
+            import("https://esm.sh/@d3-maps/atlas@1.0.0/world/countries/countries-110m"),
+          ]),
+          new Promise((_, reject) => window.setTimeout(() => reject(new Error("Map resources timed out")), 4500)),
+        ]);
+        const world = atlas.default || atlas;
+        const countries = topojson.feature(world, world.objects.features);
+        const ns = "http://www.w3.org/2000/svg";
+        const make = (name, attrs, parent = mapLayer) => {
+          const element = document.createElementNS(ns, name);
+          Object.entries(attrs).forEach(([key, value]) => element.setAttribute(key, value));
+          parent.appendChild(element);
+          return element;
+        };
+        const projection = geoOrthographic().translate([310, 250]).scale(184).clipAngle(90).precision(0.55);
+        const path = geoPath(projection);
+        const graticuleGeometry = geoGraticule10();
+        const sphere = make("path", { class: "earth-sphere" });
+        const graticule = make("path", { class: "earth-graticule" });
+        const land = make("path", { class: "earth-land" });
+        const route = make("path", { class: "shipping-route" }, routeLayer);
+        const chinaDot = make("circle", { class: "endpoint", r: 5 }, routeLayer);
+        const drDot = make("circle", { class: "endpoint", r: 5 }, routeLayer);
+        const makeFlag = (label) => {
+          const flag = make("g", { class: "endpoint-flag", role: "img", "aria-label": label }, routeLayer);
+          const title = make("title", {}, flag);
+          title.textContent = label;
+          return flag;
+        };
+        const chinaFlag = makeFlag("China");
+        make("rect", { x: 0, y: 0, width: 28, height: 18, rx: 2, fill: "#de2910", stroke: "#fff", "stroke-width": 1 }, chinaFlag);
+        make("path", { d: "M7 3.5 8 5.8l2.5.2-1.9 1.7.6 2.5L7 8.9l-2.2 1.3.6-2.5L3.5 6l2.5-.2z", fill: "#ffde00" }, chinaFlag);
+        const drFlag = makeFlag("Dominican Republic");
+        make("rect", { x: 0, y: 0, width: 28, height: 18, rx: 2, fill: "#fff", stroke: "#fff", "stroke-width": 1 }, drFlag);
+        make("path", { d: "M1 1h11v6H1zm15 10h11v6H16z", fill: "#002d62" }, drFlag);
+        make("path", { d: "M16 1h11v6H16zM1 11h11v6H1z", fill: "#ce1126" }, drFlag);
+        make("circle", { cx: 14, cy: 9, r: 1.5, fill: "#f2b93b" }, drFlag);
+        const arrivalFlare = make("circle", { class: "arrival-flare", r: 7 }, routeLayer);
+        const routePoint = make("circle", { class: "ship-dot", r: 7 }, routeLayer);
+        const china = [114.27, 22.57];
+        const dominicanRepublic = [-69.63, 18.42];
+        const shippingWaypoints = [
+          china, [125, 18], [145, 15], [170, 12], [-155, 10],
+          [-125, 9], [-95, 8], [-79.6, 9.1], [-75, 14], dominicanRepublic,
+        ];
+        const unwrap = (points) => {
+          const result = [];
+          points.forEach((point, index) => {
+            let longitude = point[0];
+            if (index) {
+              const previous = result[index - 1][0];
+              while (longitude - previous > 180) longitude -= 360;
+              while (longitude - previous < -180) longitude += 360;
+            }
+            result.push([longitude, point[1]]);
+          });
+          return result;
+        };
+        const catmullRom = (points, samplesPerSegment = 24) => {
+          const result = [];
+          for (let index = 0; index < points.length - 1; index += 1) {
+            const p0 = points[Math.max(0, index - 1)];
+            const p1 = points[index];
+            const p2 = points[index + 1];
+            const p3 = points[Math.min(points.length - 1, index + 2)];
+            for (let sample = 0; sample < samplesPerSegment; sample += 1) {
+              const t = sample / samplesPerSegment;
+              const t2 = t * t;
+              const t3 = t2 * t;
+              const interpolate = (axis) => 0.5 * (
+                2 * p1[axis] + (-p0[axis] + p2[axis]) * t +
+                (2 * p0[axis] - 5 * p1[axis] + 4 * p2[axis] - p3[axis]) * t2 +
+                (-p0[axis] + 3 * p1[axis] - 3 * p2[axis] + p3[axis]) * t3
+              );
+              result.push([interpolate(0), interpolate(1)]);
+            }
+          }
+          result.push(points[points.length - 1]);
+          return result;
+        };
+        const smoothRoute = catmullRom(unwrap(shippingWaypoints));
+        const routeCoordinates = smoothRoute.map(([longitude, latitude]) => [((longitude + 180) % 360 + 360) % 360 - 180, latitude]);
+        const unwrappedRoute = unwrap(routeCoordinates);
+        const routeDistances = [0];
+        for (let index = 1; index < routeCoordinates.length; index += 1) {
+          routeDistances.push(routeDistances[index - 1] + geoDistance(routeCoordinates[index - 1], routeCoordinates[index]));
+        }
+        const routeTotalDistance = routeDistances[routeDistances.length - 1];
+        const routeSample = (progress) => {
+          const target = Math.max(0, Math.min(1, progress)) * routeTotalDistance;
+          let low = 0;
+          let high = routeDistances.length - 1;
+          while (low < high) {
+            const middle = Math.floor((low + high) / 2);
+            if (routeDistances[middle] < target) low = middle + 1;
+            else high = middle;
+          }
+          const upper = Math.max(1, low);
+          const lower = upper - 1;
+          const segmentDistance = routeDistances[upper] - routeDistances[lower];
+          const mix = segmentDistance ? (target - routeDistances[lower]) / segmentDistance : 0;
+          return {
+            geographic: geoInterpolate(routeCoordinates[lower], routeCoordinates[upper])(mix),
+            cameraLongitude: unwrappedRoute[lower][0] + (unwrappedRoute[upper][0] - unwrappedRoute[lower][0]) * mix,
+            lower,
+            upper,
+          };
+        };
+        const routeFeature = (startProgress, endProgress) => {
+          const startSample = routeSample(startProgress);
+          const endSample = routeSample(endProgress);
+          return {
+            type: "LineString",
+            coordinates: [startSample.geographic, ...routeCoordinates.slice(startSample.upper, endSample.lower + 1), endSample.geographic],
+          };
+        };
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const startedAt = performance.now();
+        const ease = (value) => {
+          const t = Math.max(0, Math.min(1, value));
+          return t * t * t * (t * (t * 6 - 15) + 10);
+        };
+        const visible = (coordinates, rotate) => geoDistance(coordinates, [-rotate[0], -rotate[1]]) < Math.PI / 2;
+        let lastPaint = -Infinity;
+        const frame = (now) => {
+          if (!reduced && now - lastPaint < 33) {
+            requestAnimationFrame(frame);
+            return;
+          }
+          lastPaint = now;
+          const elapsed = now - startedAt;
+          const cycle = reduced ? 0.7 : (elapsed % 9000) / 9000;
+          let progress;
+          let cameraLongitude;
+          let routeStart = 0;
+          let routeEnd = 0;
+          if (reduced) {
+            progress = 0.72;
+            routeEnd = progress;
+            cameraLongitude = routeSample(progress).cameraLongitude;
+          } else if (cycle < 0.01) {
+            progress = 0;
+            cameraLongitude = unwrappedRoute[0][0];
+          } else if (cycle < 0.68) {
+            const departureProgress = (cycle - 0.01) / 0.67;
+            const travel = ease(Math.pow(departureProgress, 0.72));
+            progress = travel;
+            routeEnd = travel;
+            cameraLongitude = routeSample(travel).cameraLongitude;
+          } else if (cycle < 0.7) {
+            progress = 1;
+            routeEnd = 1;
+            cameraLongitude = unwrappedRoute[unwrappedRoute.length - 1][0];
+          } else {
+            progress = 1;
+            routeEnd = 1;
+            routeStart = ease(Math.min(1, (cycle - 0.7) / 0.26));
+            const returnTravel = ease((cycle - 0.7) / 0.3);
+            const destinationLongitude = unwrappedRoute[unwrappedRoute.length - 1][0];
+            cameraLongitude = destinationLongitude + (unwrappedRoute[0][0] + 360 - destinationLongitude) * returnTravel;
+          }
+          projection.rotate([-cameraLongitude, -12, 0]);
+          sphere.setAttribute("d", path({ type: "Sphere" }));
+          graticule.setAttribute("d", path(graticuleGeometry));
+          land.setAttribute("d", path(countries));
+          route.setAttribute("d", routeStart >= 0.999 ? "" : (path(routeFeature(routeStart, routeEnd)) || ""));
+          const movingPoint = routeSample(progress).geographic;
+          const chinaPoint = projection(china);
+          const drPoint = projection(dominicanRepublic);
+          const projectedRoutePoint = projection(movingPoint);
+          const rotationState = projection.rotate();
+          const positionEndpoint = (element, flag, projected, geographic, dx, dy) => {
+            const isVisible = visible(geographic, rotationState);
+            element.style.display = isVisible ? "" : "none";
+            flag.style.display = isVisible ? "" : "none";
+            if (isVisible && projected) {
+              element.setAttribute("cx", projected[0]);
+              element.setAttribute("cy", projected[1]);
+              flag.setAttribute("transform", `translate(${projected[0] + dx} ${projected[1] + dy})`);
+            }
+          };
+          positionEndpoint(chinaDot, chinaFlag, chinaPoint, china, 9, -24);
+          positionEndpoint(drDot, drFlag, drPoint, dominicanRepublic, -37, -24);
+          const pointVisible = visible(movingPoint, rotationState) && projectedRoutePoint;
+          routePoint.style.display = pointVisible ? "" : "none";
+          arrivalFlare.style.display = pointVisible ? "" : "none";
+          if (pointVisible) {
+            routePoint.setAttribute("cx", projectedRoutePoint[0]);
+            routePoint.setAttribute("cy", projectedRoutePoint[1]);
+            arrivalFlare.setAttribute("cx", projectedRoutePoint[0]);
+            arrivalFlare.setAttribute("cy", projectedRoutePoint[1]);
+            const arrivalStrength = reduced ? 0 : ease(Math.max(0, 1 - Math.abs(cycle - 0.69) / 0.055));
+            routePoint.setAttribute("r", 7 + arrivalStrength * 4);
+            routePoint.style.filter = `drop-shadow(0 0 ${8 + arrivalStrength * 18}px #f2b93b) brightness(${1 + arrivalStrength * 0.75})`;
+            arrivalFlare.setAttribute("r", 8 + arrivalStrength * 24);
+            arrivalFlare.style.opacity = arrivalStrength * 0.9;
+          }
+          const serviceCycle = (elapsed % 8000) / 8000;
+          serviceIcons.forEach((icon) => {
+            const step = Number(icon.dataset.step);
+            const x = Number(icon.dataset.x);
+            const y = Number(icon.dataset.y);
+            const check = icon.querySelector(".service-check");
+            if (reduced) {
+              icon.setAttribute("transform", `translate(${x} ${y})`);
+              check.style.opacity = "1";
+              check.setAttribute("transform", "translate(22 -22) scale(1)");
+              return;
+            }
+            const pulseStart = 0.04 + (step - 1) * 0.19;
+            const pulseLength = 0.16;
+            const pulsePosition = Math.max(0, Math.min(1, (serviceCycle - pulseStart) / pulseLength));
+            icon.setAttribute("transform", `translate(${x} ${y}) scale(${1 + Math.sin(Math.PI * pulsePosition) * 0.18})`);
+            const revealAt = pulseStart + pulseLength * 0.48;
+            const clearAt = 0.88;
+            if (serviceCycle < revealAt) {
+              check.style.opacity = "0";
+              check.setAttribute("transform", "translate(22 -22) scale(0)");
+            } else if (serviceCycle < clearAt) {
+              const checkIn = ease(Math.min(1, (serviceCycle - revealAt) / 0.035));
+              check.style.opacity = String(checkIn);
+              check.setAttribute("transform", `translate(22 -22) scale(${checkIn})`);
+            } else {
+              const checkOut = ease(Math.min(1, (serviceCycle - clearAt) / 0.07));
+              check.style.opacity = String(1 - checkOut);
+              check.setAttribute("transform", `translate(22 -22) scale(${1 + checkOut * 0.55})`);
+            }
+          });
+          if (!reduced) requestAnimationFrame(frame);
+        };
+        requestAnimationFrame(frame);
+      })().catch(() => {
+        const mapLayer = document.querySelector("#hero-earth-map");
+        if (mapLayer) mapLayer.innerHTML = '<circle class="earth-sphere" cx="310" cy="250" r="184"></circle>';
+      });
+    </script>
     <script>
       const steps = [
         [
