@@ -1,0 +1,1712 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Carasia Consulting conecta empresas con proveedores, verificación e inspección en China."
+    />
+    <title>Carasia Consulting | Business Beyond Borders</title>
+    <style>
+      :root {
+        --navy: #05275b;
+        --deep: #031d43;
+        --teal: #168a99;
+        --aqua: #63d2da;
+        --gold: #d3a62f;
+        --paper: #f4f8fa;
+        --ink: #09244c;
+        --muted: #5f6f80;
+        --white: #fff;
+        --shadow: 0 18px 42px rgba(4, 31, 70, 0.15);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font:
+          16px/1.55 Arial,
+          Helvetica,
+          sans-serif;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+      .container {
+        width: min(1180px, calc(100% - 40px));
+        margin: auto;
+      }
+      .eyebrow {
+        display: block;
+        color: var(--gold);
+        font-weight: 800;
+        font-size: 0.78rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.96);
+        border-bottom: 1px solid rgba(217, 225, 230, 0.9);
+        box-shadow: 0 2px 16px rgba(2, 24, 56, 0.08);
+        backdrop-filter: blur(12px);
+      }
+      .nav {
+        height: 96px;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-right: auto;
+      }
+      .brand-mark {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        border: 3px solid var(--teal);
+        border-radius: 50% 50% 48% 52%;
+        display: grid;
+        place-items: center;
+        color: var(--navy);
+        font-size: 24px;
+        font-weight: 900;
+      }
+      .brand-mark:after {
+        content: "";
+        position: absolute;
+        width: 31px;
+        height: 3px;
+        background: var(--gold);
+        right: -10px;
+        bottom: 6px;
+        box-shadow: 0 7px var(--teal);
+      }
+      .brand-name {
+        font-size: 1.32rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+      }
+      .brand-name small {
+        display: block;
+        color: var(--teal);
+        font-size: 0.52rem;
+        letter-spacing: 0.32em;
+        text-align: center;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+      .nav-links a:hover {
+        color: var(--teal);
+      }
+      .lang {
+        display: flex;
+        border: 1px solid #dce5ea;
+        border-radius: 999px;
+        padding: 5px;
+        background: #fff;
+      }
+      .lang button {
+        border: 0;
+        background: transparent;
+        padding: 5px 8px;
+        border-radius: 99px;
+        cursor: pointer;
+      }
+      .lang button.active {
+        background: #eaf6f7;
+        color: var(--teal);
+        font-weight: 800;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 22px;
+        border: 2px solid transparent;
+        border-radius: 999px;
+        font-weight: 800;
+        cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease,
+          border-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+      .btn-primary {
+        color: #fff;
+        border-color: #16889a;
+        background: linear-gradient(135deg, #0d7588, #09566b);
+        box-shadow: 0 12px 28px rgba(2, 29, 61, 0.3);
+      }
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #10889d, #096377);
+        box-shadow: 0 15px 32px rgba(2, 29, 61, 0.4);
+      }
+      .btn-secondary {
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.82);
+        background: rgba(3, 31, 67, 0.72);
+        box-shadow: 0 12px 28px rgba(2, 29, 61, 0.24);
+        backdrop-filter: blur(6px);
+      }
+      .btn-secondary:hover {
+        border-color: #fff;
+        background: rgba(7, 69, 94, 0.88);
+      }
+      .header-cta {
+        background: linear-gradient(135deg, var(--teal), #177684);
+        color: #fff;
+      }
+      .menu-button {
+        display: none;
+        border: 0;
+        background: none;
+        font-size: 1.7rem;
+      }
+      .hero {
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+        background:
+          linear-gradient(
+            90deg,
+            rgba(2, 25, 58, 0.97),
+            rgba(2, 37, 74, 0.81) 58%,
+            rgba(2, 31, 66, 0.63)
+          ),
+          url("https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=2000&q=85")
+            center/cover;
+      }
+      .hero:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at 20% 30%,
+            rgba(39, 175, 190, 0.18),
+            transparent 32%
+          ),
+          linear-gradient(120deg, transparent 60%, rgba(211, 166, 47, 0.08));
+      }
+      .hero-grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(430px, 0.9fr);
+        gap: clamp(38px, 5vw, 70px);
+        align-items: center;
+        padding: 78px 0 95px;
+      }
+      .hero h1 {
+        max-width: 650px;
+        margin: 16px 0 18px;
+        font-size: clamp(3rem, 6vw, 5.6rem);
+        line-height: 0.98;
+        letter-spacing: -0.045em;
+      }
+      .hero-copy {
+        max-width: 650px;
+        font-size: 1.12rem;
+        color: #eef5f6;
+      }
+      .hero-proof {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        margin: 24px 0;
+        color: #fff;
+        font-weight: 700;
+      }
+      .hero-proof-icon {
+        width: 28px;
+        height: 32px;
+        flex: 0 0 28px;
+        display: block;
+        color: var(--gold);
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .comm-card {
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-top: 4px solid var(--gold);
+        border-radius: 22px;
+        background: #031e44;
+        padding: 28px;
+        box-shadow: 0 24px 50px rgba(0, 0, 0, 0.25);
+      }
+      .comm-card h2 {
+        margin: 6px 0 10px;
+        font-size: 1.65rem;
+      }
+      .comm-card p {
+        margin: 0 0 20px;
+        color: #fff;
+      }
+      .comm-card .eyebrow {
+        color: #f4c95d;
+      }
+      .comm-visual {
+        height: 170px;
+        border-radius: 14px;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(15, 133, 149, 0.12),
+            rgba(5, 39, 91, 0.16)
+          ),
+          url("assets/cross-cultural-communication.png") center/cover;
+        margin-bottom: 18px;
+      }
+      .checks {
+        display: grid;
+        gap: 9px;
+      }
+      .check {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .check:before {
+        content: "✓";
+        display: grid;
+        place-items: center;
+        flex: 0 0 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--teal);
+        font-weight: 900;
+      }
+      .capabilities {
+        position: relative;
+        z-index: 3;
+        margin-top: -44px;
+      }
+      .cap-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        padding: 24px;
+      }
+      .cap {
+        display: grid;
+        grid-template-columns: 48px 1fr;
+        gap: 14px;
+        align-items: center;
+        padding: 7px 18px;
+        border-right: 1px solid #dde7eb;
+      }
+      .cap:last-child {
+        border: 0;
+      }
+      .cap-icon {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        flex: 0 0 42px;
+        place-items: center;
+        color: var(--teal);
+      }
+      .cap-icon svg {
+        width: 38px;
+        height: 38px;
+        display: block;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .cap strong {
+        display: block;
+      }
+      .cap small {
+        color: var(--muted);
+      }
+      .section {
+        padding: 88px 0;
+      }
+      .section-title {
+        margin: 10px 0 12px;
+        font-size: clamp(2rem, 4vw, 3.35rem);
+        line-height: 1.08;
+        letter-spacing: -0.025em;
+      }
+      .section-intro {
+        max-width: 760px;
+        color: var(--muted);
+      }
+      .process {
+        color: #fff;
+        background: linear-gradient(135deg, #061e49, #003c68);
+      }
+      .process .section-intro {
+        color: #d9e5ec;
+      }
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+        margin-top: 46px;
+      }
+      .step {
+        text-align: center;
+        position: relative;
+      }
+      .step:not(:last-child):after {
+        content: "";
+        position: absolute;
+        top: 72px;
+        left: 70%;
+        width: 62%;
+        border-top: 2px dotted rgba(255, 255, 255, 0.5);
+      }
+      .step-number {
+        margin: 0 auto 10px;
+        color: var(--gold);
+        font-weight: 900;
+        line-height: 1.25;
+        letter-spacing: 0.08em;
+      }
+      .step-icon {
+        width: 82px;
+        height: 82px;
+        margin: auto auto 16px;
+        display: grid;
+        place-items: center;
+        border: 2px solid rgba(255, 255, 255, 0.65);
+        border-radius: 50%;
+        color: #ffffff;
+      }
+      .step-icon svg {
+        width: 38px;
+        height: 38px;
+        display: block;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        vector-effect: non-scaling-stroke;
+      }
+      .step h3 {
+        font-size: 1.04rem;
+      }
+      .step p {
+        font-size: 0.88rem;
+        color: #dce7ed;
+      }
+      .proof-grid {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: minmax(280px, 0.82fr) minmax(120px, 0.5fr) minmax(360px, 1fr);
+        gap: clamp(32px, 5vw, 76px);
+        align-items: stretch;
+      }
+      .proof-section {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        min-height: 640px;
+        display: grid;
+        align-items: center;
+      }
+      .proof-section-video {
+        position: absolute;
+        z-index: -2;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .proof-section:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          rgba(42, 139, 153, 0.86) 0%,
+          rgba(42, 139, 153, 0.7) 28%,
+          rgba(42, 139, 153, 0.4) 58%,
+          rgba(42, 139, 153, 0.14) 82%,
+          rgba(42, 139, 153, 0) 100%
+        );
+        mix-blend-mode: color;
+        pointer-events: none;
+      }
+      .proof-section:after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          rgba(3, 29, 67, 0.72) 0%,
+          rgba(5, 39, 91, 0.2) 42%,
+          rgba(3, 29, 67, 0.46) 100%
+        );
+      }
+      .proof-copy {
+        grid-column: 1;
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(30px, 4vw, 54px) clamp(24px, 3vw, 42px);
+        border-left: 2px solid rgba(224, 179, 90, 0.92);
+        background: linear-gradient(
+          90deg,
+          rgba(3, 29, 67, 0.82),
+          rgba(3, 29, 67, 0.62)
+        );
+        backdrop-filter: blur(10px);
+      }
+      .proof-eyebrow {
+        margin-bottom: 20px;
+        color: #e0b35a;
+        font-size: 0.76rem;
+        font-weight: 900;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .proof-section .section-title,
+      .proof-section .section-intro {
+        color: #fff;
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+      }
+      .proof-section .section-title {
+        max-width: 390px;
+        font-size: clamp(1.8rem, 2.8vw, 2.65rem);
+        line-height: 1.08;
+      }
+      .proof-shield {
+        display: block;
+        width: clamp(62px, 6vw, 88px);
+        height: auto;
+        margin: 26px auto 4px;
+        color: #fff;
+        filter: drop-shadow(0 5px 16px rgba(0, 0, 0, 0.45));
+      }
+      .proof-section .section-intro {
+        margin-top: 22px;
+        max-width: 400px;
+        font-size: 0.98rem;
+        line-height: 1.65;
+      }
+      .proof-section .notice {
+        margin-top: 30px;
+        padding: 20px 0 0;
+        color: #eef6f8;
+        border: 0;
+        border-top: 1px solid rgba(224, 179, 90, 0.72);
+        border-radius: 0;
+        background: transparent;
+        font-size: 0.78rem;
+        line-height: 1.55;
+      }
+      .proof-section .proof-media {
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        background:
+          linear-gradient(rgba(2, 32, 66, 0.18), rgba(2, 32, 66, 0.28)),
+          url("https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=1300&q=85")
+            center/cover;
+      }
+      .proof-section .comm-card {
+        grid-column: 3;
+        align-self: center;
+      }
+      .proof-section .proof-list {
+        grid-column: 3;
+        align-self: center;
+        color: #fff;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 14px 26px;
+        border: 0;
+        background: linear-gradient(
+          90deg,
+          rgba(3, 29, 67, 0.7),
+          rgba(3, 29, 67, 0.42) 72%,
+          rgba(3, 29, 67, 0.18)
+        );
+        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.16);
+        backdrop-filter: blur(7px);
+      }
+      .proof-section .proof-list .check {
+        position: relative;
+        min-height: 0;
+        margin: 0;
+        padding: 24px 0 24px 58px;
+        border: 0;
+        border-bottom: 1px solid rgba(224, 179, 90, 0.72);
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        font-size: 0.94rem;
+        line-height: 1.5;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.62);
+      }
+      .proof-section .proof-list .check:last-child {
+        border-bottom: 0;
+      }
+      .proof-section .proof-list .check::before {
+        content: "\2713";
+        position: absolute;
+        top: 23px;
+        left: 0;
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border: 1px solid rgba(99, 210, 218, 0.92);
+        border-radius: 50%;
+        color: #63d2da;
+        background: rgba(3, 29, 67, 0.38);
+        font-size: 1.1rem;
+        font-weight: 900;
+      }
+      .proof-section .proof-list strong {
+        font-size: 1rem;
+      }
+      .proof-media {
+        min-height: 350px;
+        border-radius: 24px;
+        background:
+          linear-gradient(rgba(2, 32, 66, 0.05), rgba(2, 32, 66, 0.14)),
+          url("https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=1300&q=85")
+            center/cover;
+        box-shadow: var(--shadow);
+        position: relative;
+      }
+      .play {
+        position: absolute;
+        inset: 50% auto auto 50%;
+        transform: translate(-50%, -50%);
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: var(--teal);
+        color: #fff;
+        font-size: 1.8rem;
+        border: 4px solid #fff;
+      }
+      .notice {
+        border: 1px solid var(--teal);
+        border-radius: 14px;
+        padding: 16px;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+      .proof-list {
+        background: #fff;
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: var(--shadow);
+      }
+      .proof-list .check {
+        margin: 16px 0;
+        font-weight: 700;
+      }
+      .categories {
+        background: #eef5f7;
+      }
+      .category-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 34px;
+      }
+      .category {
+        min-height: 190px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 18px;
+        background:
+          linear-gradient(
+            0deg,
+            rgba(2, 32, 71, 0.96),
+            rgba(2, 32, 71, 0.05) 75%
+          ),
+          var(--image) center/cover;
+        box-shadow: 0 10px 25px rgba(4, 34, 72, 0.12);
+      }
+      .category span {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 18px;
+        color: #fff;
+        font-weight: 800;
+      }
+      .category span:after {
+        content: "→";
+        float: right;
+      }
+      .cta-section {
+        background: #eef5f7;
+        padding: 18px 0 90px;
+      }
+      .inquiry {
+        display: grid;
+        grid-template-columns: 0.72fr 1.5fr;
+        overflow: hidden;
+        border-radius: 24px;
+        background: var(--deep);
+        box-shadow: var(--shadow);
+      }
+      .inquiry-copy {
+        padding: 44px;
+        color: #fff;
+        background: linear-gradient(145deg, #05275b, #00385f);
+      }
+      .inquiry-copy h2 {
+        font-size: 2.5rem;
+        line-height: 1.03;
+      }
+      .form {
+        background: #fff;
+        margin: 16px;
+        padding: 30px;
+        border-radius: 18px;
+      }
+      .fields {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .field {
+        display: grid;
+        gap: 6px;
+      }
+      .field.full {
+        grid-column: 1/-1;
+      }
+      .field label {
+        font-weight: 800;
+        font-size: 0.82rem;
+      }
+      .field input,
+      .field select,
+      .field textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #d6e0e5;
+        border-radius: 10px;
+        background: #fff;
+      }
+      .field textarea {
+        min-height: 95px;
+        resize: vertical;
+      }
+      .submit {
+        width: 100%;
+        margin-top: 18px;
+        background: linear-gradient(90deg, var(--teal), #087180);
+        color: #fff;
+      }
+      .footer {
+        background: #031d43;
+        color: #dbe6ed;
+        padding: 42px 0;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.4fr repeat(3, 1fr);
+        gap: 35px;
+      }
+      .footer h3 {
+        color: #fff;
+      }
+      .footer a {
+        display: block;
+        margin: 6px 0;
+        color: #dbe6ed;
+      }
+      .socials {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .socials a {
+        display: grid;
+        place-items: center;
+        width: 38px;
+        height: 38px;
+        border: 1px solid #8296a8;
+        border-radius: 10px;
+      }
+      .copyright {
+        margin-top: 30px;
+        padding-top: 22px;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        font-size: 0.85rem;
+        color: #9fb0bd;
+      }
+      .en,
+      .es {
+        display: none;
+      }
+      html[data-lang="en"] .en,
+      html:not([data-lang]) .es,
+      html[data-lang="es"] .es {
+        display: initial;
+      }
+      html[data-lang="en"] .en.block,
+      html:not([data-lang]) .es.block,
+      html[data-lang="es"] .es.block {
+        display: block;
+      }
+      @media (max-width: 900px) {
+        .nav-links,
+        .header-cta {
+          display: none;
+        }
+        .menu-button {
+          display: block;
+        }
+        .nav.open {
+          height: auto;
+          flex-wrap: wrap;
+          padding: 16px 0;
+        }
+        .nav.open .nav-links {
+          display: flex;
+          order: 4;
+          width: 100%;
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 14px 0;
+        }
+        .hero-grid,
+        .inquiry {
+          grid-template-columns: 1fr;
+        }
+        .proof-grid {
+          grid-template-columns: minmax(260px, 0.8fr) minmax(320px, 1fr);
+          gap: 38px;
+        }
+        .proof-copy {
+          grid-column: 1;
+        }
+        .proof-section .comm-card,
+        .proof-section .proof-list {
+          grid-column: 2;
+        }
+        .hero-grid {
+          gap: 35px;
+        }
+        .cap-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .cap:nth-child(2) {
+          border-right: 0;
+        }
+        .steps {
+          grid-template-columns: 1fr 1fr;
+        }
+        .step:not(:last-child):after {
+          display: none;
+        }
+        .category-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 560px) {
+        .container {
+          width: min(100% - 28px, 1180px);
+        }
+        .nav {
+          height: 72px;
+        }
+        .brand-name {
+          font-size: 1rem;
+        }
+        .brand-mark {
+          width: 42px;
+          height: 42px;
+        }
+        .lang {
+          margin-left: auto;
+        }
+        .hero-grid {
+          padding: 58px 0 82px;
+        }
+        .hero h1 {
+          font-size: 3.25rem;
+        }
+        .comm-card {
+          padding: 22px;
+        }
+        .cap-grid,
+        .steps,
+        .category-grid,
+        .fields,
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+        .cap {
+          border-right: 0;
+          border-bottom: 1px solid #dde7eb;
+        }
+        .cap:last-child {
+          border-bottom: 0;
+        }
+        .section {
+          padding: 68px 0;
+        }
+        .proof-section {
+          min-height: 0;
+        }
+        .proof-grid {
+          grid-template-columns: 1fr;
+          gap: 26px;
+        }
+        .proof-copy,
+        .proof-section .comm-card,
+        .proof-section .proof-list {
+          grid-column: 1;
+        }
+        .proof-section .comm-card {
+          padding: 22px;
+        }
+        .proof-copy {
+          padding: 28px 24px;
+          background: rgba(3, 29, 67, 0.66);
+        }
+        .proof-section .proof-list {
+          padding: 8px 22px;
+          background: rgba(3, 29, 67, 0.58);
+          backdrop-filter: blur(8px);
+        }
+        .proof-section .proof-list .check {
+          padding: 20px 0 20px 50px;
+        }
+        .proof-section .proof-list .check::before {
+          top: 19px;
+          width: 32px;
+          height: 32px;
+        }
+        .inquiry-copy,
+        .form {
+          padding: 25px;
+        }
+        .form {
+          margin: 10px;
+        }
+        .actions .btn {
+          width: 100%;
+        }
+      }
+      .brand img {
+        width: 320px;
+        height: auto;
+        max-height: none;
+        object-fit: contain;
+      }
+      .site-header .brand {
+        width: 230px;
+        height: 82px;
+        flex: 0 0 230px;
+        overflow: visible;
+        align-items: center;
+      }
+      .site-header .brand img {
+        width: 230px;
+        height: auto;
+        max-height: none;
+        object-fit: contain;
+        display: block;
+      }
+      .footer .brand {
+        width: 280px;
+        height: 118px;
+        overflow: hidden;
+      }
+      .footer .brand img {
+        width: 280px;
+        height: auto;
+        max-height: none;
+        display: block;
+      }
+      .hero-video-bg,
+      .proof-video-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .hero-video-bg {
+        z-index: 0;
+      }
+      .hero {
+        isolation: isolate;
+      }
+      .hero:before {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          rgba(2, 25, 58, 0.96),
+          rgba(2, 37, 74, 0.82) 58%,
+          rgba(2, 31, 66, 0.68)
+        );
+      }
+      .hero:after {
+        z-index: 1;
+      }
+      .proof-media {
+        overflow: hidden;
+      }
+      .proof-video-bg {
+        z-index: 0;
+      }
+      .play {
+        z-index: 2;
+      }
+      .products-menu {
+        position: relative;
+      }
+      .products-menu summary {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        list-style: none;
+      }
+      .products-menu summary::-webkit-details-marker {
+        display: none;
+      }
+      .products-menu summary::after {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: translateY(-2px) rotate(45deg);
+        transition: transform 0.2s ease;
+      }
+      .products-menu[open] summary::after {
+        transform: translateY(2px) rotate(225deg);
+      }
+      .products-dropdown {
+        display: grid;
+        position: absolute;
+        top: calc(100% + 16px);
+        left: -20px;
+        min-width: 260px;
+        padding: 12px;
+        background: #fff;
+        border: 1px solid #dce5ea;
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+      }
+      .products-dropdown a {
+        padding: 9px 12px;
+        border-radius: 8px;
+      }
+      .products-dropdown a:hover {
+        background: #eef7f8;
+        color: var(--teal);
+      }
+      @media (max-width: 900px) {
+        .products-menu,
+        .products-menu summary {
+          width: 100%;
+        }
+        .products-dropdown {
+          position: static;
+          box-shadow: none;
+          margin-top: 8px;
+        }
+        .site-header .brand {
+          width: 220px;
+          height: 67px;
+          flex-basis: 220px;
+        }
+        .site-header .brand img {
+          width: 220px;
+        }
+        @media (max-width: 560px) {
+          .site-header .brand {
+            width: 195px;
+            height: 60px;
+            flex-basis: 195px;
+          }
+          .site-header .brand img {
+            width: 195px;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav" id="nav">
+        <a class="brand" href="#top"
+          ><img src="carasia-logo.png" alt="Carasia Consulting"
+        /></a>
+        <nav class="nav-links">
+          <details class="products-menu">
+            <summary>
+              <span class="es">Productos</span><span class="en">Products</span>
+            </summary>
+            <div class="products-dropdown">
+              <a href="catalog.html"
+                ><span class="es">Todos los productos</span
+                ><span class="en">All Products</span></a
+              ><a href="catalog.html?category=Vehicle%20Accessories"
+                ><span class="es">Accesorios para vehículos</span
+                ><span class="en">Vehicle Accessories</span></a
+              ><a href="catalog.html?category=Construction%20Tools"
+                ><span class="es">Herramientas de construcción</span
+                ><span class="en">Construction Tools</span></a
+              ><a href="catalog.html?category=LED%20Lights"
+                ><span class="es">Luces LED</span
+                ><span class="en">LED Lights</span></a
+              ><a href="catalog.html?category=Solar%20%26%20Energy"
+                ><span class="es">Energía solar y almacenamiento</span
+                ><span class="en">Solar &amp; Energy</span></a
+              >
+            </div>
+          </details>
+          <a href="#process"
+            ><span class="es">Servicios</span
+            ><span class="en">Services</span></a
+          ><a href="#process"
+            ><span class="es">Cómo funciona</span
+            ><span class="en">How It Works</span></a
+          ><a href="#proof"
+            ><span class="es">Nosotros</span><span class="en">About Us</span></a
+          ><a href="#contact"
+            ><span class="es">Contacto</span><span class="en">Contact</span></a
+          >
+        </nav>
+        <div class="lang">
+          <button type="button" data-lang="es">🇩🇴 ES</button
+          ><button type="button" data-lang="en">🇺🇸 EN</button>
+        </div>
+        <a class="btn header-cta sourcing-cta" href="#contact"
+          ><span class="es">Solicitar apoyo</span
+          ><span class="en">Request Sourcing Support</span></a
+        ><button
+          class="menu-button"
+          type="button"
+          aria-label="Menu"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+      </div>
+    </header>
+    <main id="top">
+      <section class="hero">
+        <video
+          class="hero-video-bg"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-hidden="true"
+        >
+          <source src="videos/Drone_Port_01%20(1).mp4" type="video/mp4" />
+        </video>
+        <div class="container hero-grid">
+          <div>
+            <span class="eyebrow"
+              ><span class="es">Abastecimiento • Verificación • Inspección</span
+              ><span class="en"
+                >Sourcing • Verification • Inspection</span
+              ></span
+            >
+            <h1>Business Beyond Borders.</h1>
+            <p class="hero-copy">
+              <span class="es"
+                >Carasia Consulting conecta su negocio con cientos de empresas
+                verificadas en toda China, ayudándole a comparar proveedores,
+                verificar sus opciones y elegir con confianza.</span
+              ><span class="en"
+                >Carasia Consulting connects your business to hundreds of
+                verified companies across China, helping you compare suppliers,
+                verify your options, and choose with confidence.</span
+              >
+            </p>
+            <div class="hero-proof">
+              <svg
+                class="hero-proof-icon"
+                viewBox="0 0 24 28"
+                role="img"
+                aria-label="Verified"
+              >
+                <path
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  d="M12 1.5c3.2 2.2 6.6 3.5 10 3.8v7.1c0 6.7-4 11.8-10 14.1-6-2.3-10-7.4-10-14.1V5.3c3.4-.3 6.8-1.6 10-3.8Zm5.4 8.1a1.25 1.25 0 0 0-1.8 0l-5.2 5.3-2.1-2.1a1.27 1.27 0 0 0-1.8 1.8l3 3a1.25 1.25 0 0 0 1.8 0l6.1-6.2a1.25 1.25 0 0 0 0-1.8Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span
+                ><span class="es"
+                  >Cientos de proveedores. Decenas de miles de productos.<br />Un
+                  solo equipo coordinado.</span
+                ><span class="en"
+                  >Hundreds of suppliers. Tens of thousands of products.<br />One
+                  coordinated sourcing team.</span
+                ></span
+              >
+            </div>
+            <div class="actions">
+              <a class="btn btn-primary sourcing-cta" href="#contact"
+                ><span class="es">Cuéntenos qué necesita</span
+                ><span class="en">Tell Us What You Need</span></a
+              ><a class="btn btn-secondary" href="catalog.html"
+                ><span class="es">Explorar productos</span
+                ><span class="en">Explore Products</span></a
+              >
+            </div>
+          </div>
+          <aside class="comm-card">
+            <span class="eyebrow">Complexity, Managed.</span>
+            <h2>
+              <span class="es">Comunicación sin barreras</span
+              ><span class="en">Communication Without Barriers</span>
+            </h2>
+            <p>
+              <span class="es"
+                >Nuestro equipo ayuda a superar las barreras del idioma y la
+                distancia, manteniendo una comunicación clara, ágil y conforme
+                en cada paso del proceso.</span
+              ><span class="en"
+                >Our team helps by bridging language and distance—keeping
+                communication clear, responsive, and compliant every step of the
+                way.</span
+              >
+            </p>
+            <div class="comm-visual" aria-hidden="true"></div>
+            <div class="checks">
+              <div class="check">
+                <span class="es">Apoyo de traducción fluido</span
+                ><span class="en">Seamless translation support</span>
+              </div>
+              <div class="check">
+                <span class="es">Comunicación directa con proveedores</span
+                ><span class="en">Direct supplier communication</span>
+              </div>
+              <div class="check">
+                <span class="es">Decisiones informadas y mayor control</span
+                ><span class="en">Informed choices and greater control</span>
+              </div>
+            </div>
+          </aside>
+
+        </div>
+      </section>
+      <section class="capabilities">
+        <div class="container cap-grid">
+          <div class="cap">
+            <span class="cap-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48">
+                <circle cx="24" cy="13" r="6"></circle>
+                <circle cx="10.5" cy="18" r="4.5"></circle>
+                <circle cx="37.5" cy="18" r="4.5"></circle>
+                <path d="M14 39v-4c0-6 4.5-10 10-10s10 4 10 10v4"></path>
+                <path d="M3 38v-3c0-5 3.2-8 7.5-8 2 0 3.8.7 5.1 2"></path>
+                <path d="M45 38v-3c0-5-3.2-8-7.5-8-2 0-3.8.7-5.1 2"></path>
+              </svg>
+            </span>
+            <div>
+              <strong
+                ><span class="es">Equipo en China</span
+                ><span class="en">Team in China</span></strong
+              ><small
+                ><span class="es">Personal que visita y verifica.</span
+                ><span class="en"
+                  >On-site personnel who visit and verify.</span
+                ></small
+              >
+            </div>
+          </div>
+          <div class="cap">
+            <span class="cap-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48">
+                <circle cx="8" cy="24" r="4"></circle>
+                <circle cx="24" cy="10" r="4"></circle>
+                <circle cx="40" cy="18" r="4"></circle>
+                <circle cx="35" cy="38" r="4"></circle>
+                <path
+                  d="m11.5 21.5 9-8.5M27.8 11.6l8.5 4.8M38.8 22l-2.6 12M31.2 38H18c-5.5 0-10-4.5-10-10"
+                ></path>
+              </svg>
+            </span>
+            <div>
+              <strong
+                ><span class="es">Cientos de proveedores</span
+                ><span class="en">Hundreds of Suppliers</span></strong
+              ><small
+                ><span class="es">Acceso a una amplia red en China.</span
+                ><span class="en"
+                  >Access to a broad network across China.</span
+                ></small
+              >
+            </div>
+          </div>
+          <div class="cap">
+            <span class="cap-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48">
+                <path d="m7 15 17-9 17 9-17 9-17-9Z"></path>
+                <path d="m7 15 17 9 17-9v20l-17 8-17-8V15Z"></path>
+                <path d="M24 24v19M15 20v8l9 4 9-4v-8"></path>
+              </svg>
+            </span>
+            <div>
+              <strong
+                ><span class="es">Decenas de miles de productos</span
+                ><span class="en">Tens of Thousands of Products</span></strong
+              ><small
+                ><span class="es"
+                  >Capacidad de abastecimiento multisectorial.</span
+                ><span class="en"
+                  >Sourcing across numerous industries.</span
+                ></small
+              >
+            </div>
+          </div>
+          <div class="cap">
+            <span class="cap-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48">
+                <path d="M24 7v34M14 41h20M10 13h28"></path>
+                <path d="m12 13-7 13h14l-7-13ZM36 13l-7 13h14l-7-13Z"></path>
+                <path
+                  d="M5 26c1.5 4 12.5 4 14 0M29 26c1.5 4 12.5 4 14 0"
+                ></path>
+              </svg>
+            </span>
+            <div>
+              <strong
+                ><span class="es">Comparación independiente</span
+                ><span class="en">Independent Comparison</span></strong
+              ><small
+                ><span class="es">Múltiples opciones evaluadas.</span
+                ><span class="en">Multiple options evaluated.</span></small
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section process" id="process">
+        <div class="container">
+          <h2 class="section-title">
+            <span class="es">Con usted en cada paso del camino.</span
+            ><span class="en">With you every step of the way.</span>
+          </h2>
+          <p class="section-intro">
+            <span class="es"
+              >Su equipo le ayudará a encontrar, comparar, verificar y preparar
+              su pedido.</span
+            ><span class="en"
+              >Your team will help you in finding, comparing, verifying, and
+              preparing your order.</span
+            >
+          </p>
+          <div class="steps" id="steps"></div>
+        </div>
+      </section>
+      <section class="section proof-section" id="proof">
+        <video
+          class="proof-section-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-hidden="true"
+        >
+          <source
+            src="videos/Ship_Cruzin_Side_web_1080p.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <div class="container proof-grid">
+          <div class="proof-copy">
+            <p class="proof-eyebrow">
+              <span class="es">Abastecimiento confiable</span
+              ><span class="en">Reliable Sourcing</span>
+            </p>
+            <h2 class="section-title">
+              <span class="es">Claridad. Opciones. Control.</span
+              ><span class="en">Clarity. Choice. Control.</span>
+            </h2>
+            <svg
+              class="proof-shield"
+              viewBox="0 0 24 28"
+              role="img"
+              aria-label="Verified"
+            >
+              <path
+                fill="currentColor"
+                fill-rule="evenodd"
+                d="M12 1.5c3.2 2.2 6.6 3.5 10 3.8v7.1c0 6.7-4 11.8-10 14.1-6-2.3-10-7.4-10-14.1V5.3c3.4-.3 6.8-1.6 10-3.8Zm5.4 8.1a1.25 1.25 0 0 0-1.8 0l-5.2 5.3-2.1-2.1a1.27 1.27 0 0 0-1.8 1.8l3 3a1.25 1.25 0 0 0 1.8 0l6.1-6.2a1.25 1.25 0 0 0 0-1.8Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <p class="section-intro">
+              <span class="es"
+                >Nuestro equipo en China garantiza la transparencia del proceso
+                para su tranquilidad.</span
+              ><span class="en"
+                >Our team in China insures transparency of the process for your
+                peace of mind.</span
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="section categories">
+        <div class="container">
+          <h2 class="section-title">
+            <span class="es">Abastecimiento para distintas industrias.</span
+            ><span class="en">Sourcing across industries.</span>
+          </h2>
+          <div class="category-grid" id="categories"></div>
+        </div>
+      </section>
+      <section class="cta-section" id="contact">
+        <div class="container inquiry">
+          <div class="inquiry-copy">
+            <h2>
+              <span class="es">¿Qué producto está buscando?</span
+              ><span class="en">What product are you looking for?</span>
+            </h2>
+            <p>
+              <span class="es"
+                >Cuéntenos y nuestro equipo en China investigará opciones que se
+                ajusten a sus necesidades.</span
+              ><span class="en"
+                >Tell us, and our team in China will research options that fit
+                your needs.</span
+              >
+            </p>
+            <div class="checks">
+              <div class="check">
+                <span class="es">Atención en español e inglés</span
+                ><span class="en">English and Spanish support</span>
+              </div>
+              <div class="check">
+                <span class="es">Comunicación ágil</span
+                ><span class="en">Responsive communication</span>
+              </div>
+              <div class="check">
+                <span class="es">Información para decidir mejor</span
+                ><span class="en">Information for better decisions</span>
+              </div>
+            </div>
+          </div>
+          <form
+            class="form"
+            action="https://formsubmit.co/carasiaconsulting@gmail.com"
+            method="POST"
+          >
+            <input
+              type="hidden"
+              name="_subject"
+              value="New Carasia sourcing request"
+            />
+            <div class="fields">
+              <label class="field"
+                ><span
+                  ><span class="es">Nombre</span
+                  ><span class="en">Name</span></span
+                ><input required name="name" /></label
+              ><label class="field"
+                ><span
+                  ><span class="es">Empresa</span
+                  ><span class="en">Company</span></span
+                ><input name="company" /></label
+              ><label class="field"
+                ><span
+                  ><span class="es">Correo o WhatsApp</span
+                  ><span class="en">Email or WhatsApp</span></span
+                ><input required name="contact" /></label
+              ><label class="field"
+                ><span
+                  ><span class="es">Producto</span
+                  ><span class="en">Product</span></span
+                ><input required name="product" /></label
+              ><label class="field"
+                ><span
+                  ><span class="es">Cantidad estimada</span
+                  ><span class="en">Estimated Quantity</span></span
+                ><input name="quantity" /></label
+              ><label class="field"
+                ><span
+                  ><span class="es">Destino</span
+                  ><span class="en">Destination</span></span
+                ><input name="destination" /></label
+              ><label class="field full"
+                ><span
+                  ><span class="es">Detalles</span
+                  ><span class="en">Details</span></span
+                ><textarea name="details"></textarea>
+              </label>
+            </div>
+            <button class="btn submit" type="submit">
+              <span class="es">Enviar solicitud de abastecimiento</span
+              ><span class="en">Submit Sourcing Request</span>
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="brand">
+              <img src="carasia-logo.png" alt="Carasia Consulting" />
+            </div>
+            <p>
+              <span class="es"
+                >Conectamos empresas con aliados confiables en China para
+                decisiones informadas y compras más seguras.</span
+              ><span class="en"
+                >Connecting businesses with reliable partners in China for
+                informed decisions and safer sourcing.</span
+              >
+            </p>
+            <div class="socials">
+              <a
+                href="https://instagram.com/carasiaconsulting"
+                aria-label="Instagram"
+                >◎</a
+              ><a
+                href="https://www.facebook.com/people/Carasia-Consulting/61593212367594/"
+                aria-label="Facebook"
+                >f</a
+              ><a href="mailto:carasiaconsulting@gmail.com" aria-label="Email"
+                >✉</a
+              >
+            </div>
+          </div>
+          <div>
+            <h3>
+              <span class="es">Navegación</span
+              ><span class="en">Navigation</span>
+            </h3>
+            <a href="catalog.html"
+              ><span class="es">Productos</span
+              ><span class="en">Products</span></a
+            ><a href="#process"
+              ><span class="es">Cómo funciona</span
+              ><span class="en">How It Works</span></a
+            ><a href="#proof"
+              ><span class="es">Nosotros</span
+              ><span class="en">About Us</span></a
+            >
+          </div>
+          <div>
+            <h3>
+              <span class="es">Servicios</span><span class="en">Services</span>
+            </h3>
+            <a href="#process"
+              ><span class="es">Búsqueda de productos</span
+              ><span class="en">Product Sourcing</span></a
+            ><a href="#process"
+              ><span class="es">Verificación de proveedores</span
+              ><span class="en">Supplier Verification</span></a
+            ><a href="#proof"
+              ><span class="es">Inspección de fábrica</span
+              ><span class="en">Factory Inspection</span></a
+            >
+          </div>
+          <div>
+            <h3>
+              <span class="es">Contacto</span><span class="en">Contact</span>
+            </h3>
+            <a href="mailto:carasiaconsulting@gmail.com"
+              >carasiaconsulting@gmail.com</a
+            >
+            <p>
+              <span class="es">Atención remota y presencial</span
+              ><span class="en">Remote and on-site consulting</span>
+            </p>
+          </div>
+        </div>
+        <div class="copyright">
+          © Carasia Consulting.
+          <span class="es">Todos los derechos reservados.</span
+          ><span class="en">All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+    <script>
+      const steps = [
+        [
+          `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 4.5 4.5"></path></svg>`,
+          "Búsqueda de productos",
+          "Product Sourcing",
+          "Identifique sus necesidades de producto, especificaciones, cantidad, destino y plazo.",
+          "Identify you needs for product, specifications, quantity, destination, and timeline.",
+        ],
+        [
+          `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v17M7 20h10M5 6h14"></path><path d="m5 6-3 6h6L5 6Zm14 0-3 6h6l-3-6Z"></path><path d="M2 12c0 2 6 2 6 0M16 12c0 2 6 2 6 0"></path></svg>`,
+          "Comparación de proveedores",
+          "Supplier Comparison",
+          "Investigamos múltiples proveedores confiables para que usted seleccione y apoyamos la comunicación y negociación una vez seleccionado.",
+          "We research multiple, reputable suppliers for you to select from, and support communication and negotiation once selected.",
+        ],
+        [
+          `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.6 2.8 8.1 7 10 4.2-1.9 7-5.4 7-10V6l-7-3Z"></path><path d="m8.5 12 2.2 2.2 4.8-5"></path></svg>`,
+          "Verificar fuentes",
+          "Verify Sources",
+          "Verificamos el registro de la empresa, la licencia comercial y la información operativa para garantizar operaciones fluidas y seguras.",
+          "Verify company registration, business-license, and operating information to ensure seamless and safe operations.",
+        ],
+        [
+          `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V10l5 3V9l5 3V5h4l1 7 3 2v7H3Z"></path><path d="M7 17h1M12 17h1M17 17h1"></path></svg>`,
+          "Inspección de fábrica y producto",
+          "Factory & Product Inspection",
+          "Nuestro equipo en China documenta el inventario y el empaque antes de que salga su envío.",
+          "Our team in China documents inventory and packaging before your shipment departs.",
+        ],
+        [
+          `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18h16l-2 3H6l-2-3Z"></path><path d="M6 18 8 9h8l2 9M9 9V5h6v4M12 5V2"></path><path d="M8 13h8"></path></svg>`,
+          "Coordinación de exportación",
+          "Export Coordination",
+          "Apoyamos el seguimiento de producción y la preparación para la exportación.",
+          "We support production follow-up and preparation for export.",
+        ],
+      ];
+      document.querySelector("#steps").innerHTML = steps
+        .map(
+          (s, i) =>
+            `<article class="step"><div class="step-number">0${i + 1}</div><div class="step-icon">${s[0]}</div><h3><span class="es">${s[1]}</span><span class="en">${s[2]}</span></h3><p><span class="es">${s[3]}</span><span class="en">${s[4]}</span></p></article>`,
+        )
+        .join("");
+      const cats = [
+        [
+          "Herramientas de construcción",
+          "Construction Tools",
+          "https://images.unsplash.com/photo-1581166397057-235af2b3c6dd?auto=format&fit=crop&w=800&q=80",
+        ],
+        [
+          "Accesorios para vehículos",
+          "Vehicle Accessories",
+          "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=80",
+        ],
+        [
+          "Iluminación y electricidad",
+          "Lighting and Electrical",
+          "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=800&q=80",
+        ],
+        [
+          "Energía solar",
+          "Solar Energy",
+          "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=800&q=80",
+        ],
+        [
+          "Suministros comerciales",
+          "Commercial Supplies",
+          "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
+        ],
+        [
+          "Solicitudes personalizadas",
+          "Custom Sourcing Requests",
+          "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=800&q=80",
+        ],
+      ];
+      document.querySelector("#categories").innerHTML = cats
+        .map(
+          (c) =>
+            `<a class="category" href="catalog.html" style="--image:url('${c[2]}')"><span><i class="es" style="font-style:normal">${c[0]}</i><i class="en" style="font-style:normal">${c[1]}</i></span></a>`,
+        )
+        .join("");
+      const root = document.documentElement;
+      const setLang = (l) => {
+        root.dataset.lang = l;
+        root.lang = l;
+        localStorage.setItem("carasia-lang", l);
+        document
+          .querySelectorAll("[data-lang]")
+          .forEach((b) => b.classList.toggle("active", b.dataset.lang === l));
+      };
+      setLang(localStorage.getItem("carasia-lang") || "es");
+      document
+        .querySelectorAll("[data-lang]")
+        .forEach((b) =>
+          b.addEventListener("click", () => setLang(b.dataset.lang)),
+        );
+      document.querySelector(".menu-button").addEventListener("click", (e) => {
+        document.querySelector("#nav").classList.toggle("open");
+        e.currentTarget.setAttribute(
+          "aria-expanded",
+          document.querySelector("#nav").classList.contains("open"),
+        );
+      });
+      document.querySelectorAll(".sourcing-cta").forEach((button) => {
+        button.addEventListener("click", (event) => {
+          event.preventDefault();
+          document.querySelector("#contact").scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+          window.setTimeout(() => {
+            document.querySelector('input[name="product"]').focus({
+              preventScroll: true,
+            });
+          }, 650);
+        });
+      });
+    </script>
+  </body>
+</html>
