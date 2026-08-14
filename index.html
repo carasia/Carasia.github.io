@@ -226,8 +226,8 @@
         position: relative;
         z-index: 1;
         display: grid;
-        grid-template-columns: 1fr;
-        gap: 70px;
+        grid-template-columns: minmax(0, 1fr) minmax(430px, 0.9fr);
+        gap: clamp(38px, 5vw, 70px);
         align-items: center;
         padding: 78px 0 95px;
       }
