@@ -226,7 +226,7 @@
         position: relative;
         z-index: 1;
         display: grid;
-        grid-template-columns: 1.25fr 0.8fr;
+        grid-template-columns: 1fr;
         gap: 70px;
         align-items: center;
         padding: 78px 0 95px;
@@ -548,6 +548,10 @@
           url("https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=1300&q=85")
             center/cover;
       }
+      .proof-section .comm-card {
+        grid-column: 3;
+        align-self: center;
+      }
       .proof-section .proof-list {
         grid-column: 3;
         align-self: center;
@@ -825,6 +829,7 @@
         .proof-copy {
           grid-column: 1;
         }
+        .proof-section .comm-card,
         .proof-section .proof-list {
           grid-column: 2;
         }
@@ -901,8 +906,12 @@
           gap: 26px;
         }
         .proof-copy,
+        .proof-section .comm-card,
         .proof-section .proof-list {
           grid-column: 1;
+        }
+        .proof-section .comm-card {
+          padding: 22px;
         }
         .proof-copy {
           padding: 28px 24px;
@@ -1203,39 +1212,7 @@
               >
             </div>
           </div>
-          <aside class="comm-card">
-            <span class="eyebrow">Complexity, Managed.</span>
-            <h2>
-              <span class="es">Comunicación sin barreras</span
-              ><span class="en">Communication Without Barriers</span>
-            </h2>
-            <p>
-              <span class="es"
-                >Nuestro equipo ayuda a superar las barreras del idioma y la
-                distancia, manteniendo una comunicación clara, ágil y conforme
-                en cada paso del proceso.</span
-              ><span class="en"
-                >Our team helps by bridging language and distance—keeping
-                communication clear, responsive, and compliant every step of the
-                way.</span
-              >
-            </p>
-            <div class="comm-visual" aria-hidden="true"></div>
-            <div class="checks">
-              <div class="check">
-                <span class="es">Apoyo de traducción fluido</span
-                ><span class="en">Seamless translation support</span>
-              </div>
-              <div class="check">
-                <span class="es">Comunicación directa con proveedores</span
-                ><span class="en">Direct supplier communication</span>
-              </div>
-              <div class="check">
-                <span class="es">Decisiones informadas y mayor control</span
-                ><span class="en">Informed choices and greater control</span>
-              </div>
-            </div>
-          </aside>
+
         </div>
       </section>
       <section class="capabilities">
@@ -1396,44 +1373,39 @@
               >
             </p>
           </div>
-          <div class="proof-list">
-            <div class="check">
+          <aside class="comm-card">
+            <span class="eyebrow">Complexity, Managed.</span>
+            <h2>
+              <span class="es">Comunicación sin barreras</span
+              ><span class="en">Communication Without Barriers</span>
+            </h2>
+            <p>
               <span class="es"
-                ><strong>Exterior y letreros</strong><br />Verificamos la
-                ubicación y las instalaciones exteriores.</span
+                >Nuestro equipo ayuda a superar las barreras del idioma y la
+                distancia, manteniendo una comunicación clara, ágil y conforme
+                en cada paso del proceso.</span
               ><span class="en"
-                ><strong>Exterior and signage</strong><br />We verify the
-                location and external facilities.</span
+                >Our team helps by bridging language and distance—keeping
+                communication clear, responsive, and compliant every step of the
+                way.</span
               >
+            </p>
+            <div class="comm-visual" aria-hidden="true"></div>
+            <div class="checks">
+              <div class="check">
+                <span class="es">Apoyo de traducción fluido</span
+                ><span class="en">Seamless translation support</span>
+              </div>
+              <div class="check">
+                <span class="es">Comunicación directa con proveedores</span
+                ><span class="en">Direct supplier communication</span>
+              </div>
+              <div class="check">
+                <span class="es">Decisiones informadas y mayor control</span
+                ><span class="en">Informed choices and greater control</span>
+              </div>
             </div>
-            <div class="check">
-              <span class="es"
-                ><strong>Área de producción</strong><br />Evaluamos equipos,
-                procesos y organización.</span
-              ><span class="en"
-                ><strong>Production area</strong><br />We assess equipment,
-                processes, and organization.</span
-              >
-            </div>
-            <div class="check">
-              <span class="es"
-                ><strong>Muestras de producto</strong><br />Revisamos la calidad
-                y los acabados visibles.</span
-              ><span class="en"
-                ><strong>Product samples</strong><br />We review visible quality
-                and finishes.</span
-              >
-            </div>
-            <div class="check">
-              <span class="es"
-                ><strong>Empaque y etiquetado</strong><br />Documentamos el
-                empaque, las etiquetas y las marcas.</span
-              ><span class="en"
-                ><strong>Packaging and labeling</strong><br />We document
-                packaging, labels, and markings.</span
-              >
-            </div>
-          </div>
+          </aside>
         </div>
       </section>
       <section class="section categories">
