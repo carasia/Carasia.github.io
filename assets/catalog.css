@@ -533,6 +533,10 @@ img {
   font-weight: 800;
 }
 
+.sku-nowrap {
+  white-space: nowrap;
+}
+
 .product-intro {
   margin: 22px 0 30px;
   color: var(--muted);

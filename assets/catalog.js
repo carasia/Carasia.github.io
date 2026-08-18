@@ -33,6 +33,10 @@ const categoryNames = {
     es: "Energía solar y almacenamiento",
     en: "Solar & Energy"
   },
+  "Metals & Alloys": {
+    es: "Metales y aleaciones",
+    en: "Metals & Alloys"
+  },
 };
 
 const subcategoryNames = {
@@ -43,6 +47,14 @@ const subcategoryNames = {
   "Warning Lights": {
     es: "Luces de advertencia",
     en: "Warning Lights"
+  },
+  "LED Headlights": {
+    es: "Faros LED",
+    en: "LED Headlights"
+  },
+  "Titanium & Titanium Alloys": {
+    es: "Titanio y aleaciones de titanio",
+    en: "Titanium & Titanium Alloys"
   },
   "Energy Storage & Inverters": {
     es: "Almacenamiento e inversores",
@@ -170,7 +182,7 @@ function productCard(product) {
       <div class="product-card-body">
         <div class="product-meta">
           <span>${esc(subcategoryLabel(product.subcategory))}</span>
-          <span>${esc(product.sku)}${product.model && product.category !== "LED Lights" ? ` · ${esc(product.model)}` : ""}</span>
+              <span><span class="sku-nowrap">${esc(product.sku)}</span>${product.model && product.category !== "LED Lights" ? ` · ${esc(product.model)}` : ""}</span>
         </div>
 
         <h3>${esc(productTitle(product))}</h3>
@@ -406,7 +418,7 @@ function renderProduct() {
         <h1>${esc(productTitle(product))}</h1>
 
         <div class="product-model">
-          ${esc(product.sku)}
+          <span class="sku-nowrap">${esc(product.sku)}</span>
           ${product.model && product.category !== "LED Lights"
             ? ` · ${esc(product.model)}`
             : ""}
