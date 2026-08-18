@@ -57,7 +57,7 @@ img {
 }
 
 .catalog-nav {
-  min-height: 96px;
+  min-height: 82px;
   display: flex;
   align-items: center;
   gap: 28px;
@@ -65,9 +65,8 @@ img {
 
 .catalog-logo img {
   display: block;
-  width: 230px;
-  height: auto;
-  max-height: none;
+  width: 168px;
+  max-height: 62px;
   object-fit: contain;
 }
 
@@ -244,7 +243,7 @@ img {
 .catalog-hero h1 {
   max-width: 840px;
   margin: 10px 0 8px;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: clamp(2.7rem, 6vw, 4.9rem);
   line-height: 1.02;
   letter-spacing: -.035em;
@@ -531,10 +530,6 @@ img {
   color: var(--teal);
   font-size: 1.05rem;
   font-weight: 800;
-}
-
-.sku-nowrap {
-  white-space: nowrap;
 }
 
 .product-intro {
