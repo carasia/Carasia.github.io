@@ -182,7 +182,7 @@ function productCard(product) {
       <div class="product-card-body">
         <div class="product-meta">
           <span>${esc(subcategoryLabel(product.subcategory))}</span>
-              <span><span class="sku-nowrap">${esc(product.sku)}</span>${product.model && product.category !== "LED Lights" ? ` · ${esc(product.model)}` : ""}</span>
+          <span>${esc(product.sku)}${product.model && product.category !== "LED Lights" ? ` · ${esc(product.model)}` : ""}</span>
         </div>
 
         <h3>${esc(productTitle(product))}</h3>
@@ -418,7 +418,7 @@ function renderProduct() {
         <h1>${esc(productTitle(product))}</h1>
 
         <div class="product-model">
-          <span class="sku-nowrap">${esc(product.sku)}</span>
+          ${esc(product.sku)}
           ${product.model && product.category !== "LED Lights"
             ? ` · ${esc(product.model)}`
             : ""}
@@ -480,7 +480,7 @@ function renderProduct() {
 
 async function initialize() {
   const response =
-    await fetch("data/products.json");
+    await fetch("data/products.json?v=20260818-4");
 
   if (!response.ok) {
     throw new Error(
