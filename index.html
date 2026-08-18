@@ -986,9 +986,14 @@
       }
       .hero-video-bg {
         z-index: 0;
+        pointer-events: none;
       }
       .hero {
         isolation: isolate;
+      }
+      .hero:before,
+      .hero:after {
+        pointer-events: none;
       }
       .hero:before {
         content: "";
