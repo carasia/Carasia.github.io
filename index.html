@@ -1339,6 +1339,10 @@
       box-shadow: none;
     }
     #proof-orbit .journey { margin: 0; }
+    #proof-orbit .orbit-panel { position: relative; }
+    #proof-orbit .approved-globe-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; opacity: 0; pointer-events: none; -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, #000 70%, transparent 100%); mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, #000 70%, transparent 100%); }
+    #proof-orbit.video-ready .approved-globe-video { opacity: 1; }
+    #proof-orbit.video-ready .journey { visibility: hidden; }
     @media (max-width: 900px) {
       .proof-orbit-section .proof-grid {
         grid-template-columns: minmax(220px, .72fr) minmax(390px, 1.28fr);
@@ -1654,9 +1658,10 @@
               <span class="en">Our team gives you the confidence to choose, and ability to grow.</span>
             </p>
           </div>
-          <div id="proof-orbit" aria-label="Animated sourcing route from China to the Dominican Republic">
+          <div id="proof-orbit" aria-label="Animated sourcing routes from China to destinations around the world">
             <div class="orbit-panel">
-<svg class="journey" viewBox="0 20 620 420" role="img" aria-label="Accurate rotating Earth with China and Dominican Republic markers attached to the globe and a looping shipping route">
+<video class="approved-globe-video" muted loop playsinline preload="metadata" aria-hidden="true"><source src="videos/carasia-multiroute.mp4" type="video/mp4"></video>
+<svg class="journey" viewBox="0 20 620 420" role="img" aria-label="Rotating globe with sourcing routes from China to destinations around the world">
         <path class="support-orbit" d="M45 235 A265 165 0 0 1 575 235"/>
         <g id="carasia-earth-map"></g>
         <g id="carasia-route-layer"></g>
@@ -2269,6 +2274,16 @@
       root.querySelector("#carasia-earth-map").innerHTML = '<circle class="earth-sphere" cx="310" cy="250" r="184"></circle>';
     });
   </script>
+<script>
+      (() => {
+        const panel = document.getElementById("proof-orbit");
+        const video = panel && panel.querySelector(".approved-globe-video");
+        if (!video || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        video.addEventListener("playing", () => panel.classList.add("video-ready"));
+        video.addEventListener("error", () => panel.classList.remove("video-ready"));
+        video.play().catch(() => panel.classList.remove("video-ready"));
+      })();
+    </script>
     <!-- Umami Analytics -->
     <script defer src="https://cloud.umami.is/script.js" data-website-id="3384dc72-88e3-48fb-9ead-e1167666ece8"></script>
     <!-- End Umami Analytics -->
