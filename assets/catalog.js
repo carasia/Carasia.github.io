@@ -717,8 +717,8 @@ let slideshowTimer = null;
 // Products shown in the cut-out carousel. Each has a transparent-background
 // image in images/showcase/<SKU>.webp (made from the product photo).
 const CAROUSEL_SKUS = [
-  "CAR-0108", "CAR-0264", "CAR-0131", "CAR-0261", "CAR-0123", "CAR-0173",
-  "CAR-0273", "CAR-0134", "CAR-0018", "CAR-0126", "CAR-0135", "CAR-0129",
+  "CAR-0110", "CAR-0264", "CAR-0114", "CAR-0258", "CAR-0123", "CAR-0170",
+  "CAR-0273", "CAR-0133", "CAR-0018", "CAR-0124", "CAR-0135", "CAR-0129",
 ];
 const CAROUSEL_PAUSE_MS = 2600;
 
@@ -737,7 +737,7 @@ function renderCarousel(root) {
           ${items.map((item, index) => `
             <a class="reel-item" href="product.html?id=${encodeURIComponent(item.sku)}"
                data-index="${index}" aria-label="${esc(productTitle(item))}">
-              <img src="images/showcase/${esc(item.sku)}.webp?v=2" alt="" draggable="false">
+              <img src="images/showcase/${esc(item.sku)}.webp?v=3" alt="" draggable="false">
             </a>
           `).join("")}
         </div>
