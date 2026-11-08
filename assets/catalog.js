@@ -706,13 +706,131 @@ function renderProduct() {
 // Three designs are available while we decide: "card", "globe", "slideshow".
 // The switcher below only appears on a local preview, never on the live site.
 
-const BANNER_VARIANTS = ["card", "globe", "slideshow"];
+const BANNER_VARIANTS = ["carousel", "card", "globe", "slideshow"];
 const isLocalPreview = ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
 let bannerVariant = (() => {
   const fromUrl = new URLSearchParams(location.search).get("banner");
-  return BANNER_VARIANTS.includes(fromUrl) ? fromUrl : "card";
+  return BANNER_VARIANTS.includes(fromUrl) ? fromUrl : "carousel";
 })();
 let slideshowTimer = null;
+
+// Products shown in the cut-out carousel. Each has a transparent-background
+// image in images/showcase/<SKU>.webp (made from the product photo).
+const CAROUSEL_SKUS = [
+  "CAR-0108", "CAR-0264", "CAR-0131", "CAR-0250", "CAR-0123", "CAR-0173",
+  "CAR-0273", "CAR-0134", "CAR-0018", "CAR-0126", "CAR-0135", "CAR-0129",
+];
+const CAROUSEL_PAUSE_MS = 2600;
+
+function renderCarousel(root) {
+  const items = CAROUSEL_SKUS
+    .map(sku => state.products.find(item => item.sku === sku))
+    .filter(Boolean);
+  if (!items.length) return;
+
+  root.innerHTML = `
+    <div class="reel" role="region" aria-roledescription="carousel"
+         aria-label="${text("Productos destacados", "Featured products")}">
+      <div class="reel-stage">
+        <span class="reel-glow" aria-hidden="true"></span>
+        <div class="reel-window">
+          ${items.map((item, index) => `
+            <a class="reel-item" href="product.html?id=${encodeURIComponent(item.sku)}"
+               data-index="${index}" aria-label="${esc(productTitle(item))}">
+              <img src="images/showcase/${esc(item.sku)}.webp" alt="" draggable="false">
+            </a>
+          `).join("")}
+        </div>
+        <button class="reel-arrow prev" type="button" aria-label="${text("Anterior", "Previous")}">‹</button>
+        <button class="reel-arrow next" type="button" aria-label="${text("Siguiente", "Next")}">›</button>
+      </div>
+      <a class="reel-caption" href="#" aria-live="polite">
+        <small></small>
+        <span></span>
+      </a>
+      <div class="reel-ticks" aria-hidden="true">
+        ${items.map(() => "<i></i>").join("")}
+      </div>
+      <a class="reel-request" href="index.html#contact" data-umami-event="catalog-request-product">
+        ${text("¿No lo encuentra? Solicite cualquier producto", "Can't find it? Request any product")} →
+      </a>
+    </div>
+  `;
+
+  const reel = root.querySelector(".reel");
+  const nodes = [...root.querySelectorAll(".reel-item")];
+  const ticks = [...root.querySelectorAll(".reel-ticks i")];
+  const caption = root.querySelector(".reel-caption");
+  const count = nodes.length;
+  let current = 0;
+  let previousOffsets = nodes.map(() => 0);
+
+  const layout = () => {
+    nodes.forEach((node, index) => {
+      // Shortest distance around the loop: -1 = left, 0 = centre, +1 = right
+      let offset = index - current;
+      if (offset > count / 2) offset -= count;
+      if (offset < -count / 2) offset += count;
+      const distance = Math.abs(offset);
+
+      // Items wrapping from one end to the other jump without animating.
+      const wrapped = Math.abs(offset - previousOffsets[index]) > 1;
+      node.classList.toggle("no-anim", wrapped);
+      previousOffsets[index] = offset;
+
+      const scale = distance === 0 ? 1 : distance === 1 ? 0.56 : 0.4;
+      node.style.transform = `translate(-50%, -50%) translateX(${offset * 62}%) scale(${scale})`;
+      node.style.opacity = distance === 0 ? "1" : distance === 1 ? "0.5" : "0";
+      node.style.zIndex = String(10 - distance);
+      node.classList.toggle("is-center", distance === 0);
+      node.tabIndex = distance === 0 ? 0 : -1;
+      node.setAttribute("aria-hidden", distance === 0 ? "false" : "true");
+    });
+    ticks.forEach((tick, index) => tick.classList.toggle("on", index === current));
+
+    const item = items[current];
+    caption.href = `product.html?id=${encodeURIComponent(item.sku)}`;
+    caption.querySelector("small").textContent = categoryLabel(item.category);
+    caption.querySelector("span").textContent = productTitle(item);
+  };
+
+  const go = step => {
+    current = (current + step + count) % count;
+    layout();
+  };
+
+  root.querySelector(".reel-arrow.prev").addEventListener("click", () => { go(-1); restart(); });
+  root.querySelector(".reel-arrow.next").addEventListener("click", () => { go(1); restart(); });
+  // Clicking a side item brings it to the centre instead of leaving the page.
+  nodes.forEach(node => node.addEventListener("click", event => {
+    const index = Number(node.dataset.index);
+    if (index !== current) {
+      event.preventDefault();
+      current = index;
+      layout();
+      restart();
+    }
+  }));
+
+  // Pause while the visitor is looking at or using the carousel.
+  let paused = false;
+  reel.addEventListener("mouseenter", () => { paused = true; });
+  reel.addEventListener("mouseleave", () => { paused = false; });
+  reel.addEventListener("focusin", () => { paused = true; });
+  reel.addEventListener("focusout", () => { paused = false; });
+
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function restart() {
+    clearInterval(slideshowTimer);
+    if (reduced) return;
+    slideshowTimer = setInterval(() => {
+      if (!paused && !document.hidden) go(1);
+    }, CAROUSEL_PAUSE_MS);
+  }
+
+  layout();
+  restart();
+}
 
 // One product from each category, so the banner shows the range.
 function showcaseProducts(count) {
@@ -749,7 +867,9 @@ function renderShowcase() {
   root.className = `hero-showcase variant-${bannerVariant}`;
   root.setAttribute("aria-label", text("Productos destacados", "Featured products"));
 
-  if (bannerVariant === "globe") {
+  if (bannerVariant === "carousel") {
+    renderCarousel(root);
+  } else if (bannerVariant === "globe") {
     root.innerHTML = `
       <video class="showcase-globe" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
         <source src="videos/carasia-multiroute.mp4" type="video/mp4">
@@ -825,7 +945,7 @@ function renderBannerSwitcher() {
       renderShowcase();
     });
   }
-  const names = { card: "Product card", globe: "Animated globe", slideshow: "Slideshow" };
+  const names = { carousel: "Cut-out carousel", card: "Product card", globe: "Animated globe", slideshow: "Slideshow" };
   panel.innerHTML = `
     <strong>Preview only · Banner:</strong>
     ${BANNER_VARIANTS.map(variant => `
