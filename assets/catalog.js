@@ -779,7 +779,7 @@ function renderCarousel(root) {
       previousOffsets[index] = offset;
 
       const scale = distance === 0 ? 1 : distance === 1 ? 0.56 : 0.4;
-      node.style.transform = `translate(-50%, -50%) translateX(${offset * 62}%) scale(${scale})`;
+      node.style.transform = `translate(-50%, -50%) translateX(${offset * 70}%) scale(${scale})`;
       node.style.opacity = distance === 0 ? "1" : distance === 1 ? "0.5" : "0";
       node.style.zIndex = String(10 - distance);
       node.classList.toggle("is-center", distance === 0);
