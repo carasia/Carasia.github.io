@@ -108,6 +108,10 @@ const subcategoryNames = {
 function localizeStatic() {
   document.documentElement.lang = state.lang;
 
+  document.querySelectorAll(".current-year").forEach(element => {
+    element.textContent = new Date().getFullYear();
+  });
+
   document.querySelectorAll("[data-es][data-en]").forEach(element => {
     element.textContent = element.dataset[state.lang];
   });
@@ -130,6 +134,10 @@ function localizeStatic() {
 
   if (document.body.dataset.page === "catalog") {
     document.title = text("Productos | Carasia Consulting", "Products | Carasia Consulting");
+  }
+
+  if (document.body.dataset.page === "privacy") {
+    document.title = text("Privacidad | Carasia Consulting", "Privacy | Carasia Consulting");
   }
 
   document
@@ -521,6 +529,9 @@ async function initialize() {
   // Switch the page text to the saved language straight away,
   // instead of waiting for the product data to download.
   localizeStatic();
+
+  // The privacy page only needs the language switch, not the product data.
+  if (document.body.dataset.page === "privacy") return;
 
   const response =
     await fetch("data/products.json?v=20260818-4");

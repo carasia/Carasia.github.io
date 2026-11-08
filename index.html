@@ -8,6 +8,20 @@
       content="Carasia Consulting connects businesses with verified suppliers in China, with sourcing, supplier verification, and inspection support."
     />
     <title>Carasia Consulting | Business Beyond Borders</title>
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="theme-color" content="#05275b" />
+    <!-- Preview shown when the link is shared (WhatsApp, Facebook, LinkedIn, etc.) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Carasia Consulting" />
+    <meta property="og:title" content="Carasia Consulting | Business Beyond Borders" />
+    <meta property="og:description" content="Sourcing, supplier verification, and inspection in China. One coordinated team, in English and Spanish." />
+    <meta property="og:url" content="https://carasiaconsulting.com/" />
+    <meta property="og:image" content="https://carasiaconsulting.com/assets/social-preview.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
     <style>
       :root {
         --navy: #05275b;
@@ -802,6 +816,22 @@
         border-top: 1px solid rgba(255, 255, 255, 0.15);
         font-size: 0.85rem;
         color: #9fb0bd;
+      }
+      .footer .copyright .privacy-link {
+        display: inline;
+        margin: 0;
+        color: #9fb0bd;
+        text-decoration: underline;
+      }
+      .form-privacy {
+        margin: 12px 0 0;
+        font-size: 0.78rem;
+        color: var(--muted);
+        text-align: center;
+      }
+      .form-privacy a {
+        color: var(--teal);
+        text-decoration: underline;
       }
       .en,
       .es {
@@ -1824,6 +1854,15 @@
               <span class="es">Enviar solicitud de abastecimiento</span
               ><span class="en">Submit Sourcing Request</span>
             </button>
+            <p class="form-privacy">
+              <span class="es"
+                >Solo usamos estos datos para responder a su solicitud.
+                <a href="privacy.html">Aviso de privacidad</a></span
+              ><span class="en"
+                >We only use these details to reply to your request.
+                <a href="privacy.html">Privacy notice</a></span
+              >
+            </p>
           </form>
         </div>
       </section>
@@ -1906,9 +1945,14 @@
           </div>
         </div>
         <div class="copyright">
-          © Carasia Consulting.
+          © <span class="current-year">2026</span> Carasia Consulting.
           <span class="es">Todos los derechos reservados.</span
           ><span class="en">All rights reserved.</span>
+          ·
+          <a class="privacy-link" href="privacy.html"
+            ><span class="es">Privacidad</span
+            ><span class="en">Privacy</span></a
+          >
         </div>
       </div>
     </footer>
@@ -2027,6 +2071,9 @@
         .forEach((b) =>
           b.addEventListener("click", () => setLang(b.dataset.lang)),
         );
+      document.querySelectorAll(".current-year").forEach((el) => {
+        el.textContent = new Date().getFullYear();
+      });
       const nav = document.querySelector("#nav");
       const menuButton = document.querySelector(".menu-button");
       const setMenuOpen = (open) => {
