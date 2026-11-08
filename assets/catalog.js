@@ -752,7 +752,7 @@ function renderCarousel(root) {
           ${items.map((item, index) => `
             <a class="reel-item" href="product.html?id=${encodeURIComponent(item.sku)}"
                data-index="${index}" aria-label="${esc(productTitle(item))}">
-              <img src="images/showcase/${esc(item.sku)}.webp?v=3" alt="" draggable="false">
+              <img src="images/showcase/${esc(item.sku)}.webp?v=4" alt="" draggable="false">
             </a>
           `).join("")}
         </div>
