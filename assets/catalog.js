@@ -724,17 +724,10 @@ function renderProduct() {
   }
 }
 
-// ---------- PRODUCTS PAGE BANNER (right-hand side) ----------
-// Three designs are available while we decide: "card", "globe", "slideshow".
-// The switcher below only appears on a local preview, never on the live site.
+// ---------- PRODUCTS PAGE BANNER: cut-out product carousel ----------
 
-const BANNER_VARIANTS = ["carousel", "card", "globe", "slideshow"];
-const isLocalPreview = ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
-let bannerVariant = (() => {
-  const fromUrl = new URLSearchParams(location.search).get("banner");
-  return BANNER_VARIANTS.includes(fromUrl) ? fromUrl : "carousel";
-})();
-let slideshowTimer = null;
+let carouselTimer = null;
+let carouselIndex = 0; // remembered so a language switch keeps the same product showing
 
 // Products shown in the cut-out carousel. Each has a transparent-background
 // image in images/showcase/<SKU>.webp (made from the product photo).
@@ -781,10 +774,11 @@ function renderCarousel(root) {
   const ticks = [...root.querySelectorAll(".reel-ticks i")];
   const caption = root.querySelector(".reel-caption");
   const count = nodes.length;
-  let current = 0;
+  let current = carouselIndex % count;
   let previousOffsets = nodes.map(() => 0);
 
   const layout = () => {
+    carouselIndex = current;
     nodes.forEach((node, index) => {
       // Shortest distance around the loop: -1 = left, 0 = centre, +1 = right
       let offset = index - current;
@@ -840,9 +834,9 @@ function renderCarousel(root) {
 
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   function restart() {
-    clearInterval(slideshowTimer);
+    clearInterval(carouselTimer);
     if (reduced) return;
-    slideshowTimer = setInterval(() => {
+    carouselTimer = setInterval(() => {
       if (!paused && !document.hidden) go(1);
     }, CAROUSEL_PAUSE_MS);
   }
@@ -851,126 +845,13 @@ function renderCarousel(root) {
   restart();
 }
 
-// One product from each category, so the banner shows the range.
-function showcaseProducts(count) {
-  const order = ["Construction Tools", "LED Lights", "Solar & Energy", "Vehicle Accessories", "Metals & Alloys"];
-  const byCategory = order.map(category => state.products.filter(item => item.category === category));
-  const picked = [];
-  for (let round = 0; picked.length < count && round < 40; round++) {
-    byCategory.forEach(list => {
-      // Spread picks through each category instead of taking neighbours.
-      const item = list[Math.floor((round * list.length) / 8)];
-      if (item && picked.length < count && !picked.includes(item)) picked.push(item);
-    });
-  }
-  return picked;
-}
-
-function requestBlock() {
-  return `
-    <p class="showcase-lead">${text(
-      "¿No encuentra lo que necesita? Abastecemos decenas de miles de productos.",
-      "Can't find what you need? We source tens of thousands of products."
-    )}</p>
-    <a class="showcase-button" href="index.html#contact" data-umami-event="catalog-request-product">
-      ${text("Solicitar un producto", "Request a product")} →
-    </a>
-  `;
-}
-
 function renderShowcase() {
   const root = document.getElementById("hero-showcase");
   if (!root || !state.products.length) return;
 
-  clearInterval(slideshowTimer);
-  root.className = `hero-showcase variant-${bannerVariant}`;
-  root.setAttribute("aria-label", text("Productos destacados", "Featured products"));
-
-  if (bannerVariant === "carousel") {
-    renderCarousel(root);
-  } else if (bannerVariant === "globe") {
-    root.innerHTML = `
-      <video class="showcase-globe" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-        <source src="videos/carasia-multiroute.mp4" type="video/mp4">
-      </video>
-    `;
-  } else if (bannerVariant === "slideshow") {
-    const items = showcaseProducts(8);
-    root.innerHTML = `
-      <div class="showcase-card">
-        <span class="eyebrow">${text("Del catálogo", "From the catalog")}</span>
-        <div class="slideshow">
-          ${items.map((item, index) => `
-            <a class="slide${index === 0 ? " is-active" : ""}" href="product.html?id=${encodeURIComponent(item.sku)}" tabindex="${index === 0 ? 0 : -1}">
-              <img src="${esc(item.image)}" alt="" loading="${index < 2 ? "eager" : "lazy"}">
-              <span class="slide-caption">
-                <small>${esc(categoryLabel(item.category))}</small>
-                ${esc(productTitle(item))}
-              </span>
-            </a>
-          `).join("")}
-        </div>
-        ${requestBlock()}
-      </div>
-    `;
-    const slides = [...root.querySelectorAll(".slide")];
-    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (slides.length > 1 && !reduced) {
-      let current = 0;
-      slideshowTimer = setInterval(() => {
-        if (document.hidden) return;
-        slides[current].classList.remove("is-active");
-        slides[current].tabIndex = -1;
-        current = (current + 1) % slides.length;
-        slides[current].classList.add("is-active");
-        slides[current].tabIndex = 0;
-      }, 3000);
-    }
-  } else {
-    const items = showcaseProducts(4);
-    root.innerHTML = `
-      <div class="showcase-card">
-        <span class="eyebrow">${text("Del catálogo", "From the catalog")}</span>
-        <div class="showcase-grid">
-          ${items.map(item => `
-            <a href="product.html?id=${encodeURIComponent(item.sku)}" title="${esc(productTitle(item))}">
-              <img src="${esc(item.image)}" alt="${esc(productTitle(item))}">
-            </a>
-          `).join("")}
-        </div>
-        ${requestBlock()}
-      </div>
-    `;
-  }
-
-  renderBannerSwitcher();
-}
-
-function renderBannerSwitcher() {
-  if (!isLocalPreview || document.body.dataset.page !== "catalog") return;
-  let panel = document.getElementById("banner-switcher");
-  if (!panel) {
-    panel = document.createElement("div");
-    panel.id = "banner-switcher";
-    panel.className = "banner-switcher";
-    document.body.appendChild(panel);
-    panel.addEventListener("click", event => {
-      const button = event.target.closest("button[data-variant]");
-      if (!button) return;
-      bannerVariant = button.dataset.variant;
-      const url = new URL(location.href);
-      url.searchParams.set("banner", bannerVariant);
-      history.replaceState(null, "", url);
-      renderShowcase();
-    });
-  }
-  const names = { carousel: "Cut-out carousel", card: "Product card", globe: "Animated globe", slideshow: "Slideshow" };
-  panel.innerHTML = `
-    <strong>Preview only · Banner:</strong>
-    ${BANNER_VARIANTS.map(variant => `
-      <button type="button" data-variant="${variant}" class="${variant === bannerVariant ? "active" : ""}">${names[variant]}</button>
-    `).join("")}
-  `;
+  clearInterval(carouselTimer);
+  root.className = "hero-showcase variant-carousel";
+  renderCarousel(root);
 }
 
 async function initialize() {

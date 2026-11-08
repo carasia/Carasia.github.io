@@ -1177,107 +1177,7 @@ body.lightbox-open { overflow:hidden; }
 .hero-showcase { position: relative; z-index: 2; min-width: 0; }
 .hero-showcase:empty { display: none; }
 
-.showcase-card {
-  padding: 22px;
-  border: 1px solid rgba(255, 255, 255, .22);
-  border-top: 4px solid var(--gold);
-  border-radius: 22px;
-  background: rgba(3, 30, 68, .82);
-  box-shadow: 0 24px 50px rgba(0, 0, 0, .25);
-  backdrop-filter: blur(6px);
-}
-.showcase-card .eyebrow { display: block; margin-bottom: 12px; }
-
-/* Option 1: 2x2 product photo grid */
-.showcase-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-}
-.showcase-grid a {
-  display: block;
-  min-width: 0;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  padding: 10px;
-  border-radius: 14px;
-  background: #fff;
-  transition: transform .2s ease;
-}
-.showcase-grid a:hover { transform: translateY(-3px); }
-.showcase-grid img { display: block; width: 100%; height: 100%; min-width: 0; object-fit: contain; }
-
-.showcase-lead {
-  margin: 16px 0 12px !important;
-  color: #fff !important;
-  font-size: 1rem !important;
-  font-weight: 700;
-  line-height: 1.4;
-}
-.showcase-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 46px;
-  padding: 0 18px;
-  border-radius: 999px;
-  color: #fff;
-  background: linear-gradient(135deg, var(--teal), #1c6673);
-  font-weight: 900;
-}
-.showcase-button:hover { filter: brightness(1.1); }
-
-/* Option 2: animated globe video */
-.showcase-globe {
-  display: block;
-  width: 118%;
-  max-width: none;
-  margin: -30px -9% -40px;
-  /* Fade the video's own background into the banner so no box shows */
-  -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%);
-  mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%);
-  mix-blend-mode: lighten;
-}
-
-/* Option 3: fading product slideshow */
-.slideshow {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  border-radius: 14px;
-  background: #fff;
-}
-.slide {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  grid-template-rows: 1fr auto;
-  opacity: 0;
-  transition: opacity .8s ease;
-  pointer-events: none;
-}
-.slide.is-active { opacity: 1; pointer-events: auto; }
-.slide img { width: 100%; height: 100%; min-height: 0; padding: 14px 14px 0; object-fit: contain; }
-.slide-caption {
-  padding: 10px 14px 12px;
-  color: var(--blue);
-  font-size: .92rem;
-  font-weight: 800;
-  line-height: 1.25;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.slide-caption small {
-  display: block;
-  color: var(--teal);
-  font-size: .7rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-
-/* Option 4: cut-out product carousel (clock-tick motion) */
+/* Cut-out product carousel (clock-tick motion) */
 .reel { position: relative; text-align: center; }
 @media (min-width: 961px) {
   .catalog-hero .container.has-showcase:has(.variant-carousel) {
@@ -1406,57 +1306,10 @@ body.lightbox-open { overflow:hidden; }
 }
 .reel-ticks i.on { height: 14px; background: var(--gold); }
 
-.reel-request {
-  color: #9fe3e8;
-  font-size: .92rem;
-  font-weight: 800;
-}
-.reel-request:hover { color: #fff; text-decoration: underline; }
-
-/* Preview-only switcher (local preview, never on the live site) */
-.banner-switcher {
-  position: fixed;
-  left: 14px;
-  bottom: 14px;
-  z-index: 50;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px;
-  max-width: calc(100% - 28px);
-  padding: 8px 10px;
-  border-radius: 14px;
-  background: #111;
-  color: #fff;
-  font-size: .8rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
-}
-.banner-switcher button {
-  padding: 5px 10px;
-  border: 1px solid #555;
-  border-radius: 999px;
-  background: transparent;
-  color: #fff;
-  cursor: pointer;
-}
-.banner-switcher button.active { border-color: #f1ca76; background: #f1ca76; color: #111; font-weight: 800; }
-
 @media (max-width: 960px) {
   .catalog-hero .container.has-showcase { grid-template-columns: minmax(0, 1fr); gap: 28px; }
-  .hero-showcase.variant-globe { display: none; }
-  .hero-showcase { max-width: 520px; }
-  .showcase-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
-  .showcase-grid a { aspect-ratio: 1; }
-  .showcase-grid a { padding: 6px; border-radius: 10px; }
-  .slideshow { aspect-ratio: 16 / 9; }
-  .hero-showcase.variant-carousel { max-width: none; }
   .reel-stage { height: 230px; }
   .reel-arrow { opacity: .85; }
-}
-@media (max-width: 560px) {
-  .showcase-card { padding: 16px; }
-  .showcase-grid { gap: 6px; }
-  .showcase-grid a { padding: 4px; }
 }
 
 /* ---------- PRODUCT DETAIL PAGE (v2) ---------- */
