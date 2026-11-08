@@ -1,5 +1,24 @@
+// Same storage key and default as the home page (index.html), so the
+// language a visitor picks follows them from page to page.
+const LANG_KEY = "carasia-lang";
+
+function readSavedLanguage() {
+  try {
+    const saved = localStorage.getItem(LANG_KEY);
+    return saved === "es" || saved === "en" ? saved : "en";
+  } catch (error) {
+    return "en";
+  }
+}
+
+function saveLanguage(lang) {
+  try {
+    localStorage.setItem(LANG_KEY, lang);
+  } catch (error) {}
+}
+
 const state = {
-  lang: localStorage.getItem("carasia-language") || "es",
+  lang: readSavedLanguage(),
   products: [],
   category: "all",
   query: "",
@@ -92,6 +111,26 @@ function localizeStatic() {
   document.querySelectorAll("[data-es][data-en]").forEach(element => {
     element.textContent = element.dataset[state.lang];
   });
+
+  document.querySelectorAll("[data-aria-es][data-aria-en]").forEach(element => {
+    element.setAttribute(
+      "aria-label",
+      element.dataset[state.lang === "es" ? "ariaEs" : "ariaEn"]
+    );
+  });
+
+  const menuButton = document.querySelector(".catalog-menu-button");
+  if (menuButton) {
+    const open = menuButton.getAttribute("aria-expanded") === "true";
+    menuButton.setAttribute(
+      "aria-label",
+      open ? text("Cerrar menú", "Close menu") : text("Abrir menú", "Open menu")
+    );
+  }
+
+  if (document.body.dataset.page === "catalog") {
+    document.title = text("Productos | Carasia Consulting", "Products | Carasia Consulting");
+  }
 
   document
     .querySelectorAll("[data-placeholder-es][data-placeholder-en]")
@@ -479,6 +518,10 @@ function renderProduct() {
 }
 
 async function initialize() {
+  // Switch the page text to the saved language straight away,
+  // instead of waiting for the product data to download.
+  localizeStatic();
+
   const response =
     await fetch("data/products.json?v=20260818-4");
 
@@ -523,10 +566,7 @@ document
     button.addEventListener("click", () => {
       state.lang = button.dataset.lang;
 
-      localStorage.setItem(
-        "carasia-language",
-        state.lang
-      );
+      saveLanguage(state.lang);
 
       localizeStatic();
 
@@ -561,7 +601,7 @@ function openCatalogLightbox(src, altText) {
     box = document.createElement("div");
     box.id = "catalog-image-lightbox";
     box.className = "catalog-lightbox";
-    box.innerHTML = '<button class="catalog-lightbox-close" type="button" aria-label="Close enlarged image">&times;</button><img class="catalog-lightbox-image" alt="">';
+    box.innerHTML = `<button class="catalog-lightbox-close" type="button" aria-label="${text("Cerrar imagen ampliada", "Close enlarged image")}">&times;</button><img class="catalog-lightbox-image" alt="">`;
     document.body.appendChild(box);
     box.addEventListener("click", (e) => {
       if (e.target === box || e.target.closest(".catalog-lightbox-close")) {

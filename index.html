@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
       name="description"
-      content="Carasia Consulting conecta empresas con proveedores, verificación e inspección en China."
+      content="Carasia Consulting connects businesses with verified suppliers in China, with sourcing, supplier verification, and inspection support."
     />
     <title>Carasia Consulting | Business Beyond Borders</title>
     <style>
@@ -26,6 +26,15 @@
       }
       html {
         scroll-behavior: smooth;
+      }
+      /* Leave room for the sticky header when jumping to a section. */
+      section[id] {
+        scroll-margin-top: 96px;
+      }
+      @media (max-width: 560px) {
+        section[id] {
+          scroll-margin-top: 72px;
+        }
       }
       body {
         margin: 0;
@@ -798,13 +807,15 @@
       .es {
         display: none;
       }
+      /* English is the default: it shows before the script runs, and stays
+         on unless the visitor switches to Spanish. */
       html[data-lang="en"] .en,
-      html:not([data-lang]) .es,
+      html:not([data-lang]) .en,
       html[data-lang="es"] .es {
         display: initial;
       }
       html[data-lang="en"] .en.block,
-      html:not([data-lang]) .es.block,
+      html:not([data-lang]) .en.block,
       html[data-lang="es"] .es.block {
         display: block;
       }
@@ -872,6 +883,9 @@
         }
         .nav {
           height: 72px;
+          /* Tighter spacing so logo, ES/EN and the menu button share one row,
+             even when the menu is open. */
+          gap: 12px;
         }
         .brand-name {
           font-size: 1rem;
@@ -1450,7 +1464,10 @@
                 >Sourcing • Verification • Inspection</span
               ></span
             >
-            <h1>Business Beyond Borders.</h1>
+            <h1>
+              <span class="en">Business Beyond Borders.</span
+              ><span class="es">Negocios sin fronteras.</span>
+            </h1>
             <p class="hero-copy">
               <span class="es"
                 >Carasia Consulting conecta su negocio con cientos de empresas
@@ -1497,7 +1514,10 @@
             </div>
           </div>
           <aside class="comm-card">
-            <span class="eyebrow">Complexity, Managed.</span>
+            <span class="eyebrow"
+              ><span class="en">Complexity, Managed.</span
+              ><span class="es">Complejidad, bajo control.</span></span
+            >
             <h2>
               <span class="es">Comunicación sin barreras</span
               ><span class="en">Communication Without Barriers</span>
@@ -1635,8 +1655,8 @@
               >Su equipo le ayudará a encontrar, comparar, verificar y preparar
               su pedido.</span
             ><span class="en"
-              >Your team will help you in finding, comparing, verifying, and
-              preparing your order.</span
+              >Your team will help you find, compare, verify, and prepare your
+              order.</span
             >
           </p>
           <div class="steps" id="steps"></div>
@@ -1655,7 +1675,7 @@
             </h2>
             <p class="section-intro">
               <span class="es">Nuestro equipo le brinda la confianza para elegir y la capacidad para crecer.</span>
-              <span class="en">Our team gives you the confidence to choose, and ability to grow.</span>
+              <span class="en">Our team gives you the confidence to choose, and the ability to grow.</span>
             </p>
           </div>
           <div id="proof-orbit" aria-label="Animated sourcing routes from China to destinations around the world">
@@ -1899,7 +1919,7 @@
           "Búsqueda de productos",
           "Product Sourcing",
           "Identifique sus necesidades de producto, especificaciones, cantidad, destino y plazo.",
-          "Identify you needs for product, specifications, quantity, destination, and timeline.",
+          "Identify your needs for product, specifications, quantity, destination, and timeline.",
         ],
         [
           `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v17M7 20h10M5 6h14"></path><path d="m5 6-3 6h6L5 6Zm14 0-3 6h6l-3-6Z"></path><path d="M2 12c0 2 6 2 6 0M16 12c0 2 6 2 6 0"></path></svg>`,
@@ -1975,26 +1995,50 @@
         )
         .join("");
       const root = document.documentElement;
+      // Shared with the catalog pages (assets/catalog.js) so the choice carries over.
+      const readLang = () => {
+        try {
+          const saved = localStorage.getItem("carasia-lang");
+          return saved === "es" || saved === "en" ? saved : "en";
+        } catch (error) {
+          return "en";
+        }
+      };
       const setLang = (l) => {
         root.dataset.lang = l;
         root.lang = l;
-        localStorage.setItem("carasia-lang", l);
+        document.title =
+          l === "es"
+            ? "Carasia Consulting | Negocios sin fronteras"
+            : "Carasia Consulting | Business Beyond Borders";
+        document
+          .querySelector(".menu-button")
+          .setAttribute("aria-label", l === "es" ? "Menú" : "Menu");
+        try {
+          localStorage.setItem("carasia-lang", l);
+        } catch (error) {}
         document
           .querySelectorAll("[data-lang]")
           .forEach((b) => b.classList.toggle("active", b.dataset.lang === l));
       };
-      setLang(localStorage.getItem("carasia-lang") || "en");
+      setLang(readLang());
       document
         .querySelectorAll("[data-lang]")
         .forEach((b) =>
           b.addEventListener("click", () => setLang(b.dataset.lang)),
         );
-      document.querySelector(".menu-button").addEventListener("click", (e) => {
-        document.querySelector("#nav").classList.toggle("open");
-        e.currentTarget.setAttribute(
-          "aria-expanded",
-          document.querySelector("#nav").classList.contains("open"),
-        );
+      const nav = document.querySelector("#nav");
+      const menuButton = document.querySelector(".menu-button");
+      const setMenuOpen = (open) => {
+        nav.classList.toggle("open", open);
+        menuButton.setAttribute("aria-expanded", String(open));
+      };
+      menuButton.addEventListener("click", () => {
+        setMenuOpen(!nav.classList.contains("open"));
+      });
+      // Close the phone menu once a destination is picked.
+      nav.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => setMenuOpen(false));
       });
       document.querySelectorAll(".sourcing-cta").forEach((button) => {
         button.addEventListener("click", (event) => {

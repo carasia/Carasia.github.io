@@ -1,43 +1,46 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Información de producto de Carasia Consulting.">
-  <title>Producto | Carasia Consulting</title>
+  <meta name="description" content="Product information from Carasia Consulting.">
+  <title>Product | Carasia Consulting</title>
   <link rel="stylesheet" href="assets/catalog.css">
 </head>
 <body data-page="product">
   <header class="catalog-header">
     <div class="container catalog-nav">
       <a class="catalog-logo" href="index.html" aria-label="Carasia Consulting"><img src="carasia-logo.png" alt="Carasia Consulting"></a>
-      <nav class="catalog-links" id="catalog-navigation" aria-label="Navegación principal">
-        <a href="catalog.html" data-en="Products" data-es="Productos">Productos</a>
-        <a href="index.html#services" data-en="Services" data-es="Servicios">Servicios</a>
-        <a href="index.html#contact" data-en="Contact" data-es="Contacto">Contacto</a>
+      <nav class="catalog-links" id="catalog-navigation" data-aria-en="Main navigation" data-aria-es="Navegación principal" aria-label="Main navigation">
+        <a href="catalog.html" data-en="Products" data-es="Productos">Products</a>
+        <a href="index.html#process" data-en="Services" data-es="Servicios">Services</a>
+        <a href="index.html#contact" data-en="Contact" data-es="Contacto">Contact</a>
       </nav>
-      <div class="language-switcher" aria-label="Idioma">
-        <button class="lang-button active" type="button" data-lang="es">🇩🇴 ES</button><span>|</span>
-        <button class="lang-button" type="button" data-lang="en">🇺🇸 EN</button>
+      <div class="language-switcher" data-aria-en="Language" data-aria-es="Idioma" aria-label="Language">
+        <button class="lang-button" type="button" data-lang="es">ES</button><span>|</span>
+        <button class="lang-button active" type="button" data-lang="en">EN</button>
       </div>
-      <button class="catalog-menu-button" type="button" aria-controls="catalog-navigation" aria-expanded="false" aria-label="Abrir menú"><span></span></button>
+      <button class="catalog-menu-button" type="button" aria-controls="catalog-navigation" aria-expanded="false" aria-label="Open menu"><span></span></button>
     </div>
   </header>
   <main class="product-page">
     <div class="container" id="product-view"></div>
   </main>
   <footer class="catalog-footer">
-    <div class="container"><span>© Carasia Consulting</span><span data-en="Product sourcing with clear communication" data-es="Abastecimiento de productos con comunicación clara">Abastecimiento de productos con comunicación clara</span></div>
+    <div class="container"><span>© Carasia Consulting</span><span data-en="Product sourcing with clear communication" data-es="Abastecimiento de productos con comunicación clara">Product sourcing with clear communication</span></div>
   </footer>
-  <script src="assets/catalog.js"></script>
+  <script src="assets/catalog.js?v=20261107-2"></script>
   <script>
     const catalogMenuButton = document.querySelector(".catalog-menu-button");
     const catalogNavigation = document.getElementById("catalog-navigation");
+    const menuLabel = open => document.documentElement.lang === "es"
+      ? (open ? "Cerrar menú" : "Abrir menú")
+      : (open ? "Close menu" : "Open menu");
 
     catalogMenuButton?.addEventListener("click", () => {
       const isOpen = catalogMenuButton.getAttribute("aria-expanded") === "true";
       catalogMenuButton.setAttribute("aria-expanded", String(!isOpen));
-      catalogMenuButton.setAttribute("aria-label", !isOpen ? "Cerrar menú" : "Abrir menú");
+      catalogMenuButton.setAttribute("aria-label", menuLabel(!isOpen));
       catalogNavigation?.classList.toggle("mobile-open", !isOpen);
     });
 
@@ -45,6 +48,7 @@
       link.addEventListener("click", () => {
         catalogNavigation.classList.remove("mobile-open");
         catalogMenuButton?.setAttribute("aria-expanded", "false");
+        catalogMenuButton?.setAttribute("aria-label", menuLabel(false));
       });
     });
   </script>
