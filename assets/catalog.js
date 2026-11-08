@@ -260,27 +260,35 @@ function renderFilters() {
 
   if (!root) return;
 
+  // Simple line icons for each category tile.
+  const icon = paths => `<svg viewBox="0 0 24 24" aria-hidden="true">${paths}</svg>`;
+  const categoryIcons = {
+    all: icon('<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>'),
+    "Construction Tools": icon('<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/>'),
+    "LED Lights": icon('<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/>'),
+    "Metals & Alloys": icon('<path d="M3 17l3-6h12l3 6z"/><path d="M7 11l2-4h6l2 4"/>'),
+    "Solar & Energy": icon('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'),
+    "Vehicle Accessories": icon('<path d="M5 16l1.5-5A2 2 0 0 1 8.4 9.5h7.2a2 2 0 0 1 1.9 1.5L19 16"/><rect x="3" y="16" width="18" height="3" rx="1"/><circle cx="7.5" cy="19.5" r="1.5"/><circle cx="16.5" cy="19.5" r="1.5"/>'),
+  };
+  const countFor = category => category === "all"
+    ? state.products.length
+    : state.products.filter(product => product.category === category).length;
+  const tile = (category, label) => `
+    <button
+      type="button"
+      class="filter-button ${state.category === category ? "active" : ""}"
+      data-category="${esc(category)}"
+      aria-pressed="${state.category === category}"
+    >
+      <span class="filter-icon">${categoryIcons[category] || categoryIcons.all}</span>
+      <span class="filter-label">${esc(label)}</span>
+      <span class="filter-count">${countFor(category)}</span>
+    </button>
+  `;
+
   root.innerHTML = [
-    `
-      <button
-        class="filter-button ${
-          state.category === "all" ? "active" : ""
-        }"
-        data-category="all"
-      >
-        ${text("Todos", "All")}
-      </button>
-    `,
-    ...categories.map(category => `
-      <button
-        class="filter-button ${
-          state.category === category ? "active" : ""
-        }"
-        data-category="${esc(category)}"
-      >
-        ${esc(categoryLabel(category))}
-      </button>
-    `),
+    tile("all", text("Todos los productos", "All products")),
+    ...categories.map(category => tile(category, categoryLabel(category))),
   ].join("");
 
   root.querySelectorAll("button").forEach(button => {
@@ -342,6 +350,13 @@ function renderCatalog() {
           "No se encontraron productos con esos criterios.",
           "No products matched those filters."
         )}
+        <p class="catalog-help">
+          ${text("¿No ve lo que necesita? ¡No hay problema!", "Don't see what you need? No problem!")}
+          <a href="index.html#contact" data-umami-event="catalog-request-product">${text(
+            "Contáctenos para encontrar su proveedor →",
+            "Contact us to find your supplier →"
+          )}</a>
+        </p>
       </div>
     `;
 
@@ -751,9 +766,6 @@ function renderCarousel(root) {
       <div class="reel-ticks" aria-hidden="true">
         ${items.map(() => "<i></i>").join("")}
       </div>
-      <a class="reel-request" href="index.html#contact" data-umami-event="catalog-request-product">
-        ${text("¿No lo encuentra? Solicite cualquier producto", "Can't find it? Request any product")} →
-      </a>
     </div>
   `;
 
