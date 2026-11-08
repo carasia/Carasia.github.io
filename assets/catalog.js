@@ -388,6 +388,151 @@ function renderCatalog() {
   }).join("");
 }
 
+// ---------- PRODUCT DETAIL PAGE ----------
+
+const CONTACT = {
+  email: "carasiaconsulting@gmail.com",
+  whatsapp: "8613686014118",
+};
+
+// Turn a spec line such as "4-piece set; 2 kg/set; color Blue" or
+// "Grades: TA2; TA3. Referenced standards: GB/T 37520." into table rows.
+function specRows(value) {
+  const rows = [];
+  String(value ?? "")
+    .split(/;\s*|\.\s+(?=[A-Z])/)
+    .map(part => part.trim().replace(/\.$/, ""))
+    .filter(Boolean)
+    .forEach(part => {
+      const colon = part.indexOf(":");
+      const previous = rows[rows.length - 1];
+      if (colon > 0 && colon <= 40) {
+        rows.push({ label: part.slice(0, colon).trim(), value: part.slice(colon + 1).trim() });
+      } else if (previous && previous.label && /^[\w.\-/+]{1,12}$/.test(part)) {
+        // Short codes after a labeled item ("Grades: TA2; TA3; TC4") belong to that item.
+        previous.value += `, ${part}`;
+      } else {
+        rows.push({ label: "", value: part });
+      }
+    });
+  return rows;
+}
+
+function specTable(product) {
+  const rows = specRows(specifications(product));
+  if (!rows.length) return "";
+  return `
+    <table class="spec-table">
+      <tbody>
+        ${rows.map(row => row.label
+          ? `<tr><th scope="row">${esc(row.label)}</th><td>${esc(row.value)}</td></tr>`
+          : `<tr><td colspan="2">${esc(row.value)}</td></tr>`
+        ).join("")}
+      </tbody>
+    </table>
+  `;
+}
+
+function whatsappLink(product) {
+  const message = text(
+    `Hola, me interesa ${product.sku} - ${productTitle(product)}. ¿Me pueden enviar una cotización?`,
+    `Hi, I'm interested in ${product.sku} - ${productTitle(product)}. Could you send me a quote?`
+  );
+  return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(message)}`;
+}
+
+function similarProducts(product, limit = 3) {
+  const others = state.products.filter(item => item.sku !== product.sku);
+  const sameSub = others.filter(item => item.subcategory === product.subcategory);
+  const sameCat = others.filter(
+    item => item.category === product.category && item.subcategory !== product.subcategory
+  );
+  const candidates = [...sameSub, ...sameCat];
+  // Prefer products with different names (e.g. not three colors of the same mat),
+  // then fill any remaining spots with the closest matches.
+  const seen = new Set([productTitle(product)]);
+  const varied = candidates.filter(item => {
+    const title = productTitle(item);
+    if (seen.has(title)) return false;
+    seen.add(title);
+    return true;
+  });
+  const rest = candidates.filter(item => !varied.includes(item));
+  return [...varied, ...rest].slice(0, limit);
+}
+
+function quoteForm(product) {
+  const productLabel = `${product.sku} - ${productTitle(product)}`;
+  return `
+    <section class="quote-panel" id="quote" aria-labelledby="quote-title">
+      <div class="quote-intro">
+        <span class="eyebrow">${text("Cotización", "Quote")}</span>
+        <h2 id="quote-title">${text("Solicite una cotización", "Request a quote")}</h2>
+        <p>${text(
+          "Cuéntenos cantidad y destino. Nuestro equipo en China le responderá con opciones.",
+          "Tell us the quantity and destination. Our team in China will reply with options."
+        )}</p>
+        <p class="quote-product"><strong>${text("Producto", "Product")}:</strong> ${esc(productLabel)}</p>
+      </div>
+      <form class="quote-form" action="https://formsubmit.co/${CONTACT.email}" method="POST">
+        <input type="hidden" name="_subject" value="${esc(`Quote request: ${productLabel}`)}">
+        <input type="hidden" name="product" value="${esc(productLabel)}">
+        <div class="quote-fields">
+          <label class="quote-field">
+            <span>${text("Cantidad estimada", "Estimated quantity")}</span>
+            <input name="quantity" autocomplete="off">
+          </label>
+          <label class="quote-field">
+            <span>${text("Destino", "Destination")}</span>
+            <input name="destination" autocomplete="country-name">
+          </label>
+          <label class="quote-field">
+            <span>${text("Nombre", "Name")} *</span>
+            <input name="name" required autocomplete="name">
+          </label>
+          <label class="quote-field">
+            <span>${text("Correo o WhatsApp", "Email or WhatsApp")} *</span>
+            <input name="contact" required autocomplete="email">
+          </label>
+          <label class="quote-field full">
+            <span>${text("Detalles (opcional)", "Details (optional)")}</span>
+            <textarea name="details" rows="3"></textarea>
+          </label>
+        </div>
+        <button class="button button-primary quote-submit" type="submit" data-umami-event="product-quote-submit">
+          ${text("Enviar solicitud", "Send request")}
+        </button>
+        <p class="quote-privacy">
+          ${text(
+            "Solo usamos estos datos para responder a su solicitud.",
+            "We only use these details to reply to your request."
+          )}
+          <a href="privacy.html">${text("Aviso de privacidad", "Privacy notice")}</a>
+        </p>
+      </form>
+    </section>
+  `;
+}
+
+function orderingSteps() {
+  const steps = [
+    ["Envíe su solicitud", "Send your request"],
+    ["Comparamos proveedores verificados", "We compare verified suppliers"],
+    ["Inspeccionamos antes del envío", "We inspect before shipping"],
+    ["Entregado a usted", "Delivered to you"],
+  ];
+  return `
+    <section class="ordering-steps">
+      <h2>${text("Cómo funciona el pedido", "How ordering works")}</h2>
+      <ol>
+        ${steps.map(([es, en], index) => `
+          <li><span class="step-badge">${index + 1}</span><span>${text(es, en)}</span></li>
+        `).join("")}
+      </ol>
+    </section>
+  `;
+}
+
 function renderProduct() {
   const root = document.getElementById("product-view");
 
@@ -420,22 +565,28 @@ function renderProduct() {
   document.title =
     `${productTitle(product)} | Carasia Consulting`;
 
-  const subject = encodeURIComponent(
-    `${text("Consulta sobre", "Inquiry about")} ` +
-    `${product.sku} - ${productTitle(product)}`
-  );
+  // Keep anything the visitor already typed when the language is switched.
+  const typed = {};
+  root.querySelectorAll(".quote-form [name]").forEach(field => {
+    if (field.type !== "hidden") typed[field.name] = field.value;
+  });
 
-  const message = encodeURIComponent(
-    `${text(
-      "Hola, quisiera solicitar información sobre",
-      "Hello, I would like information about"
-    )} ${product.sku} - ${productTitle(product)}.`
-  );
+  const categoryLink = `catalog.html?category=${encodeURIComponent(product.category)}`;
+  const similar = similarProducts(product);
+  const badges = [
+    ["Proveedores verificados", "Verified suppliers"],
+    ["Inspección antes del envío", "Inspection before shipping"],
+    ["Atención en inglés y español", "English & Spanish support"],
+  ];
 
   root.innerHTML = `
-    <a class="back-link" href="catalog.html">
-      ← ${text("Volver al catálogo", "Back to catalog")}
-    </a>
+    <nav class="breadcrumb" aria-label="${text("Ruta de navegación", "Breadcrumb")}">
+      <a href="catalog.html">${text("Productos", "Products")}</a>
+      <span aria-hidden="true">›</span>
+      <a href="${categoryLink}">${esc(categoryLabel(product.category))}</a>
+      <span aria-hidden="true">›</span>
+      <span>${esc(subcategoryLabel(product.subcategory))}</span>
+    </nav>
 
     <div class="product-layout">
       <div class="product-media-stack">
@@ -450,8 +601,10 @@ function renderProduct() {
             <img
               src="${esc(product.catalogImage)}"
               alt="${esc(productTitle(product))} — ${text("página del catálogo", "catalog page")}"
+              tabindex="0"
             >
           </div>
+          <p class="gallery-hint">${text("Toque la página del catálogo para ampliarla.", "Tap the catalog page to enlarge it.")}</p>
         ` : ""}
       </div>
 
@@ -475,54 +628,78 @@ function renderProduct() {
           ${esc(application(product))}
         </p>
 
-        <section class="detail-panel">
-          <h2>
-            ${text("Especificaciones", "Specifications")}
-          </h2>
+        <ul class="trust-badges">
+          ${badges.map(([es, en]) => `<li>${text(es, en)}</li>`).join("")}
+        </ul>
 
-          <p>${esc(specifications(product))}</p>
+        <div class="cta-row">
+          <a class="button button-primary" href="#quote" data-quote-jump data-umami-event="product-quote-open">
+            ${text("Solicitar cotización", "Request a quote")}
+          </a>
+          <a class="button button-whatsapp" href="${whatsappLink(product)}" target="_blank" rel="noopener noreferrer" data-umami-event="contact-click" data-umami-event-channel="whatsapp-product">
+            WhatsApp
+          </a>
+        </div>
+
+        <section class="detail-panel">
+          <h2>${text("Especificaciones", "Specifications")}</h2>
+          ${specTable(product)}
         </section>
 
         <section class="detail-panel">
-          <h2>
-            ${text(
-              "Disponibilidad y cotización",
-              "Availability and quotation"
-            )}
-          </h2>
-
+          <h2>${text("Disponibilidad y cotización", "Availability and quotation")}</h2>
           <p>
             ${text(
-              "Las cantidades, opciones, plazos y precios se confirman según los requisitos de cada solicitud.",
-              "Quantities, options, lead times, and pricing are confirmed according to each inquiry's requirements."
+              "El pedido mínimo, las opciones, el plazo de entrega y el precio se confirman con su cotización.",
+              "Minimum order, options, lead time, and pricing are confirmed with your quote."
             )}
           </p>
         </section>
-
-        <div class="cta-row">
-          <a
-            class="button button-primary"
-            href="mailto:carasiaconsulting@gmail.com?subject=${subject}&body=${message}"
-          >
-            ${text(
-              "Solicitar cotización",
-              "Request a quote"
-            )}
-          </a>
-
-          <a
-            class="button button-secondary"
-            href="index.html#contact"
-          >
-            ${text(
-              "Contactar a Carasia",
-              "Contact Carasia"
-            )}
-          </a>
-        </div>
       </article>
     </div>
+
+    ${orderingSteps()}
+
+    ${quoteForm(product)}
+
+    ${similar.length ? `
+      <section class="similar-products">
+        <h2>${text("Productos similares", "Similar products")}</h2>
+        <div class="product-grid">
+          ${similar.map(productCard).join("")}
+        </div>
+      </section>
+    ` : ""}
+
+    <div class="mobile-quote-bar" aria-hidden="false">
+      <a class="button button-primary" href="#quote" data-quote-jump>${text("Cotizar", "Get a quote")}</a>
+      <a class="button button-whatsapp" href="${whatsappLink(product)}" target="_blank" rel="noopener noreferrer" data-umami-event="contact-click" data-umami-event-channel="whatsapp-product">WhatsApp</a>
+    </div>
   `;
+
+  Object.entries(typed).forEach(([name, value]) => {
+    const field = root.querySelector(`.quote-form [name="${name}"]`);
+    if (field) field.value = value;
+  });
+
+  root.querySelectorAll("[data-quote-jump]").forEach(link => {
+    link.addEventListener("click", event => {
+      event.preventDefault();
+      document.getElementById("quote").scrollIntoView({ behavior: "smooth", block: "start" });
+      setTimeout(() => {
+        root.querySelector('.quote-form [name="quantity"]')?.focus({ preventScroll: true });
+      }, 600);
+    });
+  });
+
+  // Hide the pinned phone buttons while the quote form itself is on screen.
+  const bar = root.querySelector(".mobile-quote-bar");
+  const panel = document.getElementById("quote");
+  if (bar && panel && "IntersectionObserver" in window) {
+    new IntersectionObserver(entries => {
+      bar.classList.toggle("is-hidden", entries[0].isIntersecting);
+    }, { threshold: 0.15 }).observe(panel);
+  }
 }
 
 async function initialize() {
@@ -534,7 +711,7 @@ async function initialize() {
   if (document.body.dataset.page === "privacy") return;
 
   const response =
-    await fetch("data/products.json?v=20260818-4");
+    await fetch("data/products.json?v=20261107-1");
 
   if (!response.ok) {
     throw new Error(
