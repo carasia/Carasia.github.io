@@ -448,6 +448,13 @@ function specTable(product) {
   `;
 }
 
+// Line icons used on the product page buttons.
+const BUTTON_ICONS = {
+  quote: '<svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>',
+  whatsapp: '<svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path d="M9.5 9.5c.3 1.6 1.4 3.2 3 4l1-1 2 1c-.3 1-1.2 1.5-2 1.4-2.6-.4-4.8-2.6-5.2-5.2-.1-.8.4-1.7 1.4-2l1 2z"/></svg>',
+  send: '<svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3 10 14"/><path d="M21 3l-7 18-4-7-7-4z"/></svg>',
+};
+
 function whatsappLink(product) {
   const message = text(
     `Hola, me interesa ${product.sku} - ${productTitle(product)}. ¿Me pueden enviar una cotización?`,
@@ -515,7 +522,7 @@ function quoteForm(product) {
           </label>
         </div>
         <button class="button button-primary quote-submit" type="submit" data-umami-event="product-quote-submit">
-          ${text("Enviar solicitud", "Send request")}
+          ${BUTTON_ICONS.send}${text("Enviar solicitud", "Send request")}
         </button>
         <p class="quote-privacy">
           ${text(
@@ -649,10 +656,10 @@ function renderProduct() {
 
         <div class="cta-row">
           <a class="button button-primary" href="#quote" data-quote-jump data-umami-event="product-quote-open">
-            ${text("Solicitar cotización", "Request a quote")}
+            ${BUTTON_ICONS.quote}${text("Solicitar cotización", "Request a quote")}
           </a>
           <a class="button button-whatsapp" href="${whatsappLink(product)}" target="_blank" rel="noopener noreferrer" data-umami-event="contact-click" data-umami-event-channel="whatsapp-product">
-            WhatsApp
+            ${BUTTON_ICONS.whatsapp}WhatsApp
           </a>
         </div>
 
@@ -687,8 +694,8 @@ function renderProduct() {
     ` : ""}
 
     <div class="mobile-quote-bar" aria-hidden="false">
-      <a class="button button-primary" href="#quote" data-quote-jump>${text("Cotizar", "Get a quote")}</a>
-      <a class="button button-whatsapp" href="${whatsappLink(product)}" target="_blank" rel="noopener noreferrer" data-umami-event="contact-click" data-umami-event-channel="whatsapp-product">WhatsApp</a>
+      <a class="button button-primary" href="#quote" data-quote-jump>${BUTTON_ICONS.quote}${text("Cotizar", "Get a quote")}</a>
+      <a class="button button-whatsapp" href="${whatsappLink(product)}" target="_blank" rel="noopener noreferrer" data-umami-event="contact-click" data-umami-event-channel="whatsapp-product">${BUTTON_ICONS.whatsapp}WhatsApp</a>
     </div>
   `;
 
