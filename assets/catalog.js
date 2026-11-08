@@ -1064,7 +1064,7 @@ function openCatalogLightbox(src, altText) {
     box = document.createElement("div");
     box.id = "catalog-image-lightbox";
     box.className = "catalog-lightbox";
-    box.innerHTML = `<button class="catalog-lightbox-close" type="button" aria-label="${text("Cerrar imagen ampliada", "Close enlarged image")}">&times;</button><img class="catalog-lightbox-image" alt="">`;
+    box.innerHTML = `<button class="catalog-lightbox-close" type="button" aria-label="${text("Cerrar imagen ampliada", "Close enlarged image")}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><img class="catalog-lightbox-image" alt="">`;
     document.body.appendChild(box);
     box.addEventListener("click", (e) => {
       if (e.target === box || e.target.closest(".catalog-lightbox-close")) {

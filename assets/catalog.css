@@ -1159,7 +1159,9 @@ img {
 .catalog-lightbox { position:fixed; inset:0; z-index:9999; display:none; align-items:center; justify-content:center; padding:24px; background:rgba(0,0,0,.9); overflow:auto; }
 .catalog-lightbox.open { display:flex; }
 .catalog-lightbox-image { display:block; width:auto; height:auto; max-width:96vw; max-height:94vh; object-fit:contain; background:#fff; }
-.catalog-lightbox-close { position:fixed; top:18px; right:22px; z-index:10000; width:48px; height:48px; border:0; border-radius:50%; background:#fff; color:#05275b; font-size:34px; cursor:pointer; }
+.catalog-lightbox-close { position:fixed; top:18px; right:22px; z-index:10000; display:grid; place-items:center; width:48px; height:48px; padding:0; border:0; border-radius:50%; background:#fff; color:#05275b; cursor:pointer; }
+.catalog-lightbox-close svg { display:block; width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:2.4; stroke-linecap:round; }
+.catalog-lightbox-close:hover { background:#eef7f8; }
 body.lightbox-open { overflow:hidden; }
 
 /* Footer privacy link */
