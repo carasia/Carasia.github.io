@@ -772,6 +772,312 @@
         background: linear-gradient(90deg, var(--teal), #087180);
         color: #fff;
       }
+      /* ----- Step-by-step request form ----- */
+      .field > span:first-child {
+        font-weight: 800;
+        font-size: 0.85rem;
+        color: var(--ink);
+      }
+      .field input::placeholder,
+      .field textarea::placeholder {
+        color: #9aa7b3;
+      }
+      .field input:focus,
+      .field textarea:focus {
+        outline: none;
+        border-color: var(--teal);
+        box-shadow: 0 0 0 3px rgba(22, 138, 153, 0.15);
+      }
+      .form-progress {
+        display: none;
+        list-style: none;
+        margin: 0 0 22px;
+        padding: 0;
+        gap: 8px;
+      }
+      .form-step {
+        margin: 0 0 18px;
+        padding: 0;
+        border: 0;
+        min-width: 0;
+      }
+      .form-step legend {
+        display: block;
+        margin-bottom: 14px;
+        padding: 0;
+        color: var(--navy);
+        font-size: 1.25rem;
+        font-weight: 800;
+      }
+      .step-count {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--teal);
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .form-nav {
+        display: flex;
+        gap: 10px;
+      }
+      .form-nav .submit {
+        margin-top: 0;
+        flex: 1;
+      }
+      .form-nav [hidden] {
+        display: none !important;
+      }
+      .form-back {
+        flex: 0 0 auto;
+        border: 1px solid #d6e0e5;
+        background: #fff;
+        color: var(--navy);
+      }
+      .form-back:hover {
+        border-color: var(--teal);
+        color: var(--teal);
+      }
+      /* When JavaScript is on, show one step at a time */
+      .stepped .form-progress {
+        display: flex;
+      }
+      .stepped .form-progress li {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #e3eaee;
+        color: #8a98a6;
+        font-size: 0.8rem;
+        font-weight: 800;
+        transition: color 0.2s ease, border-color 0.2s ease;
+      }
+      .stepped .form-progress b {
+        display: grid;
+        place-items: center;
+        flex: 0 0 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: #e3eaee;
+        color: #5f6f80;
+        font-size: 0.75rem;
+      }
+      .stepped .form-progress li.active,
+      .stepped .form-progress li.done {
+        border-color: var(--teal);
+        color: var(--navy);
+      }
+      .stepped .form-progress li.active b,
+      .stepped .form-progress li.done b {
+        background: var(--teal);
+        color: #fff;
+      }
+      .stepped .form-step {
+        display: none;
+      }
+      .stepped .form-step.active {
+        display: block;
+        animation: step-in 0.3s ease;
+      }
+      /* ----- How we verify a supplier ----- */
+      .verify {
+        background: #fff;
+      }
+      .verify .eyebrow,
+      .faq .eyebrow {
+        color: #b8891f;
+      }
+      .verify-steps {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 18px;
+        margin: 40px 0 0;
+        padding: 0;
+        list-style: none;
+        counter-reset: verify;
+      }
+      .verify-steps::before {
+        /* dotted line linking the steps */
+        content: "";
+        position: absolute;
+        top: 34px;
+        left: 10%;
+        right: 10%;
+        border-top: 2px dashed #cfe0e5;
+      }
+      .verify-steps li {
+        position: relative;
+        counter-increment: verify;
+        padding: 0 6px;
+        text-align: center;
+      }
+      .verify-icon {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: 68px;
+        height: 68px;
+        margin: 0 auto 14px;
+        border: 2px solid var(--teal);
+        border-radius: 50%;
+        background: #fff;
+        color: var(--teal);
+      }
+      .verify-icon::after {
+        content: counter(verify);
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        display: grid;
+        place-items: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--gold);
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 900;
+      }
+      .verify-icon svg {
+        width: 30px;
+        height: 30px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .verify-steps h3 {
+        margin: 0 0 6px;
+        color: var(--navy);
+        font-size: 1rem;
+      }
+      .verify-steps p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .verify-note {
+        margin: 34px 0 0;
+        padding: 14px 18px;
+        border-left: 4px solid var(--gold);
+        border-radius: 10px;
+        background: #f4f8fa;
+        color: var(--ink);
+        font-weight: 700;
+      }
+      /* ----- FAQ ----- */
+      .faq {
+        background: #eef5f7;
+        padding-bottom: 40px;
+      }
+      .faq-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+        gap: 48px;
+        align-items: start;
+      }
+      .faq-list {
+        display: grid;
+        gap: 10px;
+      }
+      .faq-list details {
+        border: 1px solid #dbe6ea;
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 6px 16px rgba(4, 34, 72, 0.05);
+      }
+      .faq-list summary {
+        position: relative;
+        padding: 16px 48px 16px 18px;
+        color: var(--navy);
+        font-weight: 800;
+        cursor: pointer;
+        list-style: none;
+      }
+      .faq-list summary::-webkit-details-marker {
+        display: none;
+      }
+      .faq-list summary::after {
+        content: "+";
+        position: absolute;
+        top: 50%;
+        right: 16px;
+        display: grid;
+        place-items: center;
+        width: 24px;
+        height: 24px;
+        transform: translateY(-50%);
+        border-radius: 50%;
+        background: #eaf6f7;
+        color: var(--teal);
+        font-size: 1.1rem;
+        line-height: 1;
+        transition: transform 0.2s ease;
+      }
+      .faq-list details[open] summary::after {
+        content: "−";
+      }
+      .faq-list summary:focus-visible {
+        outline: 3px solid var(--teal);
+        outline-offset: 2px;
+        border-radius: 14px;
+      }
+      .faq-list details p {
+        margin: 0;
+        padding: 0 18px 18px;
+        color: var(--muted);
+      }
+      .faq-list details a {
+        color: var(--teal);
+        font-weight: 800;
+        text-decoration: underline;
+      }
+      @media (max-width: 900px) {
+        .verify-steps {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          row-gap: 28px;
+        }
+        .verify-steps::before {
+          display: none;
+        }
+        .faq-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+      }
+      @media (max-width: 560px) {
+        .verify-steps {
+          grid-template-columns: 1fr;
+        }
+        .verify-steps li {
+          display: grid;
+          grid-template-columns: 60px 1fr;
+          column-gap: 14px;
+          text-align: left;
+        }
+        .verify-icon {
+          grid-row: span 2;
+          width: 56px;
+          height: 56px;
+          margin: 0;
+        }
+      }
+      @keyframes step-in {
+        from { opacity: 0; transform: translateX(12px); }
+        to { opacity: 1; transform: none; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .stepped .form-step.active { animation: none; }
+      }
+      @media (max-width: 560px) {
+        .stepped .form-progress li span { display: none; }
+        .stepped .form-progress li { justify-content: center; }
+        .form-step legend { font-size: 1.1rem; }
+      }
       .footer {
         background: #031d43;
         color: #dbe6ed;
@@ -1762,6 +2068,124 @@
           </div>
         </div>
       </section>
+      <section class="section verify" id="verify">
+        <div class="container">
+          <span class="eyebrow">
+            <span class="es">Verificación de proveedores</span
+            ><span class="en">Supplier verification</span>
+          </span>
+          <h2 class="section-title">
+            <span class="es">Cómo verificamos a un proveedor.</span
+            ><span class="en">How we verify a supplier.</span>
+          </h2>
+          <p class="section-intro">
+            <span class="es"
+              >Antes de que usted se comprometa, nuestro equipo en China revisa a
+              cada proveedor que le presentamos.</span
+            ><span class="en"
+              >Before you commit, our team in China checks every supplier we put
+              in front of you.</span
+            >
+          </p>
+          <ol class="verify-steps">
+            <li>
+              <span class="verify-icon" aria-hidden="true"
+                ><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5"/><path d="m9 14 2 2 4-4"/></svg
+              ></span>
+              <h3>
+                <span class="es">Registro y licencia</span
+                ><span class="en">Registration &amp; license</span>
+              </h3>
+              <p>
+                <span class="es"
+                  >Confirmamos que la empresa está registrada legalmente y cuenta
+                  con licencia comercial vigente.</span
+                ><span class="en"
+                  >We confirm the company is legally registered and holds a valid
+                  business license.</span
+                >
+              </p>
+            </li>
+            <li>
+              <span class="verify-icon" aria-hidden="true"
+                ><svg viewBox="0 0 24 24"><path d="M3 21V10l5 3V9l5 3V5h4l1 7 3 2v7H3z"/><path d="M7 17h1M12 17h1M17 17h1"/></svg
+              ></span>
+              <h3>
+                <span class="es">Información operativa</span
+                ><span class="en">Operating information</span>
+              </h3>
+              <p>
+                <span class="es"
+                  >Revisamos qué produce realmente el proveedor y cómo opera.</span
+                ><span class="en"
+                  >We review what the supplier actually makes and how it
+                  operates.</span
+                >
+              </p>
+            </li>
+            <li>
+              <span class="verify-icon" aria-hidden="true"
+                ><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 21v-1.5A5.5 5.5 0 0 1 10.5 14h3a5.5 5.5 0 0 1 5.5 5.5V21"/><path d="m15.5 3.5 1.5 1.5 3-3"/></svg
+              ></span>
+              <h3>
+                <span class="es">Visita en sitio</span
+                ><span class="en">On-site visit</span>
+              </h3>
+              <p>
+                <span class="es"
+                  >Nuestro personal en China visita y verifica en persona.</span
+                ><span class="en"
+                  >Our people in China visit and verify in person.</span
+                >
+              </p>
+            </li>
+            <li>
+              <span class="verify-icon" aria-hidden="true"
+                ><svg viewBox="0 0 24 24"><path d="M12 3v17M7 20h10M5 6h14"/><path d="m5 6-3 6h6L5 6zm14 0-3 6h6l-3-6z"/><path d="M2 12c0 2 6 2 6 0M16 12c0 2 6 2 6 0"/></svg
+              ></span>
+              <h3>
+                <span class="es">Comparación de opciones</span
+                ><span class="en">Side-by-side comparison</span>
+              </h3>
+              <p>
+                <span class="es"
+                  >Evaluamos varias opciones para que usted elija con
+                  confianza.</span
+                ><span class="en"
+                  >We evaluate several options so you can choose with
+                  confidence.</span
+                >
+              </p>
+            </li>
+            <li>
+              <span class="verify-icon" aria-hidden="true"
+                ><svg viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5M12 13v8"/><path d="m15 17 1.5 1.5L19 16"/></svg
+              ></span>
+              <h3>
+                <span class="es">Revisión antes del envío</span
+                ><span class="en">Checked before shipping</span>
+              </h3>
+              <p>
+                <span class="es"
+                  >Documentamos el inventario y el empaque antes de que salga su
+                  envío.</span
+                ><span class="en"
+                  >We document inventory and packaging before your shipment
+                  leaves.</span
+                >
+              </p>
+            </li>
+          </ol>
+          <p class="verify-note">
+            <span class="es"
+              >Le compartimos lo que encontramos, con claridad, en español o
+              inglés.</span
+            ><span class="en"
+              >We share what we find, clearly, in English or Spanish.</span
+            >
+          </p>
+        </div>
+      </section>
       <section class="section categories">
         <div class="container">
           <h2 class="section-title">
@@ -1769,6 +2193,157 @@
             ><span class="en">Sourcing across industries.</span>
           </h2>
           <div class="category-grid" id="categories"></div>
+        </div>
+      </section>
+      <section class="section faq" id="faq">
+        <div class="container faq-grid">
+          <div>
+            <span class="eyebrow">
+              <span class="es">Preguntas frecuentes</span
+              ><span class="en">FAQ</span>
+            </span>
+            <h2 class="section-title">
+              <span class="es">Preguntas de compradores.</span
+              ><span class="en">Questions buyers ask.</span>
+            </h2>
+            <p class="section-intro">
+              <span class="es"
+                >¿No encuentra su respuesta? Escríbanos y le responderemos.</span
+              ><span class="en"
+                >Don't see your question? Message us and we'll answer.</span
+              >
+            </p>
+          </div>
+          <div class="faq-list">
+            <details>
+              <summary>
+                <span class="es">¿Qué hace Carasia Consulting?</span
+                ><span class="en">What does Carasia Consulting do?</span>
+              </summary>
+              <p>
+                <span class="es"
+                  >Le ayudamos a encontrar, comparar y verificar proveedores en
+                  China, y apoyamos la comunicación, la inspección y la
+                  preparación para la exportación, en español o inglés.</span
+                ><span class="en"
+                  >We help you find, compare and verify suppliers in China, and
+                  support communication, inspection and export preparation, in
+                  English or Spanish.</span
+                >
+              </p>
+            </details>
+            <details>
+              <summary>
+                <span class="es">¿El catálogo es todo lo que pueden conseguir?</span
+                ><span class="en">Is the catalog everything you can source?</span>
+              </summary>
+              <p>
+                <span class="es"
+                  >No. El catálogo es solo una muestra. Nuestra red cubre miles de
+                  proveedores, así que díganos lo que necesita aunque no aparezca
+                  en la lista.</span
+                ><span class="en"
+                  >No. The catalog is just a sample. Our network covers thousands
+                  of suppliers, so tell us what you need even if it isn't
+                  listed.</span
+                >
+              </p>
+            </details>
+            <details>
+              <summary>
+                <span class="es">¿Cómo empiezo?</span
+                ><span class="en">How do I get started?</span>
+              </summary>
+              <p>
+                <span class="es"
+                  >Envíe una solicitud con el formulario de abajo o por WhatsApp:
+                  el producto, una cantidad aproximada y el destino. Le
+                  responderemos con los siguientes pasos.</span
+                ><span class="en"
+                  >Send a request using the form below or on WhatsApp: the
+                  product, a rough quantity and the destination. We'll reply with
+                  the next steps.</span
+                >
+              </p>
+            </details>
+            <details>
+              <summary>
+                <span class="es">¿Hay un pedido mínimo?</span
+                ><span class="en">Is there a minimum order?</span>
+              </summary>
+              <p>
+                <span class="es"
+                  >Depende del producto y del proveedor. Confirmamos los mínimos,
+                  las opciones, los plazos y los precios con su cotización.</span
+                ><span class="en"
+                  >It depends on the product and the supplier. We confirm
+                  minimums, options, lead times and pricing with your quote.</span
+                >
+              </p>
+            </details>
+            <details>
+              <summary>
+                <span class="es">¿Cuánto tiempo toma?</span
+                ><span class="en">How long does it take?</span>
+              </summary>
+              <p>
+                <span class="es"
+                  >Depende del producto, la personalización y la cantidad. Le
+                  damos un plazo estimado junto con su cotización.</span
+                ><span class="en"
+                  >It depends on the product, any customization and the quantity.
+                  We give you an estimated timeline along with your quote.</span
+                >
+              </p>
+            </details>
+            <details>
+              <summary>
+                <span class="es">¿A qué países entregan?</span
+                ><span class="en">Which countries do you deliver to?</span>
+              </summary>
+              <p>
+                <span class="es"
+                  >Trabajamos con compradores de todo el mundo. Indíquenos su
+                  destino y le explicaremos las opciones.</span
+                ><span class="en"
+                  >We work with buyers around the world. Tell us your destination
+                  and we'll explain the options.</span
+                >
+              </p>
+            </details>
+            <details>
+              <summary>
+                <span class="es">¿Cómo sé que un proveedor es confiable?</span
+                ><span class="en">How do I know a supplier is reliable?</span>
+              </summary>
+              <p>
+                <span class="es"
+                  >Revisamos el registro, la licencia y la información operativa,
+                  visitamos en persona y comparamos opciones.
+                  <a href="#verify">Vea cómo verificamos</a>.</span
+                ><span class="en"
+                  >We check registration, license and operating information, visit
+                  in person and compare options.
+                  <a href="#verify">See how we verify</a>.</span
+                >
+              </p>
+            </details>
+            <details>
+              <summary>
+                <span class="es">¿En qué idiomas atienden?</span
+                ><span class="en">Which languages do you work in?</span>
+              </summary>
+              <p>
+                <span class="es"
+                  >Español e inglés, y nuestro equipo en China se comunica
+                  directamente con los proveedores.</span
+                ><span class="en"
+                  >English and Spanish, and our team in China communicates
+                  directly with suppliers.</span
+                >
+              </p>
+            </details>
+          </div>
         </div>
       </section>
       <section class="cta-section" id="contact">
@@ -1812,48 +2387,84 @@
               name="_subject"
               value="New Carasia sourcing request"
             />
-            <div class="fields">
-              <label class="field"
-                ><span
-                  ><span class="es">Nombre</span
-                  ><span class="en">Name</span></span
-                ><input required name="name" /></label
-              ><label class="field"
-                ><span
-                  ><span class="es">Empresa</span
-                  ><span class="en">Company</span></span
-                ><input name="company" /></label
-              ><label class="field"
-                ><span
-                  ><span class="es">Correo o WhatsApp</span
-                  ><span class="en">Email or WhatsApp</span></span
-                ><input required name="contact" /></label
-              ><label class="field"
-                ><span
-                  ><span class="es">Producto</span
-                  ><span class="en">Product</span></span
-                ><input required name="product" /></label
-              ><label class="field"
-                ><span
-                  ><span class="es">Cantidad estimada</span
-                  ><span class="en">Estimated Quantity</span></span
-                ><input name="quantity" /></label
-              ><label class="field"
-                ><span
-                  ><span class="es">Destino</span
-                  ><span class="en">Destination</span></span
-                ><input name="destination" /></label
-              ><label class="field full"
-                ><span
-                  ><span class="es">Detalles</span
-                  ><span class="en">Details</span></span
-                ><textarea name="details"></textarea>
-              </label>
+            <!-- Three short steps (without JavaScript, all steps simply show at once) -->
+            <ol class="form-progress" aria-hidden="true">
+              <li class="active"><b>1</b><span class="es">Producto</span><span class="en">Product</span></li>
+              <li><b>2</b><span class="es">Cantidad y destino</span><span class="en">Quantity &amp; destination</span></li>
+              <li><b>3</b><span class="es">Contacto</span><span class="en">Contact</span></li>
+            </ol>
+            <fieldset class="form-step active" data-step="1">
+              <legend>
+                <span class="step-count"><span class="es">Paso 1 de 3</span><span class="en">Step 1 of 3</span></span>
+                <span class="es">¿Qué necesita?</span><span class="en">What do you need?</span>
+              </legend>
+              <div class="fields">
+                <label class="field full"
+                  ><span
+                    ><span class="es">Producto</span
+                    ><span class="en">Product</span> *</span
+                  ><input required name="product" data-ph-en="e.g. LED work lights, diamond core bits…" data-ph-es="p. ej. luces LED, brocas de corona…" /></label
+                ><label class="field full"
+                  ><span
+                    ><span class="es">Detalles (opcional)</span
+                    ><span class="en">Details (optional)</span></span
+                  ><textarea name="details" data-ph-en="Size, material, model, photos or links you can share later…" data-ph-es="Tamaño, material, modelo, fotos o enlaces que pueda compartir…"></textarea>
+                </label>
+              </div>
+            </fieldset>
+            <fieldset class="form-step" data-step="2">
+              <legend>
+                <span class="step-count"><span class="es">Paso 2 de 3</span><span class="en">Step 2 of 3</span></span>
+                <span class="es">¿Cuántos y a dónde?</span><span class="en">How many, and where to?</span>
+              </legend>
+              <div class="fields">
+                <label class="field"
+                  ><span
+                    ><span class="es">Cantidad estimada</span
+                    ><span class="en">Estimated quantity</span></span
+                  ><input name="quantity" data-ph-en="e.g. 500 units" data-ph-es="p. ej. 500 unidades" /></label
+                ><label class="field"
+                  ><span
+                    ><span class="es">Destino</span
+                    ><span class="en">Destination</span></span
+                  ><input name="destination" autocomplete="country-name" data-ph-en="Country or city" data-ph-es="País o ciudad" /></label>
+              </div>
+            </fieldset>
+            <fieldset class="form-step" data-step="3">
+              <legend>
+                <span class="step-count"><span class="es">Paso 3 de 3</span><span class="en">Step 3 of 3</span></span>
+                <span class="es">¿Cómo lo contactamos?</span><span class="en">How can we reach you?</span>
+              </legend>
+              <div class="fields">
+                <label class="field"
+                  ><span
+                    ><span class="es">Nombre</span
+                    ><span class="en">Name</span> *</span
+                  ><input required name="name" autocomplete="name" /></label
+                ><label class="field"
+                  ><span
+                    ><span class="es">Empresa</span
+                    ><span class="en">Company</span></span
+                  ><input name="company" autocomplete="organization" /></label
+                ><label class="field full"
+                  ><span
+                    ><span class="es">Correo o WhatsApp</span
+                    ><span class="en">Email or WhatsApp</span> *</span
+                  ><input required name="contact" data-ph-en="you@company.com or +1 555…" data-ph-es="usted@empresa.com o +1 555…" /></label>
+              </div>
+            </fieldset>
+            <div class="form-nav">
+              <button class="btn form-back" type="button" hidden>
+                <span class="es">← Atrás</span><span class="en">← Back</span>
+              </button>
+              <button class="btn submit form-next" type="button" hidden>
+                <span class="es">Siguiente →</span><span class="en">Next →</span>
+              </button>
+              <button class="btn submit form-send" type="submit" data-umami-event="inquiry-submit">
+                <span class="es">Enviar solicitud de abastecimiento</span
+                ><span class="en">Submit Sourcing Request</span>
+              </button>
             </div>
-            <button class="btn submit" type="submit" data-umami-event="inquiry-submit">
-              <span class="es">Enviar solicitud de abastecimiento</span
-              ><span class="en">Submit Sourcing Request</span>
-            </button>
             <p class="form-privacy">
               <span class="es"
                 >Solo usamos estos datos para responder a su solicitud.
@@ -1912,6 +2523,9 @@
             ><a href="#proof"
               ><span class="es">Nosotros</span
               ><span class="en">About Us</span></a
+            ><a href="#faq"
+              ><span class="es">Preguntas frecuentes</span
+              ><span class="en">FAQ</span></a
             >
           </div>
           <div>
@@ -1921,7 +2535,7 @@
             <a href="#process"
               ><span class="es">Búsqueda de productos</span
               ><span class="en">Product Sourcing</span></a
-            ><a href="#process"
+            ><a href="#verify"
               ><span class="es">Verificación de proveedores</span
               ><span class="en">Supplier Verification</span></a
             ><a href="#proof"
@@ -2101,6 +2715,69 @@
           }, 650);
         });
       });
+      // ----- Step-by-step request form -----
+      (() => {
+        const form = document.querySelector("#contact form");
+        if (!form) return;
+        const steps = [...form.querySelectorAll(".form-step")];
+        const dots = [...form.querySelectorAll(".form-progress li")];
+        const back = form.querySelector(".form-back");
+        const next = form.querySelector(".form-next");
+        const send = form.querySelector(".form-send");
+        let current = 0;
+
+        // Example text inside empty fields, in the page's language
+        const placeholders = () => {
+          const lang = document.documentElement.lang === "es" ? "Es" : "En";
+          form.querySelectorAll("[data-ph-en]").forEach((field) => {
+            field.placeholder = field.dataset["ph" + lang];
+          });
+        };
+        placeholders();
+        new MutationObserver(placeholders).observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ["lang"],
+        });
+
+        const show = (index, focus = true) => {
+          current = index;
+          steps.forEach((step, i) => step.classList.toggle("active", i === index));
+          dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === index);
+            dot.classList.toggle("done", i < index);
+          });
+          back.hidden = index === 0;
+          next.hidden = index === steps.length - 1;
+          send.hidden = index !== steps.length - 1;
+          if (focus) steps[index].querySelector("input, textarea")?.focus({ preventScroll: true });
+        };
+
+        // A step is fine when its required fields are filled in
+        const stepIsValid = () =>
+          [...steps[current].querySelectorAll("input, textarea")].every((field) =>
+            field.reportValidity(),
+          );
+
+        next.addEventListener("click", () => {
+          if (stepIsValid()) show(current + 1);
+        });
+        back.addEventListener("click", () => show(current - 1));
+        // Pressing Enter on an early step moves forward instead of sending
+        form.addEventListener("submit", (event) => {
+          if (current < steps.length - 1) {
+            event.preventDefault();
+            if (stepIsValid()) show(current + 1);
+          }
+        });
+
+        // Buttons that jump to the form always land on step 1 (Product)
+        document.querySelectorAll('a[href$="#contact"]').forEach((link) =>
+          link.addEventListener("click", () => show(0, false)),
+        );
+
+        form.classList.add("stepped");
+        show(0, false);
+      })();
     </script>
     <script type="module">
     (async () => {
@@ -2381,5 +3058,6 @@
     <!-- Cloudflare Web Analytics -->
     <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"25b4d9d0a832458799f4f25ce94a6027"}'></script>
     <!-- End Cloudflare Web Analytics -->
+    <script defer src="assets/whatsapp-float.js?v=1"></script>
   </body>
 </html>
